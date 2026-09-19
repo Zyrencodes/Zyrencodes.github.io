@@ -1,39 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="sector">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#040711">
-  <title>Signal Lost | Neon Sector-7</title>
-  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css">
-</head>
-<body class="error-page">
-  <div class="site-background" aria-hidden="true">
-    <div class="ambient-light ambient-light-one"></div>
-    <div class="ambient-light ambient-light-two"></div>
-    <div class="grid-layer"></div>
-    <div class="scanlines"></div>
-    <div class="noise-layer"></div>
-  </div>
-
-  <main class="error-main">
-    <div class="error-shell">
-      <div class="error-mark" aria-hidden="true">A7</div>
-      <p class="section-code">SIGNAL_LOST // SECTOR NOT FOUND</p>
-      <p class="error-code" aria-hidden="true">404</p>
-      <h1>Sector not found.</h1>
-      <p>
-        The transmission you requested does not exist or has moved beyond the
-        current relay network.
-      </p>
-      <a class="button button-primary" href="/">
-        <span>Return to Neon Sector-7</span>
-        <span class="button-arrow" aria-hidden="true">↖</span>
-      </a>
-      <small>CONNECTION READY // PRIMARY CHANNEL AVAILABLE</small>
-    </div>
-  </main>
-</body>
-</html>
+<title>404</title>
+<meta http-equiv="refresh" content="4;url=/">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Source+Serif+4&display=swap');
+  :root { --bg:#EDEFF0; --text:#1B1E22; --muted:#5B6169; --accent:#A6650B; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg:#0B0D10; --text:#E9E7DD; --muted:#8B9198; --accent:#FFB454; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: var(--bg); color: var(--text); font-family: 'Source Serif 4', Georgia, serif;
+    text-align: center; padding: 1.5rem;
+  }
+  code { font-family: 'JetBrains Mono', monospace; }
+  h1 { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; margin: 0 0 0.5rem; color: var(--accent); }
+  p { color: var(--muted); margin: 0.25rem 0; }
+  a { color: var(--accent); }
+</style>
+<div>
+  <h1>404</h1>
+  <p><code>$ cat: requested path: No such file or directory</code></p>
+  <p>Redirecting to <a href="/">home</a>…</p>
+</div>
