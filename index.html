@@ -568,9 +568,9 @@
         return res.json();
       })
       .then(function (repos) {
-        var PROFILE_REPOS = [OWNER.toLowerCase(), 'doctordoomies'];
+        var SKIP_REPOS = [OWNER.toLowerCase(), 'doctordoomies', OWNER.toLowerCase() + '.github.io'];
         var filtered = repos
-          .filter(function (r) { return !r.fork && PROFILE_REPOS.indexOf(r.name.toLowerCase()) === -1; })
+          .filter(function (r) { return !r.fork && SKIP_REPOS.indexOf(r.name.toLowerCase()) === -1; })
           .slice(0, 6);
 
         if (filtered.length === 0) {
