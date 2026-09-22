@@ -255,9 +255,222 @@
   @media (max-width: 480px) {
     .topbar-title { display: none; }
   }
+
+  /* ---------- Scroll cue ---------- */
+  .scroll-cue {
+    position: fixed;
+    right: 1.1rem;
+    bottom: 1.1rem;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem 0.5rem 1rem;
+    box-shadow: var(--shadow);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .scroll-cue.visible { opacity: 1; transform: none; pointer-events: auto; }
+  .scroll-cue:hover { border-color: var(--accent); color: var(--accent); }
+  .scroll-cue svg { width: 14px; height: 14px; animation: nudge 1.6s ease-in-out infinite; }
+  @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+
+  /* ---------- Visual guide ---------- */
+  .visual {
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .visual-inner {
+    max-width: var(--content-w);
+    margin: 0 auto;
+    padding: 3.5rem 1.25rem 4rem;
+  }
+  .visual-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    margin-bottom: 0.6rem;
+  }
+  .visual-heading {
+    font-family: var(--font-serif);
+    font-size: var(--fs-xl);
+    font-weight: 600;
+    margin: 0 0 0.4rem;
+    text-wrap: balance;
+  }
+  .visual-sub {
+    font-family: var(--font-serif);
+    color: var(--text-muted);
+    font-size: var(--fs-md);
+    margin: 0 0 2.5rem;
+    max-width: 46ch;
+  }
+
+  .stat-row { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+  .stat-tile {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    flex: 1;
+  }
+  .stat-num {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xl);
+    font-weight: 800;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+  }
+  .visual-bio {
+    font-family: var(--font-serif);
+    font-size: var(--fs-md);
+    color: var(--text);
+    max-width: 62ch;
+    line-height: 1.75;
+  }
+
+  .visual-block { margin-top: 3rem; }
+  .visual-block-title {
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    margin: 0 0 1.1rem;
+  }
+
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1rem;
+  }
+  .skill-card {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.3rem;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .skill-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.9rem;
+  }
+  .skill-icon svg { width: 18px; height: 18px; }
+  .skill-card h4 {
+    font-family: var(--font-mono);
+    font-size: var(--fs-base);
+    margin: 0 0 0.4rem;
+  }
+  .skill-card p {
+    font-family: var(--font-serif);
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .visual-projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .visual-project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1.1rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface-2);
+    text-decoration: none;
+    color: var(--text);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .visual-project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .visual-project-name { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-md); }
+  .visual-project-desc { font-family: var(--font-serif); font-size: var(--fs-sm); color: var(--text-muted); flex: 1; }
+  .visual-project-meta { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); }
+  .visual-fallback {
+    font-family: var(--font-serif);
+    color: var(--text-muted);
+    font-size: var(--fs-base);
+  }
+  .skeleton {
+    height: 96px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%);
+    background-size: 400% 100%;
+    animation: shimmer 1.4s ease infinite;
+  }
+  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
+
+  .visual-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--fs-base);
+    color: #14171C;
+    background: var(--accent);
+    border-radius: 8px;
+    padding: 0.8rem 1.3rem;
+    text-decoration: none;
+    transition: filter 0.15s ease, transform 0.1s ease;
+  }
+  :root[data-theme="dark"] .visual-cta { color: #14171C; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .visual-cta { color: #14171C; } }
+  .visual-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
+  .visual-cta svg { width: 16px; height: 16px; }
+
+  .back-to-terminal {
+    display: inline-block;
+    margin-top: 3rem;
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+  .back-to-terminal:hover { color: var(--accent); }
+
+  .site-footer {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    padding: 2rem 1.25rem 2.5rem;
+    background: var(--surface);
+  }
 </style>
 
-<div class="topbar">
+<div class="topbar" id="top">
   <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
   <span class="topbar-title">zyren@portfolio — 120×32</span>
   <button class="topbar-hint" id="helpHint" type="button">type <kbd>help</kbd></button>
@@ -271,8 +484,74 @@
     </div>
   </div>
 
-  <p class="term-footer">process running · © <span id="year"></span> Zyren · scroll to read, type to explore</p>
+  <p class="term-footer">process running · © <span class="year-el"></span> Zyren · scroll to read, type to explore</p>
 </main>
+
+<a href="#visual" class="scroll-cue" id="scrollCue" aria-label="Scroll to visual guide">
+  <span>visual guide</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+</a>
+
+<section class="visual" id="visual">
+  <div class="visual-inner">
+    <span class="visual-label">// scroll guide</span>
+    <h2 class="visual-heading">Same thing, laid out to browse.</h2>
+    <p class="visual-sub">Everything from the terminal above, no typing required.</p>
+
+    <div class="stat-row">
+      <div class="stat-tile"><span class="stat-num">6</span><span class="stat-label">years coding</span></div>
+      <div class="stat-tile"><span class="stat-num">5</span><span class="stat-label">years in security</span></div>
+    </div>
+    <p class="visual-bio">Six years of writing code and five of trying to break it have taught me the same lesson twice: every feature is also an attack surface, and every exploit is also a design lesson. I build web apps, native apps, and Minecraft servers — then I put on the other hat and pentest web applications to see what a rushed release left behind.</p>
+
+    <div class="visual-block">
+      <h3 class="visual-block-title">What I build with</h3>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg></span>
+          <h4>Web Development</h4>
+          <p>Full-stack web apps — responsive front-ends, solid back-ends, shipped and maintained end to end.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>
+          <h4>App Development</h4>
+          <p>Native and cross-platform apps built for real devices, not just a browser tab.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5"/><path d="M12 12v10"/></svg></span>
+          <h4>Minecraft Server Development</h4>
+          <p>Custom Minecraft servers — plugins, performance tuning, the occasional gamemode from scratch.</p>
+        </div>
+        <div class="skill-card">
+          <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><polyline points="8.5 12 11 14.5 15.5 9.5"/></svg></span>
+          <h4>Web Pentesting</h4>
+          <p>Probing web apps for the vulnerabilities a rushed release leaves behind.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="visual-block">
+      <h3 class="visual-block-title">Projects</h3>
+      <div class="visual-projects-grid" id="visualProjectsGrid">
+        <div class="skeleton"></div>
+        <div class="skeleton"></div>
+      </div>
+      <p class="visual-fallback" id="visualProjectsFallback" hidden>Most of the work right now lives in private repos. Full picture — and everything as it goes public — is on <a href="https://github.com/Zyrencodes" target="_blank" rel="noopener">GitHub</a>.</p>
+    </div>
+
+    <div class="visual-block">
+      <h3 class="visual-block-title">Get in touch</h3>
+      <a class="visual-cta" href="https://github.com/Zyrencodes" target="_blank" rel="noopener">
+        github.com/Zyrencodes
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </div>
+
+    <a href="#top" class="back-to-terminal">↑ back to the terminal</a>
+  </div>
+</section>
+
+<footer class="site-footer">© <span class="year-el"></span> Zyren · built by hand, browsed your way</footer>
 
 <script>
 (function () {
@@ -283,7 +562,7 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var OWNER = 'Zyrencodes';
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+  document.querySelectorAll('.year-el').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
   try {
     var savedTheme = localStorage.getItem('zyren-theme');
@@ -455,19 +734,28 @@
     addHTML(new Date().toString(), 'out out-muted');
   }
 
+  var reposPromise = null;
+  function fetchRepos() {
+    if (!reposPromise) {
+      reposPromise = fetch('https://api.github.com/users/' + OWNER + '/repos?sort=updated&per_page=100')
+        .then(function (res) {
+          if (!res.ok) throw new Error('GitHub API error');
+          return res.json();
+        })
+        .then(function (repos) {
+          var SKIP = [OWNER.toLowerCase(), 'doctordoomies', OWNER.toLowerCase() + '.github.io'];
+          return repos
+            .filter(function (r) { return !r.fork && SKIP.indexOf(r.name.toLowerCase()) === -1; })
+            .slice(0, 6);
+        });
+    }
+    return reposPromise;
+  }
+
   function cmdProjects() {
     var loadingLine = addHTML('fetching from api.github.com/users/' + OWNER + '/repos …', 'out out-muted');
-    fetch('https://api.github.com/users/' + OWNER + '/repos?sort=updated&per_page=100')
-      .then(function (res) {
-        if (!res.ok) throw new Error('GitHub API error');
-        return res.json();
-      })
-      .then(function (repos) {
-        var SKIP = [OWNER.toLowerCase(), 'doctordoomies', OWNER.toLowerCase() + '.github.io'];
-        var filtered = repos
-          .filter(function (r) { return !r.fork && SKIP.indexOf(r.name.toLowerCase()) === -1; })
-          .slice(0, 6);
-
+    fetchRepos()
+      .then(function (filtered) {
         loadingLine.remove();
 
         if (filtered.length === 0) {
@@ -580,6 +868,67 @@
     input.focus();
   });
 
+  /* ---------------- visual guide ---------------- */
+
+  function loadVisualProjects() {
+    var grid = document.getElementById('visualProjectsGrid');
+    var fallback = document.getElementById('visualProjectsFallback');
+    fetchRepos()
+      .then(function (filtered) {
+        if (filtered.length === 0) {
+          grid.hidden = true;
+          fallback.hidden = false;
+          return;
+        }
+        grid.innerHTML = '';
+        filtered.forEach(function (repo) {
+          var card = document.createElement('a');
+          card.className = 'visual-project-card';
+          card.href = repo.html_url;
+          card.target = '_blank';
+          card.rel = 'noopener';
+
+          var name = document.createElement('div');
+          name.className = 'visual-project-name';
+          name.textContent = repo.name;
+
+          var desc = document.createElement('div');
+          desc.className = 'visual-project-desc';
+          desc.textContent = repo.description || 'No description yet.';
+
+          var meta = document.createElement('div');
+          meta.className = 'visual-project-meta';
+          var bits = [];
+          if (repo.language) bits.push(repo.language);
+          if (repo.stargazers_count) bits.push('★ ' + repo.stargazers_count);
+          meta.textContent = bits.join(' · ');
+
+          card.appendChild(name);
+          card.appendChild(desc);
+          if (bits.length) card.appendChild(meta);
+          grid.appendChild(card);
+        });
+      })
+      .catch(function () {
+        grid.hidden = true;
+        fallback.hidden = false;
+      });
+  }
+  loadVisualProjects();
+
+  var scrollCue = document.getElementById('scrollCue');
+  var visualSection = document.getElementById('visual');
+  if ('IntersectionObserver' in window) {
+    var cueObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        scrollCue.classList.toggle('visible', !entry.isIntersecting);
+      });
+    }, { threshold: 0.1 });
+    cueObserver.observe(visualSection);
+  } else {
+    scrollCue.classList.add('visible');
+  }
+
   /* ---------------- boot sequence ---------------- */
 
   function renderBanner() {
@@ -637,7 +986,7 @@
       function () { echoCommand('about'); cmdAbout(); },
       function () { echoCommand('techstack'); cmdTechstack(); },
       function () {
-        addHTML('Type <span class="out-accent">help</span> to see more — projects, github, contact, theme, clear …', 'out out-muted');
+        addHTML('Type <span class="out-accent">help</span> to see more, or scroll down for a visual guide.', 'out out-muted');
         input.disabled = false;
         if (!window.matchMedia('(pointer: coarse)').matches) input.focus();
       }
