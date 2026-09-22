@@ -1,5 +1,7 @@
+<meta charset="utf-8">
 <title>whoami</title>
-<meta name="description" content="Zyren — web developer, app developer, Minecraft server developer, and web pentester.">
+<meta name="description" content="Zyren — web developer, app developer, Minecraft server developer, and web pentester. An interactive terminal portfolio — type help to explore.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
 
@@ -23,14 +25,13 @@
 
     --fs-xs: 0.75rem;
     --fs-sm: 0.8125rem;
-    --fs-base: 1rem;
+    --fs-base: 0.9375rem;
     --fs-md: 1.125rem;
     --fs-lg: 1.375rem;
     --fs-xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
-    --fs-2xl: clamp(2.5rem, 1.8rem + 3vw, 4.25rem);
+    --fs-2xl: clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem);
 
-    --content-w: 860px;
-    --gutter-w: 3rem;
+    --content-w: 780px;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -69,136 +70,121 @@
 
   * { box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
   }
+
+  html { scroll-behavior: smooth; }
 
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
-    font-family: var(--font-serif);
+    font-family: var(--font-mono);
     font-size: var(--fs-base);
-    line-height: 1.65;
+    line-height: 1.7;
     -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
   }
 
-  a { color: inherit; }
+  a { color: var(--accent); text-decoration-color: var(--accent-soft); text-underline-offset: 2px; }
+  a:hover { text-decoration-color: var(--accent); }
 
   ::selection { background: var(--accent-soft); color: var(--text); }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
 
-  .wrap {
-    max-width: var(--content-w);
-    margin: 0 auto;
-    padding: 0 1.5rem;
-  }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-  /* ---------- Nav ---------- */
-  .nav {
+  /* ---------- Topbar ---------- */
+  .topbar {
     position: sticky;
     top: 0;
     z-index: 40;
-    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
   }
-  .nav-inner {
-    max-width: var(--content-w);
-    margin: 0 auto;
-    padding: 0.85rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-  }
-  .nav-logo {
-    text-decoration: none;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-  }
-  .nav-logo .prompt-sep { color: var(--accent); }
-  .nav-links { display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0; }
-  .nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    transition: color 0.15s ease;
-  }
-  .nav-links a:hover, .nav-links a:focus-visible { color: var(--accent); }
-  .nav-toggle {
-    display: none;
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--text);
-    padding: 0.3rem 0.6rem;
-    cursor: pointer;
-  }
-  @media (max-width: 640px) {
-    .nav-links { display: none; flex-direction: column; gap: 0.9rem; position: absolute; top: 100%; left: 0; right: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.1rem 1.5rem; }
-    .nav-links.open { display: flex; }
-    .nav-toggle { display: inline-block; }
-  }
-
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-  /* ---------- Hero ---------- */
-  .hero { padding: 3.5rem 1.5rem 3rem; }
-  .terminal-window {
-    max-width: var(--content-w);
-    margin: 0 auto;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-  }
-  .terminal-chrome {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 1rem;
-    background: var(--surface-2);
-    border-bottom: 1px solid var(--border);
-  }
-  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
   .dot-r { background: #FF5F56; }
   .dot-y { background: #FFBD2E; }
   .dot-g { background: #27C93F; }
-  .terminal-title {
-    font-family: var(--font-mono);
+  .topbar-title {
     font-size: var(--fs-xs);
     color: var(--text-muted);
-    margin-left: 0.5rem;
+    margin-left: 0.3rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  .terminal-body { padding: 2rem 1.75rem 2.25rem; font-family: var(--font-mono); }
+  .topbar-hint {
+    margin-left: auto;
+    font-size: var(--fs-xs);
+    color: var(--text-muted);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.3rem 0.6rem;
+    cursor: pointer;
+    flex: none;
+  }
+  .topbar-hint:hover { color: var(--accent); border-color: var(--accent); }
+  .topbar-hint kbd { font-family: inherit; color: var(--accent); }
 
-  .prompt-line { margin: 0 0 0.5rem; font-size: var(--fs-sm); color: var(--text-muted); }
+  /* ---------- Terminal stream ---------- */
+  .term {
+    max-width: var(--content-w);
+    margin: 0 auto;
+    padding: 1.5rem 1.25rem 6rem;
+  }
+
+  .line {
+    margin: 0 0 0.2rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-size: var(--fs-sm);
+  }
+  .line.cmd { margin-top: 1.15rem; color: var(--text); }
   .prompt-user { color: var(--diff-add); }
   .prompt-sep { color: var(--accent); }
+  .cmd-text { color: var(--text); font-weight: 600; }
 
-  .hero-name {
-    font-family: var(--font-mono);
+  .out { margin: 0.15rem 0 0.1rem; color: var(--text); }
+  .out-muted { color: var(--text-muted); }
+  .out-accent { color: var(--accent); }
+  .out-error { color: var(--diff-remove); }
+
+  .out-block {
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--border);
+    margin: 0.35rem 0 0.85rem;
+  }
+
+  .banner-name {
     font-size: var(--fs-2xl);
     font-weight: 800;
     letter-spacing: -0.02em;
-    margin: 0 0 0.75rem;
+    margin: 0.3rem 0 0.6rem;
     text-wrap: balance;
   }
-  .hero-role {
+  .banner-tagline {
+    font-family: var(--font-serif);
     font-size: var(--fs-md);
-    margin: 0 0 1.1rem;
-    min-height: 1.6em;
+    color: var(--text-muted);
+    max-width: 42ch;
+    margin: 0 0 0.9rem;
   }
+  .role-line { font-size: var(--fs-md); margin: 0 0 0.9rem; min-height: 1.5em; }
   .role-caret { color: var(--accent); margin-right: 0.4em; }
   .cursor-block {
     display: inline-block;
-    width: 0.55em;
+    width: 0.5em;
     height: 1em;
     background: var(--accent);
     margin-left: 2px;
@@ -207,408 +193,466 @@
   }
   @keyframes blink { 50% { opacity: 0; } }
 
-  .hero-tagline {
-    font-family: var(--font-serif);
-    font-size: var(--fs-md);
-    color: var(--text-muted);
-    max-width: 46ch;
-    margin: 0 0 1.75rem;
-  }
-  .hero-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-
-  .btn {
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-    text-decoration: none;
-    padding: 0.65rem 1.1rem;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    display: inline-flex;
-    align-items: center;
-    transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
-  }
-  .btn:hover { transform: translateY(-1px); }
-  .btn-primary { background: var(--accent); border-color: var(--accent); color: #14171C; font-weight: 600; }
-  .btn-primary:hover { background: var(--accent); filter: brightness(1.08); }
-  :root[data-theme="light"] .btn-primary,
-  :root:not([data-theme="dark"]) .btn-primary { color: #FFFFFF; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .btn-primary { color: #14171C; } }
-  :root[data-theme="dark"] .btn-primary { color: #14171C; }
-  .btn-ghost { background: transparent; color: var(--text); }
-  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-  .btn-lg { padding: 0.85rem 1.5rem; font-size: var(--fs-base); }
-
-  /* ---------- Sections ---------- */
-  .section { padding: 3.5rem 0; border-top: 1px solid var(--border); }
-  .section .wrap { max-width: var(--content-w); }
-
-  .file-tab {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    letter-spacing: 0.02em;
-    color: var(--text-muted);
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-bottom: none;
-    border-radius: 6px 6px 0 0;
-    padding: 0.4rem 0.9rem;
-    margin-left: 1.5rem;
-  }
-
-  .panel {
-    max-width: var(--content-w);
-    margin: 0 auto;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 0 8px 8px 8px;
-    box-shadow: var(--shadow);
-    padding: 1.75rem;
-  }
-  @media (min-width: 641px) { .panel { padding: 2.25rem 2.5rem; } }
-
-  /* ---------- About: git log ---------- */
-  .git-log { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 1.75rem; }
-  .commit {
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-    padding-left: 1rem;
-    border-left: 2px solid var(--border);
-  }
-  .commit-line { color: var(--text); margin-bottom: 0.15rem; }
+  /* ---------- about: git log ---------- */
+  .commit { margin: 0 0 1rem; }
+  .commit:last-child { margin-bottom: 0; }
   .git-token { color: var(--accent); }
   .git-hash { color: var(--diff-add); }
   .git-head { color: var(--text-muted); }
-  .commit-meta { color: var(--text-muted); margin-bottom: 0.15rem; }
-  .commit-meta a { color: var(--text-muted); }
+  .commit-meta { color: var(--text-muted); }
   .commit-msg {
     font-family: var(--font-serif);
     font-size: var(--fs-base);
     color: var(--text);
-    margin: 0.6rem 0 0;
+    margin: 0.35rem 0 0;
+  }
+  .prose-out {
+    font-family: var(--font-serif);
+    font-size: var(--fs-base);
+    color: var(--text);
+    max-width: 62ch;
+    margin: 0.9rem 0 0;
   }
 
-  .prose { max-width: 68ch; color: var(--text); }
-  .prose.muted { color: var(--text-muted); font-size: var(--fs-sm); }
-
-  /* ---------- Skills: diff ---------- */
-  .diff-block { display: flex; flex-direction: column; gap: 1.1rem; }
-  .diff-hunk {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .hunk-header {
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    color: var(--text-muted);
-    background: var(--surface-2);
-    padding: 0.4rem 0.9rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .diff-add-line {
-    display: flex;
-    gap: 0.75rem;
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-    padding: 0.35rem 0.9rem;
-    background: var(--diff-add-bg);
-  }
+  /* ---------- techstack: diff ---------- */
+  .diff-hunk { margin: 0 0 0.9rem; }
+  .diff-hunk:last-child { margin-bottom: 0; }
+  .hunk-header { color: var(--text-muted); opacity: 0.75; }
+  .diff-add-line { display: flex; gap: 0.6rem; background: var(--diff-add-bg); padding: 0.1rem 0.5rem; margin: 0.1rem 0; border-radius: 3px; }
   .diff-marker { color: var(--diff-add); user-select: none; }
   .diff-file { font-weight: 700; color: var(--text); }
   .diff-comment { color: var(--text-muted); }
-  .diff-comment .diff-marker { color: var(--diff-add); opacity: 0.7; }
+  .diff-comment .diff-marker { opacity: 0.7; }
 
-  /* ---------- Projects ---------- */
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-    gap: 1rem;
-  }
-  .project-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.1rem 1.2rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--surface-2);
-    text-decoration: none;
+  /* ---------- projects ---------- */
+  .proj-row { margin: 0 0 0.7rem; }
+  .proj-name { color: var(--text); font-weight: 700; }
+  .proj-meta { color: var(--text-muted); }
+  .proj-desc { color: var(--text-muted); margin-left: 1.4rem; }
+
+  /* ---------- input line ---------- */
+  .input-line { display: flex; align-items: baseline; gap: 0.4em; margin-top: 1.15rem; }
+  .cmd-input {
+    flex: 1;
+    min-width: 4ch;
+    background: transparent;
+    border: none;
+    outline: none;
     color: var(--text);
-    transition: border-color 0.15s ease, transform 0.1s ease;
+    font: inherit;
+    font-size: var(--fs-sm);
+    caret-color: var(--accent);
+    padding: 0;
   }
-  .project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .project-name { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-md); }
-  .project-desc { font-size: var(--fs-sm); color: var(--text-muted); flex: 1; }
-  .project-meta { display: flex; align-items: center; gap: 0.9rem; font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); }
-  .lang-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; margin-right: 0.35rem; }
-  .skeleton {
-    height: 110px;
-    border-radius: 8px;
-    background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%);
-    background-size: 400% 100%;
-    animation: shimmer 1.4s ease infinite;
-  }
-  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 
-  /* ---------- Contact ---------- */
-  .contact-block { text-align: left; }
-  .contact-block .btn { margin-top: 0.75rem; }
-
-  /* ---------- Footer ---------- */
-  .footer {
-    padding: 2.5rem 1.5rem 3rem;
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
+  .term-footer {
     color: var(--text-muted);
+    font-size: var(--fs-xs);
+    margin-top: 2.5rem;
+    opacity: 0.8;
   }
 
-  /* ---------- Reveal on scroll ---------- */
-  .reveal { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.5s ease, transform 0.5s ease; }
-    .reveal.in { opacity: 1; transform: none; }
+  @media (max-width: 480px) {
+    .topbar-title { display: none; }
   }
 </style>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="#top" class="nav-logo">zyren<span class="prompt-sep">:~$</span></a>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks">menu</button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">./about</a></li>
-      <li><a href="#skills">./skills</a></li>
-      <li><a href="#projects">./projects</a></li>
-      <li><a href="#contact">./contact</a></li>
-    </ul>
-  </div>
-</nav>
+<div class="topbar">
+  <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+  <span class="topbar-title">zyren@portfolio — 120×32</span>
+  <button class="topbar-hint" id="helpHint" type="button">type <kbd>help</kbd></button>
+</div>
 
-<section id="top" class="hero">
-  <div class="terminal-window">
-    <div class="terminal-chrome">
-      <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-      <span class="terminal-title">zyren — portfolio — 120×32</span>
-    </div>
-    <div class="terminal-body">
-      <p class="prompt-line"><span class="prompt-user">zyren@portfolio</span><span class="prompt-sep">:~$</span> whoami</p>
-      <h1 class="hero-name">Zyren</h1>
-      <p class="hero-role"><span class="role-caret">&gt;</span><span id="typewriter"></span><span class="cursor-block" aria-hidden="true"></span></p>
-      <p class="hero-tagline">Building systems, then trying to break them — professionally.</p>
-      <div class="hero-cta">
-        <a href="#about" class="btn btn-primary">$ cat about.md</a>
-        <a href="https://github.com/Zyrencodes" target="_blank" rel="noopener" class="btn btn-ghost">$ open github</a>
-      </div>
+<main class="term" id="term">
+  <div id="stream">
+    <div class="line input-line" id="inputRow">
+      <span class="prompt-user">zyren@portfolio</span><span class="prompt-sep">:~$</span>
+      <input class="cmd-input" id="cmdInput" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal command input" />
     </div>
   </div>
-</section>
 
-<section id="about" class="section reveal">
-  <div class="wrap">
-    <div class="file-tab">~/about.md</div>
-    <div class="panel">
-      <div class="git-log">
-        <div class="commit">
-          <div class="commit-line"><span class="git-token">commit</span> <span class="git-hash">a3f9d2c</span> <span class="git-head">(HEAD -&gt; main)</span></div>
-          <div class="commit-meta">Author: Zyren &lt;<a href="https://github.com/Zyrencodes" target="_blank" rel="noopener">Zyrencodes</a>&gt;</div>
-          <div class="commit-meta">Date:&nbsp;&nbsp; 6 years ago</div>
-          <p class="commit-msg">Wrote the first line of code. Nothing has compiled cleanly since.</p>
-        </div>
-        <div class="commit">
-          <div class="commit-line"><span class="git-token">commit</span> <span class="git-hash">7b1e004</span></div>
-          <div class="commit-meta">Author: Zyren &lt;<a href="https://github.com/Zyrencodes" target="_blank" rel="noopener">Zyrencodes</a>&gt;</div>
-          <div class="commit-meta">Date:&nbsp;&nbsp; 5 years ago</div>
-          <p class="commit-msg">Fell into cybersecurity. Started asking "but what if I broke this instead?" Never really left either side.</p>
-        </div>
-      </div>
-      <p class="prose">Six years of writing code and five of trying to break it have taught me the same lesson twice: every feature is also an attack surface, and every exploit is also a design lesson. I build web apps, native apps, and Minecraft servers — then I put on the other hat and pentest web applications to see what a rushed release left behind.</p>
-    </div>
-  </div>
-</section>
-
-<section id="skills" class="section reveal">
-  <div class="wrap">
-    <div class="file-tab">~/skills.diff</div>
-    <div class="panel">
-      <div class="diff-block">
-        <div class="diff-hunk">
-          <div class="hunk-header">@@ -0,0 +1,2 @@</div>
-          <div class="diff-add-line"><span class="diff-marker">+</span><span class="diff-file">web-development.ts</span></div>
-          <div class="diff-add-line diff-comment"><span class="diff-marker">+</span><span>// Full-stack web apps — responsive front-ends, solid back-ends, shipped and maintained end to end.</span></div>
-        </div>
-        <div class="diff-hunk">
-          <div class="hunk-header">@@ -0,0 +1,2 @@</div>
-          <div class="diff-add-line"><span class="diff-marker">+</span><span class="diff-file">app-development.swift</span></div>
-          <div class="diff-add-line diff-comment"><span class="diff-marker">+</span><span>// Native and cross-platform apps built for real devices, not just a browser tab.</span></div>
-        </div>
-        <div class="diff-hunk">
-          <div class="hunk-header">@@ -0,0 +1,2 @@</div>
-          <div class="diff-add-line"><span class="diff-marker">+</span><span class="diff-file">minecraft-server.java</span></div>
-          <div class="diff-add-line diff-comment"><span class="diff-marker">+</span><span>// Custom Minecraft servers — plugins, performance tuning, the occasional gamemode from scratch.</span></div>
-        </div>
-        <div class="diff-hunk">
-          <div class="hunk-header">@@ -0,0 +1,2 @@</div>
-          <div class="diff-add-line"><span class="diff-marker">+</span><span class="diff-file">web-pentesting.py</span></div>
-          <div class="diff-add-line diff-comment"><span class="diff-marker">+</span><span>// Probing web apps for the vulnerabilities a rushed release leaves behind.</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="section reveal">
-  <div class="wrap">
-    <div class="file-tab">~/projects (live from GitHub)</div>
-    <div class="panel">
-      <div class="projects-grid" id="projectsGrid" aria-live="polite">
-        <div class="skeleton"></div>
-        <div class="skeleton"></div>
-      </div>
-      <p class="prose muted" id="projectsFallback" hidden>Most of the work right now lives in private repos. Full picture — and everything as it goes public — is on <a href="https://github.com/Zyrencodes" target="_blank" rel="noopener">GitHub</a>.</p>
-    </div>
-  </div>
-</section>
-
-<section id="contact" class="section reveal">
-  <div class="wrap">
-    <div class="file-tab">~/contact.sh</div>
-    <div class="panel contact-block">
-      <p class="prompt-line"><span class="prompt-user">zyren@portfolio</span><span class="prompt-sep">:~$</span> ./contact.sh --github</p>
-      <a href="https://github.com/Zyrencodes" target="_blank" rel="noopener" class="btn btn-primary btn-lg">github.com/Zyrencodes</a>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  process exited (0) · © <span id="year"></span> Zyren
-</footer>
+  <p class="term-footer">process running · © <span id="year"></span> Zyren · scroll to read, type to explore</p>
+</main>
 
 <script>
+(function () {
+  var stream = document.getElementById('stream');
+  var inputRow = document.getElementById('inputRow');
+  var input = document.getElementById('cmdInput');
+  var helpHint = document.getElementById('helpHint');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var OWNER = 'Zyrencodes';
+
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Mobile nav toggle
-  var navToggle = document.getElementById('navToggle');
-  var navLinks = document.getElementById('navLinks');
-  navToggle.addEventListener('click', function () {
-    var open = navLinks.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  navLinks.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function () {
-      navLinks.classList.remove('open');
-      navToggle.setAttribute('aria-expanded', 'false');
+  try {
+    var savedTheme = localStorage.getItem('zyren-theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    }
+  } catch (e) {}
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
-  });
-
-  // Typewriter
-  var roles = ['Web Developer', 'App Developer', 'Minecraft Server Developer', 'Web Pentester'];
-  var typewriterEl = document.getElementById('typewriter');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (reduceMotion) {
-    typewriterEl.textContent = roles[0];
-  } else {
-    (function typeLoop() {
-      var roleIndex = 0;
-      function typeRole() {
-        var word = roles[roleIndex];
-        var i = 0;
-        typewriterEl.textContent = '';
-        var typeInterval = setInterval(function () {
-          typewriterEl.textContent = word.slice(0, i + 1);
-          i++;
-          if (i === word.length) {
-            clearInterval(typeInterval);
-            setTimeout(eraseRole, 1400);
-          }
-        }, 55);
-      }
-      function eraseRole() {
-        var word = roles[roleIndex];
-        var i = word.length;
-        var eraseInterval = setInterval(function () {
-          typewriterEl.textContent = word.slice(0, i - 1);
-          i--;
-          if (i === 0) {
-            clearInterval(eraseInterval);
-            roleIndex = (roleIndex + 1) % roles.length;
-            setTimeout(typeRole, 250);
-          }
-        }, 30);
-      }
-      typeRole();
-    })();
   }
 
-  // Scroll reveal
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(function (el) { observer.observe(el); });
-  } else {
-    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  function addHTML(html, cls) {
+    var div = document.createElement('div');
+    div.className = 'line ' + (cls || '');
+    div.innerHTML = html;
+    stream.insertBefore(div, inputRow);
+    return div;
+  }
+  function addNode(node) {
+    stream.insertBefore(node, inputRow);
+    return node;
+  }
+  function addBlockHTML(html) {
+    var div = document.createElement('div');
+    div.className = 'out-block';
+    div.innerHTML = html;
+    stream.insertBefore(div, inputRow);
+    return div;
   }
 
-  // Live GitHub projects
-  (function loadProjects() {
-    var grid = document.getElementById('projectsGrid');
-    var fallback = document.getElementById('projectsFallback');
-    var OWNER = 'Zyrencodes';
+  function echoCommand(raw) {
+    var div = document.createElement('div');
+    div.className = 'line cmd';
+    var userSpan = document.createElement('span');
+    userSpan.className = 'prompt-user';
+    userSpan.textContent = 'zyren@portfolio';
+    var sepSpan = document.createElement('span');
+    sepSpan.className = 'prompt-sep';
+    sepSpan.textContent = ':~$ ';
+    var cmdSpan = document.createElement('span');
+    cmdSpan.className = 'cmd-text';
+    cmdSpan.textContent = raw;
+    div.appendChild(userSpan);
+    div.appendChild(sepSpan);
+    div.appendChild(cmdSpan);
+    addNode(div);
+  }
 
+  function nearBottom() {
+    return (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 160);
+  }
+  function scrollToInput() {
+    inputRow.scrollIntoView({ block: 'end', behavior: reduceMotion ? 'auto' : 'smooth' });
+  }
+
+  /* ---------------- commands ---------------- */
+
+  function cmdHelp() {
+    addHTML(
+      'available commands:\n\n' +
+      '  <span class="out-accent">about</span>        who I am and how I got here\n' +
+      '  <span class="out-accent">techstack</span>    what I build with (and break)\n' +
+      '  <span class="out-accent">projects</span>     live list from github.com/' + OWNER + '\n' +
+      '  <span class="out-accent">github</span>        jump to my GitHub profile\n' +
+      '  <span class="out-accent">contact</span>       how to reach me\n' +
+      '  <span class="out-accent">whoami</span>        what I do\n' +
+      '  <span class="out-accent">theme</span>         theme [dark|light|system]\n' +
+      '  <span class="out-accent">ls</span>            list this page as files\n' +
+      '  <span class="out-accent">clear</span>         clear the terminal\n' +
+      '  <span class="out-accent">help</span>          show this list',
+      'out out-muted'
+    );
+  }
+
+  function cmdWhoami() {
+    addHTML('Zyren — web developer, app developer, minecraft server developer, web pentester.', 'out');
+  }
+
+  function cmdAbout() {
+    addBlockHTML(
+      '<div class="commit">' +
+        '<div><span class="git-token">commit</span> <span class="git-hash">a3f9d2c</span> <span class="git-head">(HEAD -&gt; main)</span></div>' +
+        '<div class="commit-meta">Author: Zyren &lt;<a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">' + OWNER + '</a>&gt;</div>' +
+        '<div class="commit-meta">Date:&nbsp;&nbsp; 6 years ago</div>' +
+        '<p class="commit-msg">Wrote the first line of code. Nothing has compiled cleanly since.</p>' +
+      '</div>' +
+      '<div class="commit">' +
+        '<div><span class="git-token">commit</span> <span class="git-hash">7b1e004</span></div>' +
+        '<div class="commit-meta">Author: Zyren &lt;<a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">' + OWNER + '</a>&gt;</div>' +
+        '<div class="commit-meta">Date:&nbsp;&nbsp; 5 years ago</div>' +
+        '<p class="commit-msg">Fell into cybersecurity. Started asking &quot;but what if I broke this instead?&quot; Never really left either side.</p>' +
+      '</div>' +
+      '<p class="prose-out">Six years of writing code and five of trying to break it have taught me the same lesson twice: every feature is also an attack surface, and every exploit is also a design lesson. I build web apps, native apps, and Minecraft servers — then I put on the other hat and pentest web applications to see what a rushed release left behind.</p>'
+    );
+  }
+
+  function cmdTechstack() {
+    var items = [
+      ['web-development.ts', 'Full-stack web apps — responsive front-ends, solid back-ends, shipped and maintained end to end.'],
+      ['app-development.swift', 'Native and cross-platform apps built for real devices, not just a browser tab.'],
+      ['minecraft-server.java', 'Custom Minecraft servers — plugins, performance tuning, the occasional gamemode from scratch.'],
+      ['web-pentesting.py', 'Probing web apps for the vulnerabilities a rushed release leaves behind.']
+    ];
+    var html = '';
+    items.forEach(function (it) {
+      html +=
+        '<div class="diff-hunk">' +
+          '<div class="hunk-header">@@ -0,0 +1,2 @@</div>' +
+          '<div class="diff-add-line"><span class="diff-marker">+</span><span class="diff-file">' + esc(it[0]) + '</span></div>' +
+          '<div class="diff-add-line diff-comment"><span class="diff-marker">+</span><span>// ' + esc(it[1]) + '</span></div>' +
+        '</div>';
+    });
+    addBlockHTML(html);
+  }
+
+  function cmdGithub() {
+    addHTML('opening <a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">github.com/' + OWNER + '</a> …', 'out out-muted');
+  }
+
+  function cmdContact() {
+    addHTML('best way to reach me is GitHub: <a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">github.com/' + OWNER + '</a>', 'out');
+  }
+
+  function cmdLs() {
+    addHTML(
+      'about.md          techstack.diff        contact.sh\n' +
+      'projects.json     README.md',
+      'out out-muted'
+    );
+  }
+
+  function cmdTheme(args) {
+    var val = (args[0] || '').toLowerCase();
+    if (!val) {
+      addHTML('usage: theme [dark|light|system]', 'out out-muted');
+      return;
+    }
+    if (val === 'dark' || val === 'light') {
+      document.documentElement.setAttribute('data-theme', val);
+      try { localStorage.setItem('zyren-theme', val); } catch (e) {}
+      addHTML('theme set to ' + val + '.', 'out out-muted');
+    } else if (val === 'system') {
+      document.documentElement.removeAttribute('data-theme');
+      try { localStorage.removeItem('zyren-theme'); } catch (e) {}
+      addHTML('theme set to system default.', 'out out-muted');
+    } else {
+      addHTML('usage: theme [dark|light|system]', 'out out-error');
+    }
+  }
+
+  function cmdClear() {
+    Array.prototype.slice.call(stream.children).forEach(function (child) {
+      if (child !== inputRow) stream.removeChild(child);
+    });
+  }
+
+  function cmdEcho(args) {
+    addHTML(esc(args.join(' ')), 'out');
+  }
+
+  function cmdSudo() {
+    addHTML('zyren is not in the sudoers file. This incident will be reported.', 'out out-error');
+  }
+
+  function cmdDate() {
+    addHTML(new Date().toString(), 'out out-muted');
+  }
+
+  function cmdProjects() {
+    var loadingLine = addHTML('fetching from api.github.com/users/' + OWNER + '/repos …', 'out out-muted');
     fetch('https://api.github.com/users/' + OWNER + '/repos?sort=updated&per_page=100')
       .then(function (res) {
         if (!res.ok) throw new Error('GitHub API error');
         return res.json();
       })
       .then(function (repos) {
-        var SKIP_REPOS = [OWNER.toLowerCase(), 'doctordoomies', OWNER.toLowerCase() + '.github.io'];
+        var SKIP = [OWNER.toLowerCase(), 'doctordoomies', OWNER.toLowerCase() + '.github.io'];
         var filtered = repos
-          .filter(function (r) { return !r.fork && SKIP_REPOS.indexOf(r.name.toLowerCase()) === -1; })
+          .filter(function (r) { return !r.fork && SKIP.indexOf(r.name.toLowerCase()) === -1; })
           .slice(0, 6);
 
+        loadingLine.remove();
+
         if (filtered.length === 0) {
-          grid.hidden = true;
-          fallback.hidden = false;
+          addHTML('most of the work right now lives in private repos.\nfull picture on <a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">github.com/' + OWNER + '</a>', 'out out-muted');
+          if (nearBottom()) scrollToInput();
           return;
         }
 
-        grid.innerHTML = '';
+        var html = '';
         filtered.forEach(function (repo) {
-          var card = document.createElement('a');
-          card.className = 'project-card';
-          card.href = repo.html_url;
-          card.target = '_blank';
-          card.rel = 'noopener';
-
-          var name = document.createElement('div');
-          name.className = 'project-name';
-          name.textContent = repo.name;
-
-          var desc = document.createElement('div');
-          desc.className = 'project-desc';
-          desc.textContent = repo.description || 'No description yet.';
-
-          var meta = document.createElement('div');
-          meta.className = 'project-meta';
-          var lang = repo.language ? '<span class="lang-dot"></span>' + repo.language : '';
-          meta.innerHTML = lang + (repo.stargazers_count ? '<span>&#9733; ' + repo.stargazers_count + '</span>' : '');
-
-          card.appendChild(name);
-          card.appendChild(desc);
-          card.appendChild(meta);
-          grid.appendChild(card);
+          var meta = [];
+          if (repo.language) meta.push(esc(repo.language));
+          if (repo.stargazers_count) meta.push('★ ' + repo.stargazers_count);
+          html +=
+            '<div class="proj-row">' +
+              '<div><a class="proj-name" href="' + repo.html_url + '" target="_blank" rel="noopener">' + esc(repo.name) + '</a>' +
+              (meta.length ? ' <span class="proj-meta">(' + meta.join(', ') + ')</span>' : '') + '</div>' +
+              '<div class="proj-desc">' + esc(repo.description || 'no description yet.') + '</div>' +
+            '</div>';
         });
+        addBlockHTML(html);
+        if (nearBottom()) scrollToInput();
       })
       .catch(function () {
-        grid.hidden = true;
-        fallback.hidden = false;
+        loadingLine.remove();
+        addHTML('couldn\'t reach the GitHub API right now.\nfull picture on <a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">github.com/' + OWNER + '</a>', 'out out-error');
+        if (nearBottom()) scrollToInput();
       });
-  })();
+  }
+
+  var commands = {
+    help: cmdHelp,
+    about: cmdAbout,
+    techstack: cmdTechstack,
+    skills: cmdTechstack,
+    projects: cmdProjects,
+    github: cmdGithub,
+    contact: cmdContact,
+    whoami: cmdWhoami,
+    theme: cmdTheme,
+    ls: cmdLs,
+    clear: cmdClear,
+    echo: cmdEcho,
+    sudo: cmdSudo,
+    date: cmdDate,
+    banner: function () { renderBanner(); }
+  };
+
+  function runCommand(trimmed) {
+    var parts = trimmed.split(/\s+/);
+    var name = parts[0].toLowerCase();
+    var args = parts.slice(1);
+    var fn = commands[name];
+    if (fn) {
+      fn(args);
+    } else {
+      addHTML('command not found: ' + esc(name) + '. Type <span class="out-accent">help</span> to see available commands.', 'out out-error');
+    }
+  }
+
+  function submitCurrentInput() {
+    var raw = input.value;
+    var trimmed = raw.trim();
+    input.value = '';
+    if (!trimmed) {
+      echoCommand('');
+      scrollToInput();
+      return;
+    }
+    echoCommand(raw);
+    history.push(trimmed);
+    historyIdx = history.length;
+    runCommand(trimmed);
+    scrollToInput();
+  }
+
+  var history = [];
+  var historyIdx = -1;
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      submitCurrentInput();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (history.length) {
+        historyIdx = Math.max(0, historyIdx - 1);
+        input.value = history[historyIdx] || '';
+        var v = input.value; input.setSelectionRange(v.length, v.length);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (history.length) {
+        historyIdx = Math.min(history.length, historyIdx + 1);
+        input.value = history[historyIdx] || '';
+      }
+    }
+  });
+
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('a, button')) return;
+    var sel = window.getSelection();
+    if (sel && String(sel).length) return;
+    input.focus();
+  });
+
+  helpHint.addEventListener('click', function () {
+    input.value = 'help';
+    submitCurrentInput();
+    input.focus();
+  });
+
+  /* ---------------- boot sequence ---------------- */
+
+  function renderBanner() {
+    addHTML('<span class="prompt-user">zyren@portfolio</span><span class="prompt-sep">:~$</span> whoami', 'out-muted');
+    var wrap = document.createElement('div');
+    wrap.className = 'line';
+    wrap.innerHTML =
+      '<h1 class="banner-name">Zyren</h1>' +
+      '<p class="role-line"><span class="role-caret">&gt;</span><span id="typewriter"></span><span class="cursor-block" aria-hidden="true"></span></p>' +
+      '<p class="banner-tagline">Building systems, then trying to break them — professionally.</p>';
+    addNode(wrap);
+    runTypewriter();
+  }
+
+  function runTypewriter() {
+    var roles = ['Web Developer', 'App Developer', 'Minecraft Server Developer', 'Web Pentester'];
+    var el = document.getElementById('typewriter');
+    if (!el) return;
+    if (reduceMotion) { el.textContent = roles[0]; return; }
+    var roleIndex = 0;
+    function typeRole() {
+      var word = roles[roleIndex];
+      var i = 0;
+      el.textContent = '';
+      var typeInterval = setInterval(function () {
+        el.textContent = word.slice(0, i + 1);
+        i++;
+        if (i === word.length) {
+          clearInterval(typeInterval);
+          setTimeout(eraseRole, 1300);
+        }
+      }, 55);
+    }
+    function eraseRole() {
+      var word = roles[roleIndex];
+      var i = word.length;
+      var eraseInterval = setInterval(function () {
+        el.textContent = word.slice(0, i - 1);
+        i--;
+        if (i === 0) {
+          clearInterval(eraseInterval);
+          roleIndex = (roleIndex + 1) % roles.length;
+          setTimeout(typeRole, 250);
+        }
+      }, 30);
+    }
+    typeRole();
+  }
+
+  function boot() {
+    input.disabled = true;
+    renderBanner();
+
+    var steps = [
+      function () { echoCommand('about'); cmdAbout(); },
+      function () { echoCommand('techstack'); cmdTechstack(); },
+      function () {
+        addHTML('Type <span class="out-accent">help</span> to see more — projects, github, contact, theme, clear …', 'out out-muted');
+        input.disabled = false;
+        if (!window.matchMedia('(pointer: coarse)').matches) input.focus();
+      }
+    ];
+
+    if (reduceMotion) {
+      steps.forEach(function (fn) { fn(); });
+    } else {
+      var delay = 350;
+      steps.forEach(function (fn, i) {
+        setTimeout(fn, delay * (i + 1));
+      });
+    }
+  }
+
+  boot();
+})();
 </script>
