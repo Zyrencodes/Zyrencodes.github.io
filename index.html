@@ -286,10 +286,22 @@
 
   /* ---------- Visual guide ---------- */
   .visual {
+    position: relative;
     border-top: 1px solid var(--border);
     background: var(--surface);
+    isolation: isolate;
+  }
+  .visual::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   .visual-inner {
+    position: relative;
     max-width: var(--content-w);
     margin: 0 auto;
     padding: 3.5rem 1.25rem 4rem;
@@ -317,7 +329,7 @@
     max-width: 46ch;
   }
 
-  .stat-row { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+  .stat-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
   .stat-tile {
     background: var(--surface-2);
     border: 1px solid var(--border);
@@ -326,9 +338,11 @@
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
-    flex: 1;
+    flex: 1 1 150px;
   }
+  .stat-tile-offset { margin-top: 0.9rem; }
   .stat-num {
+    position: relative;
     font-family: var(--font-mono);
     font-size: var(--fs-xl);
     font-weight: 800;
@@ -358,73 +372,61 @@
     margin: 0 0 1.1rem;
   }
 
-  .skill-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 1rem;
-  }
-  .skill-card {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.3rem;
-    transition: border-color 0.15s ease, transform 0.15s ease;
-  }
-  .skill-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-  .skill-icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 8px;
-    background: var(--accent-soft);
-    color: var(--accent);
+  .skill-list { margin: 0; }
+  .skill-item {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 0.9rem;
+    flex-wrap: wrap;
+    column-gap: 1.1rem;
+    row-gap: 0.15rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px solid var(--border);
   }
-  .skill-icon svg { width: 18px; height: 18px; }
-  .skill-card h4 {
+  .skill-item:first-child { padding-top: 0; }
+  .skill-item:last-child { border-bottom: none; }
+  .skill-item-in { padding-left: 1.6rem; }
+  .skill-item dt {
     font-family: var(--font-mono);
+    font-weight: 700;
     font-size: var(--fs-base);
-    margin: 0 0 0.4rem;
+    flex: 0 0 auto;
+    min-width: 15ch;
   }
-  .skill-card p {
+  .skill-item dd {
     font-family: var(--font-serif);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-base);
     color: var(--text-muted);
     margin: 0;
+    flex: 1 1 30ch;
     line-height: 1.6;
   }
 
-  .visual-projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-  .visual-project-card {
+  .visual-projects-list { display: flex; flex-direction: column; }
+  .visual-project-row {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 1.1rem 1.2rem;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    background: var(--surface-2);
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 0.9rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--border);
     text-decoration: none;
     color: var(--text);
-    transition: border-color 0.15s ease, transform 0.15s ease;
   }
-  .visual-project-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .visual-project-row:first-child { padding-top: 0; }
+  .visual-project-row:last-child { border-bottom: none; }
+  .visual-project-row:nth-child(even) { padding-left: 1.6rem; }
+  .visual-project-row:hover .visual-project-name { color: var(--accent); }
   .visual-project-name { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-md); }
-  .visual-project-desc { font-family: var(--font-serif); font-size: var(--fs-sm); color: var(--text-muted); flex: 1; }
   .visual-project-meta { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); }
+  .visual-project-desc { font-family: var(--font-serif); font-size: var(--fs-sm); color: var(--text-muted); flex-basis: 100%; }
   .visual-fallback {
     font-family: var(--font-serif);
     color: var(--text-muted);
     font-size: var(--fs-base);
   }
   .skeleton {
-    height: 96px;
-    border-radius: 10px;
+    height: 44px;
+    border-radius: 6px;
+    margin-bottom: 0.7rem;
     background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%);
     background-size: 400% 100%;
     animation: shimmer 1.4s ease infinite;
@@ -468,6 +470,11 @@
     padding: 2rem 1.25rem 2.5rem;
     background: var(--surface);
   }
+  .site-footer p { margin: 0 0 0.4rem; }
+  .site-footer p:last-child { margin-bottom: 0; }
+  .last-touched { opacity: 0.75; }
+  .last-touched a { color: var(--text-muted); }
+  .last-touched a:hover { color: var(--accent); }
 </style>
 
 <div class="topbar" id="top">
@@ -499,40 +506,36 @@
     <p class="visual-sub">Everything from the terminal above, no typing required.</p>
 
     <div class="stat-row">
-      <div class="stat-tile"><span class="stat-num">6</span><span class="stat-label">years coding</span></div>
-      <div class="stat-tile"><span class="stat-num">5</span><span class="stat-label">years in security</span></div>
+      <div class="stat-tile"><span class="stat-num" id="statCoding">6</span><span class="stat-label">years coding</span></div>
+      <div class="stat-tile stat-tile-offset"><span class="stat-num" id="statSecurity">5</span><span class="stat-label">years in security</span></div>
     </div>
-    <p class="visual-bio">Six years of writing code and five of trying to break it have taught me the same lesson twice: every feature is also an attack surface, and every exploit is also a design lesson. I build web apps, native apps, and Minecraft servers — then I put on the other hat and pentest web applications to see what a rushed release left behind.</p>
+    <p class="visual-bio">I started coding six years ago, and got into security about a year after that — mostly because I wanted to know how the stuff I was building could get broken. Still true. Most of my time goes into building: web apps, native apps, Minecraft servers people actually play on. The rest goes into <span id="markPentest">pentesting web apps</span>, usually ones built faster than they were checked.</p>
 
     <div class="visual-block">
       <h3 class="visual-block-title">What I build with</h3>
-      <div class="skill-grid">
-        <div class="skill-card">
-          <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 6 2 12 8 18"/><polyline points="16 6 22 12 16 18"/></svg></span>
-          <h4>Web Development</h4>
-          <p>Full-stack web apps — responsive front-ends, solid back-ends, shipped and maintained end to end.</p>
+      <dl class="skill-list">
+        <div class="skill-item">
+          <dt>Web development</dt>
+          <dd>Full-stack apps — front-end, back-end, the deploy pipeline in between.</dd>
         </div>
-        <div class="skill-card">
-          <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/></svg></span>
-          <h4>App Development</h4>
-          <p>Native and cross-platform apps built for real devices, not just a browser tab.</p>
+        <div class="skill-item skill-item-in">
+          <dt>App development</dt>
+          <dd>Native and cross-platform, built for a device, not just a tab.</dd>
         </div>
-        <div class="skill-card">
-          <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="M3 7l9 5 9-5"/><path d="M12 12v10"/></svg></span>
-          <h4>Minecraft Server Development</h4>
-          <p>Custom Minecraft servers — plugins, performance tuning, the occasional gamemode from scratch.</p>
+        <div class="skill-item">
+          <dt>Minecraft server development</dt>
+          <dd>Plugins, performance tuning, the occasional gamemode built from scratch.</dd>
         </div>
-        <div class="skill-card">
-          <span class="skill-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5z"/><polyline points="8.5 12 11 14.5 15.5 9.5"/></svg></span>
-          <h4>Web Pentesting</h4>
-          <p>Probing web apps for the vulnerabilities a rushed release leaves behind.</p>
+        <div class="skill-item skill-item-in">
+          <dt>Web pentesting</dt>
+          <dd>Finding what a rushed release missed, on other people's web apps.</dd>
         </div>
-      </div>
+      </dl>
     </div>
 
     <div class="visual-block">
       <h3 class="visual-block-title">Projects</h3>
-      <div class="visual-projects-grid" id="visualProjectsGrid">
+      <div class="visual-projects-list" id="visualProjectsGrid">
         <div class="skeleton"></div>
         <div class="skeleton"></div>
       </div>
@@ -551,8 +554,12 @@
   </div>
 </section>
 
-<footer class="site-footer">© <span class="year-el"></span> Zyren · built by hand, browsed your way</footer>
+<footer class="site-footer">
+  <p>© <span class="year-el"></span> Zyren · built by hand, browsed your way</p>
+  <p id="lastTouched" class="last-touched"></p>
+</footer>
 
+<script src="https://cdn.jsdelivr.net/npm/rough-notation@0.5.1/lib/rough-notation.iife.js"></script>
 <script>
 (function () {
   var stream = document.getElementById('stream');
@@ -658,16 +665,16 @@
         '<div class="commit-meta">Date:&nbsp;&nbsp; 5 years ago</div>' +
         '<p class="commit-msg">Fell into cybersecurity. Started asking &quot;but what if I broke this instead?&quot; Never really left either side.</p>' +
       '</div>' +
-      '<p class="prose-out">Six years of writing code and five of trying to break it have taught me the same lesson twice: every feature is also an attack surface, and every exploit is also a design lesson. I build web apps, native apps, and Minecraft servers — then I put on the other hat and pentest web applications to see what a rushed release left behind.</p>'
+      '<p class="prose-out">I started coding six years ago, and got into security about a year after that — mostly because I wanted to know how the stuff I was building could get broken. Still true. Most of my time goes into building: web apps, native apps, Minecraft servers people actually play on. The rest goes into pentesting web apps, usually ones built faster than they were checked.</p>'
     );
   }
 
   function cmdTechstack() {
     var items = [
-      ['web-development.ts', 'Full-stack web apps — responsive front-ends, solid back-ends, shipped and maintained end to end.'],
-      ['app-development.swift', 'Native and cross-platform apps built for real devices, not just a browser tab.'],
-      ['minecraft-server.java', 'Custom Minecraft servers — plugins, performance tuning, the occasional gamemode from scratch.'],
-      ['web-pentesting.py', 'Probing web apps for the vulnerabilities a rushed release leaves behind.']
+      ['web-development.ts', 'Full-stack apps — front-end, back-end, the deploy pipeline in between.'],
+      ['app-development.swift', 'Native and cross-platform, built for a device, not just a tab.'],
+      ['minecraft-server.java', 'Plugins, performance tuning, the occasional gamemode built from scratch.'],
+      ['web-pentesting.py', "Finding what a rushed release missed, on other people's web apps."]
     ];
     var html = '';
     items.forEach(function (it) {
@@ -882,31 +889,33 @@
         }
         grid.innerHTML = '';
         filtered.forEach(function (repo) {
-          var card = document.createElement('a');
-          card.className = 'visual-project-card';
-          card.href = repo.html_url;
-          card.target = '_blank';
-          card.rel = 'noopener';
+          var row = document.createElement('a');
+          row.className = 'visual-project-row';
+          row.href = repo.html_url;
+          row.target = '_blank';
+          row.rel = 'noopener';
 
-          var name = document.createElement('div');
+          var name = document.createElement('span');
           name.className = 'visual-project-name';
           name.textContent = repo.name;
+          row.appendChild(name);
 
-          var desc = document.createElement('div');
-          desc.className = 'visual-project-desc';
-          desc.textContent = repo.description || 'No description yet.';
-
-          var meta = document.createElement('div');
-          meta.className = 'visual-project-meta';
           var bits = [];
           if (repo.language) bits.push(repo.language);
           if (repo.stargazers_count) bits.push('★ ' + repo.stargazers_count);
-          meta.textContent = bits.join(' · ');
+          if (bits.length) {
+            var meta = document.createElement('span');
+            meta.className = 'visual-project-meta';
+            meta.textContent = bits.join(' · ');
+            row.appendChild(meta);
+          }
 
-          card.appendChild(name);
-          card.appendChild(desc);
-          if (bits.length) card.appendChild(meta);
-          grid.appendChild(card);
+          var desc = document.createElement('span');
+          desc.className = 'visual-project-desc';
+          desc.textContent = repo.description || 'No description yet.';
+          row.appendChild(desc);
+
+          grid.appendChild(row);
         });
       })
       .catch(function () {
@@ -927,6 +936,57 @@
     cueObserver.observe(visualSection);
   } else {
     scrollCue.classList.add('visible');
+  }
+
+  /* hand-drawn marks, once, when the visual section first comes into view */
+  var marksDone = false;
+  function runHandMarks() {
+    if (marksDone || reduceMotion || typeof RoughNotation === 'undefined') return;
+    marksDone = true;
+    var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    var group = [
+      RoughNotation.annotate(document.getElementById('statCoding'), { type: 'circle', color: accentColor, strokeWidth: 2, padding: [6, 10] }),
+      RoughNotation.annotate(document.getElementById('statSecurity'), { type: 'circle', color: accentColor, strokeWidth: 2, padding: [6, 10] }),
+      RoughNotation.annotate(document.getElementById('markPentest'), { type: 'underline', color: accentColor, strokeWidth: 2, padding: 2 })
+    ];
+    RoughNotation.annotationGroup(group).show();
+  }
+  var statRow = document.querySelector('.stat-row');
+  if ('IntersectionObserver' in window && statRow) {
+    var markObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { runHandMarks(); markObserver.disconnect(); }
+      });
+    }, { threshold: 0.4 });
+    markObserver.observe(statRow);
+  } else {
+    runHandMarks();
+  }
+
+  /* live "last touched" line, pulled from this repo's own commit history */
+  (function loadLastTouched() {
+    var el = document.getElementById('lastTouched');
+    if (!el) return;
+    fetch('https://api.github.com/repos/' + OWNER + '/' + OWNER + '.github.io/commits?per_page=1')
+      .then(function (res) { if (!res.ok) throw new Error('bad response'); return res.json(); })
+      .then(function (commits) {
+        var c = commits[0];
+        if (!c) return;
+        var when = timeAgo(new Date(c.commit.author.date));
+        var msg = (c.commit.message || '').split('\n')[0];
+        el.innerHTML = 'last touched ' + when + ' — <a href="' + c.html_url + '" target="_blank" rel="noopener">' + esc(msg) + '</a>';
+      })
+      .catch(function () {});
+  })();
+
+  function timeAgo(date) {
+    var seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+    var units = [['year', 31536000], ['month', 2592000], ['day', 86400], ['hour', 3600], ['minute', 60]];
+    for (var i = 0; i < units.length; i++) {
+      var count = Math.floor(seconds / units[i][1]);
+      if (count >= 1) return count + ' ' + units[i][0] + (count > 1 ? 's' : '') + ' ago';
+    }
+    return 'just now';
   }
 
   /* ---------------- boot sequence ---------------- */
