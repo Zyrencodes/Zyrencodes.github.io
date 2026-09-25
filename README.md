@@ -1,7 +1,7 @@
-# Zyrencodes.github.io
+# Zyren (James Walker) — portfolio
 
-Zyren's personal portfolio — web developer, app developer, Minecraft server developer, and web pentester.
+Static site: `index.html`, `styles.css`, `script.js`. No build step.
+Deployed with GitHub Pages from `main`; custom domain set in `CNAME`.
 
-Single static page (`index.html`), no build step. Deployed via GitHub Pages from the `main` branch.
-
-Live: https://zyrencodes.github.io
+Contact links (Gmail compose + GitHub) appear in the header, hero, contact section, and footer of `index.html`; search for `zyrencodes@gmail.com` and `github.com/Zyrencodes` to change them.
+Resume lives at `resume/James-Walker-Resume.pdf`.

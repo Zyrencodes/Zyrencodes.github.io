@@ -1,1067 +1,290 @@
-<meta charset="utf-8">
-<title>whoami</title>
-<meta name="description" content="Zyren — web developer, app developer, Minecraft server developer, and web pentester. An interactive terminal portfolio — type help to explore.">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap');
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zyren (James Walker) — Developer</title>
+  <meta name="description" content="Portfolio of James Walker (Zyren), a software developer working across web development, Minecraft systems, automation, security tooling, and AI.">
+  <link rel="canonical" href="https://www.zyren.dev/">
+  <meta name="theme-color" content="#f4f3ef">
 
-  :root {
-    --bg: #EDEFF0;
-    --surface: #FFFFFF;
-    --surface-2: #F5F6F7;
-    --border: #DADDE1;
-    --text: #1B1E22;
-    --text-muted: #5B6169;
-    --accent: #A6650B;
-    --accent-soft: rgba(166, 101, 11, 0.10);
-    --diff-add: #1A7F37;
-    --diff-add-bg: rgba(26, 127, 55, 0.07);
-    --diff-remove: #CF222E;
-    --diff-remove-bg: rgba(207, 34, 46, 0.07);
-    --shadow: 0 1px 2px rgba(20, 20, 20, 0.04), 0 8px 24px rgba(20, 20, 20, 0.06);
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Zyren">
+  <meta property="og:title" content="Zyren (James Walker) — Developer">
+  <meta property="og:description" content="Software developer working across web development, Minecraft systems, automation, security tooling, and AI.">
+  <meta property="og:url" content="https://www.zyren.dev/">
+  <meta name="twitter:card" content="summary">
 
-    --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
-    --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-    --fs-xs: 0.75rem;
-    --fs-sm: 0.8125rem;
-    --fs-base: 0.9375rem;
-    --fs-md: 1.125rem;
-    --fs-lg: 1.375rem;
-    --fs-xl: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem);
-    --fs-2xl: clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem);
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
 
-    --content-w: 780px;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "James Walker",
+    "alternateName": "Zyren",
+    "jobTitle": "Software Developer",
+    "url": "https://www.zyren.dev/",
+    "sameAs": ["https://github.com/Zyrencodes"]
   }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #0B0D10;
-      --surface: #14171C;
-      --surface-2: #191D23;
-      --border: #262B33;
-      --text: #E9E7DD;
-      --text-muted: #8B9198;
-      --accent: #FFB454;
-      --accent-soft: rgba(255, 180, 84, 0.12);
-      --diff-add: #7EE787;
-      --diff-add-bg: rgba(126, 231, 135, 0.07);
-      --diff-remove: #FF7B72;
-      --diff-remove-bg: rgba(255, 123, 114, 0.07);
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.35);
-    }
-  }
-
-  :root[data-theme="dark"] {
-    --bg: #0B0D10;
-    --surface: #14171C;
-    --surface-2: #191D23;
-    --border: #262B33;
-    --text: #E9E7DD;
-    --text-muted: #8B9198;
-    --accent: #FFB454;
-    --accent-soft: rgba(255, 180, 84, 0.12);
-    --diff-add: #7EE787;
-    --diff-add-bg: rgba(126, 231, 135, 0.07);
-    --diff-remove: #FF7B72;
-    --diff-remove-bg: rgba(255, 123, 114, 0.07);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 12px 32px rgba(0, 0, 0, 0.35);
-  }
-
-  * { box-sizing: border-box; }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font-mono);
-    font-size: var(--fs-base);
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-    min-height: 100vh;
-  }
-
-  a { color: var(--accent); text-decoration-color: var(--accent-soft); text-underline-offset: 2px; }
-  a:hover { text-decoration-color: var(--accent); }
-
-  ::selection { background: var(--accent-soft); color: var(--text); }
-  ::-webkit-scrollbar { width: 10px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
-
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-
-  /* ---------- Topbar ---------- */
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 40;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    padding: 0.65rem 1rem;
-    background: color-mix(in srgb, var(--surface) 92%, transparent);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-  }
-  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
-  .dot-r { background: #FF5F56; }
-  .dot-y { background: #FFBD2E; }
-  .dot-g { background: #27C93F; }
-  .topbar-title {
-    font-size: var(--fs-xs);
-    color: var(--text-muted);
-    margin-left: 0.3rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .topbar-hint {
-    margin-left: auto;
-    font-size: var(--fs-xs);
-    color: var(--text-muted);
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 5px;
-    padding: 0.3rem 0.6rem;
-    cursor: pointer;
-    flex: none;
-  }
-  .topbar-hint:hover { color: var(--accent); border-color: var(--accent); }
-  .topbar-hint kbd { font-family: inherit; color: var(--accent); }
-
-  /* ---------- Terminal stream ---------- */
-  .term {
-    max-width: var(--content-w);
-    margin: 0 auto;
-    padding: 1.5rem 1.25rem 6rem;
-  }
-
-  .line {
-    margin: 0 0 0.2rem;
-    white-space: pre-wrap;
-    word-break: break-word;
-    font-size: var(--fs-sm);
-  }
-  .line.cmd { margin-top: 1.15rem; color: var(--text); }
-  .prompt-user { color: var(--diff-add); }
-  .prompt-sep { color: var(--accent); }
-  .cmd-text { color: var(--text); font-weight: 600; }
-
-  .out { margin: 0.15rem 0 0.1rem; color: var(--text); }
-  .out-muted { color: var(--text-muted); }
-  .out-accent { color: var(--accent); }
-  .out-error { color: var(--diff-remove); }
-
-  .out-block {
-    padding-left: 0.9rem;
-    border-left: 2px solid var(--border);
-    margin: 0.35rem 0 0.85rem;
-  }
-
-  .banner-name {
-    font-size: var(--fs-2xl);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin: 0.3rem 0 0.6rem;
-    text-wrap: balance;
-  }
-  .banner-tagline {
-    font-family: var(--font-serif);
-    font-size: var(--fs-md);
-    color: var(--text-muted);
-    max-width: 42ch;
-    margin: 0 0 0.9rem;
-  }
-  .role-line { font-size: var(--fs-md); margin: 0 0 0.9rem; min-height: 1.5em; }
-  .role-caret { color: var(--accent); margin-right: 0.4em; }
-  .cursor-block {
-    display: inline-block;
-    width: 0.5em;
-    height: 1em;
-    background: var(--accent);
-    margin-left: 2px;
-    vertical-align: -0.15em;
-    animation: blink 1s steps(1) infinite;
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  /* ---------- about: git log ---------- */
-  .commit { margin: 0 0 1rem; }
-  .commit:last-child { margin-bottom: 0; }
-  .git-token { color: var(--accent); }
-  .git-hash { color: var(--diff-add); }
-  .git-head { color: var(--text-muted); }
-  .commit-meta { color: var(--text-muted); }
-  .commit-msg {
-    font-family: var(--font-serif);
-    font-size: var(--fs-base);
-    color: var(--text);
-    margin: 0.35rem 0 0;
-  }
-  .prose-out {
-    font-family: var(--font-serif);
-    font-size: var(--fs-base);
-    color: var(--text);
-    max-width: 62ch;
-    margin: 0.9rem 0 0;
-  }
-
-  /* ---------- techstack: diff ---------- */
-  .diff-hunk { margin: 0 0 0.9rem; }
-  .diff-hunk:last-child { margin-bottom: 0; }
-  .hunk-header { color: var(--text-muted); opacity: 0.75; }
-  .diff-add-line { display: flex; gap: 0.6rem; background: var(--diff-add-bg); padding: 0.1rem 0.5rem; margin: 0.1rem 0; border-radius: 3px; }
-  .diff-marker { color: var(--diff-add); user-select: none; }
-  .diff-file { font-weight: 700; color: var(--text); }
-  .diff-comment { color: var(--text-muted); }
-  .diff-comment .diff-marker { opacity: 0.7; }
-
-  /* ---------- projects ---------- */
-  .proj-row { margin: 0 0 0.7rem; }
-  .proj-name { color: var(--text); font-weight: 700; }
-  .proj-meta { color: var(--text-muted); }
-  .proj-desc { color: var(--text-muted); margin-left: 1.4rem; }
-
-  /* ---------- input line ---------- */
-  .input-line { display: flex; align-items: baseline; gap: 0.4em; margin-top: 1.15rem; }
-  .cmd-input {
-    flex: 1;
-    min-width: 4ch;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--text);
-    font: inherit;
-    font-size: var(--fs-sm);
-    caret-color: var(--accent);
-    padding: 0;
-  }
-
-  .term-footer {
-    color: var(--text-muted);
-    font-size: var(--fs-xs);
-    margin-top: 2.5rem;
-    opacity: 0.8;
-  }
-
-  @media (max-width: 480px) {
-    .topbar-title { display: none; }
-  }
-
-  /* ---------- Scroll cue ---------- */
-  .scroll-cue {
-    position: fixed;
-    right: 1.1rem;
-    bottom: 1.1rem;
-    z-index: 30;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    color: var(--text);
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.5rem 0.9rem 0.5rem 1rem;
-    box-shadow: var(--shadow);
-    text-decoration: none;
-    opacity: 0;
-    transform: translateY(6px);
-    pointer-events: none;
-    transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.15s ease, color 0.15s ease;
-  }
-  .scroll-cue.visible { opacity: 1; transform: none; pointer-events: auto; }
-  .scroll-cue:hover { border-color: var(--accent); color: var(--accent); }
-  .scroll-cue svg { width: 14px; height: 14px; animation: nudge 1.6s ease-in-out infinite; }
-  @keyframes nudge { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
-
-  /* ---------- Visual guide ---------- */
-  .visual {
-    position: relative;
-    border-top: 1px solid var(--border);
-    background: var(--surface);
-    isolation: isolate;
-  }
-  .visual::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.5;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .visual-inner {
-    position: relative;
-    max-width: var(--content-w);
-    margin: 0 auto;
-    padding: 3.5rem 1.25rem 4rem;
-  }
-  .visual-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    margin-bottom: 0.6rem;
-  }
-  .visual-heading {
-    font-family: var(--font-serif);
-    font-size: var(--fs-xl);
-    font-weight: 600;
-    margin: 0 0 0.4rem;
-    text-wrap: balance;
-  }
-  .visual-sub {
-    font-family: var(--font-serif);
-    color: var(--text-muted);
-    font-size: var(--fs-md);
-    margin: 0 0 2.5rem;
-    max-width: 46ch;
-  }
-
-  .stat-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
-  .stat-tile {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem 1.4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    flex: 1 1 150px;
-  }
-  .stat-tile-offset { margin-top: 0.9rem; }
-  .stat-num {
-    position: relative;
-    font-family: var(--font-mono);
-    font-size: var(--fs-xl);
-    font-weight: 800;
-    color: var(--accent);
-    font-variant-numeric: tabular-nums;
-  }
-  .stat-label {
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    color: var(--text-muted);
-  }
-  .visual-bio {
-    font-family: var(--font-serif);
-    font-size: var(--fs-md);
-    color: var(--text);
-    max-width: 62ch;
-    line-height: 1.75;
-  }
-
-  .visual-block { margin-top: 3rem; }
-  .visual-block-title {
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--text-muted);
-    margin: 0 0 1.1rem;
-  }
-
-  .skill-list { margin: 0; }
-  .skill-item {
-    display: flex;
-    flex-wrap: wrap;
-    column-gap: 1.1rem;
-    row-gap: 0.15rem;
-    padding: 0.9rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .skill-item:first-child { padding-top: 0; }
-  .skill-item:last-child { border-bottom: none; }
-  .skill-item-in { padding-left: 1.6rem; }
-  .skill-item dt {
-    font-family: var(--font-mono);
-    font-weight: 700;
-    font-size: var(--fs-base);
-    flex: 0 0 auto;
-    min-width: 15ch;
-  }
-  .skill-item dd {
-    font-family: var(--font-serif);
-    font-size: var(--fs-base);
-    color: var(--text-muted);
-    margin: 0;
-    flex: 1 1 30ch;
-    line-height: 1.6;
-  }
-
-  .visual-projects-list { display: flex; flex-direction: column; }
-  .visual-project-row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    column-gap: 0.9rem;
-    padding: 0.85rem 0;
-    border-bottom: 1px solid var(--border);
-    text-decoration: none;
-    color: var(--text);
-  }
-  .visual-project-row:first-child { padding-top: 0; }
-  .visual-project-row:last-child { border-bottom: none; }
-  .visual-project-row:nth-child(even) { padding-left: 1.6rem; }
-  .visual-project-row:hover .visual-project-name { color: var(--accent); }
-  .visual-project-name { font-family: var(--font-mono); font-weight: 700; font-size: var(--fs-md); }
-  .visual-project-meta { font-family: var(--font-mono); font-size: var(--fs-xs); color: var(--text-muted); }
-  .visual-project-desc { font-family: var(--font-serif); font-size: var(--fs-sm); color: var(--text-muted); flex-basis: 100%; }
-  .visual-fallback {
-    font-family: var(--font-serif);
-    color: var(--text-muted);
-    font-size: var(--fs-base);
-  }
-  .skeleton {
-    height: 44px;
-    border-radius: 6px;
-    margin-bottom: 0.7rem;
-    background: linear-gradient(90deg, var(--surface-2) 25%, var(--border) 37%, var(--surface-2) 63%);
-    background-size: 400% 100%;
-    animation: shimmer 1.4s ease infinite;
-  }
-  @keyframes shimmer { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
-
-  .visual-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.55rem;
-    font-family: var(--font-mono);
-    font-weight: 600;
-    font-size: var(--fs-base);
-    color: #14171C;
-    background: var(--accent);
-    border-radius: 8px;
-    padding: 0.8rem 1.3rem;
-    text-decoration: none;
-    transition: filter 0.15s ease, transform 0.1s ease;
-  }
-  :root[data-theme="dark"] .visual-cta { color: #14171C; }
-  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .visual-cta { color: #14171C; } }
-  .visual-cta:hover { filter: brightness(1.08); transform: translateY(-1px); }
-  .visual-cta svg { width: 16px; height: 16px; }
-
-  .back-to-terminal {
-    display: inline-block;
-    margin-top: 3rem;
-    font-family: var(--font-mono);
-    font-size: var(--fs-sm);
-    color: var(--text-muted);
-    text-decoration: none;
-  }
-  .back-to-terminal:hover { color: var(--accent); }
-
-  .site-footer {
-    text-align: center;
-    font-family: var(--font-mono);
-    font-size: var(--fs-xs);
-    color: var(--text-muted);
-    padding: 2rem 1.25rem 2.5rem;
-    background: var(--surface);
-  }
-  .site-footer p { margin: 0 0 0.4rem; }
-  .site-footer p:last-child { margin-bottom: 0; }
-  .last-touched { opacity: 0.75; }
-  .last-touched a { color: var(--text-muted); }
-  .last-touched a:hover { color: var(--accent); }
-</style>
-
-<div class="topbar" id="top">
-  <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
-  <span class="topbar-title">zyren@portfolio — 120×32</span>
-  <button class="topbar-hint" id="helpHint" type="button">type <kbd>help</kbd></button>
-</div>
-
-<main class="term" id="term">
-  <div id="stream">
-    <div class="line input-line" id="inputRow">
-      <span class="prompt-user">zyren@portfolio</span><span class="prompt-sep">:~$</span>
-      <input class="cmd-input" id="cmdInput" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Terminal command input" />
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="#top" aria-label="Zyren, back to top">Zyren</a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="resume/James-Walker-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume <span class="arrow" aria-hidden="true">↗</span></a>
+      </nav>
     </div>
-  </div>
+  </header>
 
-  <p class="term-footer">process running · © <span class="year-el"></span> Zyren · scroll to read, type to explore</p>
-</main>
-
-<a href="#visual" class="scroll-cue" id="scrollCue" aria-label="Scroll to visual guide">
-  <span>visual guide</span>
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-</a>
-
-<section class="visual" id="visual">
-  <div class="visual-inner">
-    <span class="visual-label">// scroll guide</span>
-    <h2 class="visual-heading">Same thing, laid out to browse.</h2>
-    <p class="visual-sub">Everything from the terminal above, no typing required.</p>
-
-    <div class="stat-row">
-      <div class="stat-tile"><span class="stat-num" id="statCoding">6</span><span class="stat-label">years coding</span></div>
-      <div class="stat-tile stat-tile-offset"><span class="stat-num" id="statSecurity">5</span><span class="stat-label">years in security</span></div>
-    </div>
-    <p class="visual-bio">I started coding six years ago, and got into security about a year after that — mostly because I wanted to know how the stuff I was building could get broken. Still true. Most of my time goes into building: web apps, native apps, Minecraft servers people actually play on. The rest goes into <span id="markPentest">pentesting web apps</span>, usually ones built faster than they were checked.</p>
-
-    <div class="visual-block">
-      <h3 class="visual-block-title">What I build with</h3>
-      <dl class="skill-list">
-        <div class="skill-item">
-          <dt>Web development</dt>
-          <dd>Full-stack apps — front-end, back-end, the deploy pipeline in between.</dd>
-        </div>
-        <div class="skill-item skill-item-in">
-          <dt>App development</dt>
-          <dd>Native and cross-platform, built for a device, not just a tab.</dd>
-        </div>
-        <div class="skill-item">
-          <dt>Minecraft server development</dt>
-          <dd>Plugins, performance tuning, the occasional gamemode built from scratch.</dd>
-        </div>
-        <div class="skill-item skill-item-in">
-          <dt>Web pentesting</dt>
-          <dd>Finding what a rushed release missed, on other people's web apps.</dd>
-        </div>
-      </dl>
-    </div>
-
-    <div class="visual-block">
-      <h3 class="visual-block-title">Projects</h3>
-      <div class="visual-projects-list" id="visualProjectsGrid">
-        <div class="skeleton"></div>
-        <div class="skeleton"></div>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <p class="eyebrow">Zyren — James Walker</p>
+        <h1>I build software, systems, and tools for the web and for games.</h1>
+        <p class="hero-text">I work across web development, Minecraft servers and plugins, automation, and security tooling. Most of it sits where software meets a community of real users. <strong>Zyren</strong> is what most people call me.</p>
+        <p class="hero-links">
+          <a class="link" href="#work">View selected work <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
+          <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">Email <span class="arrow" aria-hidden="true">↗</span></a>
+        </p>
       </div>
-      <p class="visual-fallback" id="visualProjectsFallback" hidden>Most of the work right now lives in private repos. Full picture — and everything as it goes public — is on <a href="https://github.com/Zyrencodes" target="_blank" rel="noopener">GitHub</a>.</p>
+    </section>
+
+    <div class="facts">
+      <div class="wrap">
+        <dl>
+          <div><dt>Based</dt><dd>United States</dd></div>
+          <div><dt>Focus</dt><dd>Software / Web / Systems</dd></div>
+          <div><dt>Experience</dt><dd>Minecraft · Web · Automation</dd></div>
+          <div><dt>GitHub</dt><dd><a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">@Zyrencodes</a></dd></div>
+        </dl>
+      </div>
     </div>
 
-    <div class="visual-block">
-      <h3 class="visual-block-title">Get in touch</h3>
-      <a class="visual-cta" href="https://github.com/Zyrencodes" target="_blank" rel="noopener">
-        github.com/Zyrencodes
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-      </a>
+    <section class="section" id="work" aria-labelledby="work-h">
+      <div class="wrap">
+        <h2 class="section-title" id="work-h">Selected work</h2>
+        <ol class="work-list">
+          <li>
+            <span class="num">01</span>
+            <article class="work-head">
+              <h3 class="work-title">BurrowBot-App</h3>
+              <p class="work-kind">Security &amp; code review automation</p>
+            </article>
+            <div class="work-desc">
+              <p>A bot that reviews GitHub pull requests before they're merged. It checks the code for potential security issues and vulnerabilities, then writes up what it found in a report, taking over part of the security review process.</p>
+              <p class="work-tech">GitHub · Secure code review · Security automation</p>
+            </div>
+          </li>
+
+          <li>
+            <span class="num">02</span>
+            <article class="work-head">
+              <h3 class="work-title">Discord AI &amp; automation</h3>
+              <p class="work-kind">Bots · Security · Community systems</p>
+            </article>
+            <div class="work-desc">
+              <p>Discord bots for online communities, covering moderation, server management, AI integrations, and automated workflows. Some of them are security-focused, built to protect communities and the websites tied to them.</p>
+              <p class="work-tech">Discord bots · AI integrations · Moderation · Automation</p>
+            </div>
+          </li>
+
+          <li class="lead-item">
+            <span class="num">03</span>
+            <article class="work-head">
+              <h3 class="work-title">Minecraft development</h3>
+              <p class="work-kind">Plugins &amp; server systems</p>
+            </article>
+            <div class="work-desc">
+              <p class="pull">Plugins used across thousands of Minecraft servers.</p>
+              <p>Years of work on server systems, plugins, and configuration, alongside established creators and communities in the Minecraft 1.8 PvP scene. More recently I've been moving that work onto modern Minecraft versions.</p>
+              <p class="work-tech">Minecraft plugin development · Server systems · 1.8 PvP · Modern versions</p>
+            </div>
+          </li>
+
+          <li>
+            <span class="num">04</span>
+            <article class="work-head">
+              <h3 class="work-title">Web development</h3>
+              <p class="work-kind">Websites &amp; web applications · 2020 — present</p>
+            </article>
+            <div class="work-desc">
+              <p>Websites and web applications for communities, businesses, and online projects, covering the frontend, the backend, databases, automation, and the security around them.</p>
+              <p class="work-tech">HTML · CSS · JavaScript · TypeScript · PHP · GraphQL · MySQL</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="exp-h">
+      <div class="wrap">
+        <h2 class="section-title" id="exp-h">Experience</h2>
+        <ol class="exp-list">
+          <li>
+            <span class="num">01</span>
+            <article class="exp-head">
+              <h3 class="exp-org">InvadedLands.net</h3>
+              <p class="exp-meta"><span>Head Developer</span><span>2018 — 2020</span></p>
+            </article>
+            <div class="exp-desc">
+              <p>Led development for the server and worked on its core plugins and systems. Built and maintained the custom Minecraft plugins the network used.</p>
+              <p>Worked with developers and creators in the Minecraft 1.8 PvP community, and helped manage features, technical development, and server updates.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <article class="exp-head">
+              <h3 class="exp-org">MunchyMC</h3>
+              <p class="exp-meta"><span>Administrator / Developer</span><span>2018 — 2019</span></p>
+            </article>
+            <div class="exp-desc">
+              <p>Worked on Minecraft plugins, server systems, and technical issues, alongside staff and developers on new features and updates. Also helped with day-to-day server administration.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <article class="exp-head">
+              <h3 class="exp-org">iD Tech</h3>
+              <p class="exp-meta"><span>Assistant Mentor</span><span>Summer 2024 · Stanford, California</span></p>
+            </article>
+            <div class="exp-desc">
+              <p>Assisted students with programming projects and classes, helped them work through concepts and problems, and supported instructors during lessons and activities.</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <article class="exp-head">
+              <h3 class="exp-org">Hypixel</h3>
+              <p class="exp-meta"><span>Staff Member</span><span>2020 · about three weeks</span></p>
+            </article>
+            <div class="exp-desc">
+              <p>Part of the Hypixel staff team, helping moderate the community. I resigned after three weeks to focus on school.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="education" aria-labelledby="edu-h">
+      <div class="wrap split">
+        <h2 class="section-title" id="edu-h">Education</h2>
+        <ul class="edu-list">
+          <li><span class="school">University of Florida</span><span class="degree">B.S. in Computer Science</span></li>
+          <li><span class="school">University of Miami</span><span class="degree">M.S. in Computer Science</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-h">
+      <div class="wrap split">
+        <h2 class="section-title" id="about-h">About</h2>
+        <div class="about-text">
+          <p>I'm James Walker, though I go by Zyren almost everywhere online. Most of my development work has been where software, communities, and infrastructure overlap, from Minecraft networks and web applications to automation and security tooling.</p>
+          <p>I like building systems that solve a real problem, whether that's a custom plugin, an automated workflow, a web app, or a tool that makes development a bit safer.</p>
+          <p class="muted">Away from the keyboard I've also mentored students at iD Tech, and I studied computer science at the University of Florida and the University of Miami.</p>
+          <p class="about-links">
+            <a class="link" href="resume/James-Walker-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF) <span class="arrow" aria-hidden="true">↗</span></a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-h">
+      <div class="wrap split">
+        <h2 class="section-title" id="skills-h">Technologies</h2>
+        <dl class="def-list">
+          <div>
+            <dt>Languages</dt>
+            <dd>C <span class="sep">·</span> C++ <span class="sep">·</span> C# <span class="sep">·</span> Go <span class="sep">·</span> Swift <span class="sep">·</span> TypeScript <span class="sep">·</span> JavaScript <span class="sep">·</span> PHP <span class="sep">·</span> Kotlin <span class="sep">·</span> Python <span class="sep">·</span> Ruby <span class="sep">·</span> Rust <span class="sep">·</span> Scala <span class="sep">·</span> Elixir <span class="sep">·</span> Lua <span class="sep">·</span> GDScript <span class="sep">·</span> Java <span class="sep">·</span> Perl</dd>
+          </div>
+          <div>
+            <dt>Web</dt>
+            <dd>HTML <span class="sep">·</span> CSS <span class="sep">·</span> PHP <span class="sep">·</span> JavaScript <span class="sep">·</span> TypeScript <span class="sep">·</span> GraphQL</dd>
+          </div>
+          <div>
+            <dt>Databases</dt>
+            <dd>MySQL</dd>
+          </div>
+          <div>
+            <dt>Game development</dt>
+            <dd>Minecraft plugin development <span class="sep">·</span> Unreal Engine Blueprints <span class="sep">·</span> GDScript</dd>
+          </div>
+          <div>
+            <dt>Automation</dt>
+            <dd>Bash <span class="sep">·</span> PowerShell <span class="sep">·</span> Discord bots <span class="sep">·</span> AI integrations <span class="sep">·</span> Security automation</dd>
+          </div>
+          <div>
+            <dt>Cybersecurity</dt>
+            <dd>Secure code review <span class="sep">·</span> Security automation <span class="sep">·</span> OSINT</dd>
+          </div>
+          <div>
+            <dt>Design</dt>
+            <dd>Graphic design <span class="sep">·</span> Web design <span class="sep">·</span> UI/UX</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="notes" aria-labelledby="notes-h">
+      <div class="wrap split">
+        <h2 class="section-title" id="notes-h">A few things along the way</h2>
+        <dl class="def-list">
+          <div>
+            <dt>Scholarship offers</dt>
+            <dd>MIT and Harvard<span class="aside">Before choosing other universities.</span></dd>
+          </div>
+          <div>
+            <dt>Minecraft development</dt>
+            <dd>Plugins used across thousands of servers</dd>
+          </div>
+          <div>
+            <dt>Community work</dt>
+            <dd>Minecraft PvP creators and communities</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="section" id="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <h2 class="contact-title" id="contact-h">Have something interesting to build?</h2>
+        <p class="contact-text">I'm always open to hearing about interesting software, web, automation, Minecraft, security, and development projects.</p>
+        <p class="contact-links">
+          <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">Send an email <span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-left">
+        <span>Zyren · James Walker</span>
+        <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">zyrencodes@gmail.com</a>
+        <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <div class="footer-right">
+        <span>© <span id="year">2026</span> James Walker</span>
+      </div>
     </div>
+  </footer>
 
-    <a href="#top" class="back-to-terminal">↑ back to the terminal</a>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <p>© <span class="year-el"></span> Zyren · built by hand, browsed your way</p>
-  <p id="lastTouched" class="last-touched"></p>
-</footer>
-
-<script src="https://cdn.jsdelivr.net/npm/rough-notation@0.5.1/lib/rough-notation.iife.js"></script>
-<script>
-(function () {
-  var stream = document.getElementById('stream');
-  var inputRow = document.getElementById('inputRow');
-  var input = document.getElementById('cmdInput');
-  var helpHint = document.getElementById('helpHint');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var OWNER = 'Zyrencodes';
-
-  document.querySelectorAll('.year-el').forEach(function (el) { el.textContent = new Date().getFullYear(); });
-
-  try {
-    var savedTheme = localStorage.getItem('zyren-theme');
-    if (savedTheme === 'dark' || savedTheme === 'light') {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-  } catch (e) {}
-
-  function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
-      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
-    });
-  }
-
-  function addHTML(html, cls) {
-    var div = document.createElement('div');
-    div.className = 'line ' + (cls || '');
-    div.innerHTML = html;
-    stream.insertBefore(div, inputRow);
-    return div;
-  }
-  function addNode(node) {
-    stream.insertBefore(node, inputRow);
-    return node;
-  }
-  function addBlockHTML(html) {
-    var div = document.createElement('div');
-    div.className = 'out-block';
-    div.innerHTML = html;
-    stream.insertBefore(div, inputRow);
-    return div;
-  }
-
-  function echoCommand(raw) {
-    var div = document.createElement('div');
-    div.className = 'line cmd';
-    var userSpan = document.createElement('span');
-    userSpan.className = 'prompt-user';
-    userSpan.textContent = 'zyren@portfolio';
-    var sepSpan = document.createElement('span');
-    sepSpan.className = 'prompt-sep';
-    sepSpan.textContent = ':~$ ';
-    var cmdSpan = document.createElement('span');
-    cmdSpan.className = 'cmd-text';
-    cmdSpan.textContent = raw;
-    div.appendChild(userSpan);
-    div.appendChild(sepSpan);
-    div.appendChild(cmdSpan);
-    addNode(div);
-  }
-
-  function nearBottom() {
-    return (window.innerHeight + window.scrollY) >= (document.body.offsetHeight - 160);
-  }
-  function scrollToInput() {
-    inputRow.scrollIntoView({ block: 'end', behavior: reduceMotion ? 'auto' : 'smooth' });
-  }
-
-  /* ---------------- commands ---------------- */
-
-  function cmdHelp() {
-    addHTML(
-      'available commands:\n\n' +
-      '  <span class="out-accent">about</span>        who I am and how I got here\n' +
-      '  <span class="out-accent">techstack</span>    what I build with (and break)\n' +
-      '  <span class="out-accent">projects</span>     live list from github.com/' + OWNER + '\n' +
-      '  <span class="out-accent">github</span>        jump to my GitHub profile\n' +
-      '  <span class="out-accent">contact</span>       how to reach me\n' +
-      '  <span class="out-accent">whoami</span>        what I do\n' +
-      '  <span class="out-accent">theme</span>         theme [dark|light|system]\n' +
-      '  <span class="out-accent">ls</span>            list this page as files\n' +
-      '  <span class="out-accent">clear</span>         clear the terminal\n' +
-      '  <span class="out-accent">help</span>          show this list',
-      'out out-muted'
-    );
-  }
-
-  function cmdWhoami() {
-    addHTML('Zyren — web developer, app developer, minecraft server developer, web pentester.', 'out');
-  }
-
-  function cmdAbout() {
-    addBlockHTML(
-      '<div class="commit">' +
-        '<div><span class="git-token">commit</span> <span class="git-hash">a3f9d2c</span> <span class="git-head">(HEAD -&gt; main)</span></div>' +
-        '<div class="commit-meta">Author: Zyren &lt;<a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">' + OWNER + '</a>&gt;</div>' +
-        '<div class="commit-meta">Date:&nbsp;&nbsp; 6 years ago</div>' +
-        '<p class="commit-msg">Wrote the first line of code. Nothing has compiled cleanly since.</p>' +
-      '</div>' +
-      '<div class="commit">' +
-        '<div><span class="git-token">commit</span> <span class="git-hash">7b1e004</span></div>' +
-        '<div class="commit-meta">Author: Zyren &lt;<a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">' + OWNER + '</a>&gt;</div>' +
-        '<div class="commit-meta">Date:&nbsp;&nbsp; 5 years ago</div>' +
-        '<p class="commit-msg">Fell into cybersecurity. Started asking &quot;but what if I broke this instead?&quot; Never really left either side.</p>' +
-      '</div>' +
-      '<p class="prose-out">I started coding six years ago, and got into security about a year after that — mostly because I wanted to know how the stuff I was building could get broken. Still true. Most of my time goes into building: web apps, native apps, Minecraft servers people actually play on. The rest goes into pentesting web apps, usually ones built faster than they were checked.</p>'
-    );
-  }
-
-  function cmdTechstack() {
-    var items = [
-      ['web-development.ts', 'Full-stack apps — front-end, back-end, the deploy pipeline in between.'],
-      ['app-development.swift', 'Native and cross-platform, built for a device, not just a tab.'],
-      ['minecraft-server.java', 'Plugins, performance tuning, the occasional gamemode built from scratch.'],
-      ['web-pentesting.py', "Finding what a rushed release missed, on other people's web apps."]
-    ];
-    var html = '';
-    items.forEach(function (it) {
-      html +=
-        '<div class="diff-hunk">' +
-          '<div class="hunk-header">@@ -0,0 +1,2 @@</div>' +
-          '<div class="diff-add-line"><span class="diff-marker">+</span><span class="diff-file">' + esc(it[0]) + '</span></div>' +
-          '<div class="diff-add-line diff-comment"><span class="diff-marker">+</span><span>// ' + esc(it[1]) + '</span></div>' +
-        '</div>';
-    });
-    addBlockHTML(html);
-  }
-
-  function cmdGithub() {
-    addHTML('opening <a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">github.com/' + OWNER + '</a> …', 'out out-muted');
-  }
-
-  function cmdContact() {
-    addHTML('best way to reach me is GitHub: <a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">github.com/' + OWNER + '</a>', 'out');
-  }
-
-  function cmdLs() {
-    addHTML(
-      'about.md          techstack.diff        contact.sh\n' +
-      'projects.json     README.md',
-      'out out-muted'
-    );
-  }
-
-  function cmdTheme(args) {
-    var val = (args[0] || '').toLowerCase();
-    if (!val) {
-      addHTML('usage: theme [dark|light|system]', 'out out-muted');
-      return;
-    }
-    if (val === 'dark' || val === 'light') {
-      document.documentElement.setAttribute('data-theme', val);
-      try { localStorage.setItem('zyren-theme', val); } catch (e) {}
-      addHTML('theme set to ' + val + '.', 'out out-muted');
-    } else if (val === 'system') {
-      document.documentElement.removeAttribute('data-theme');
-      try { localStorage.removeItem('zyren-theme'); } catch (e) {}
-      addHTML('theme set to system default.', 'out out-muted');
-    } else {
-      addHTML('usage: theme [dark|light|system]', 'out out-error');
-    }
-  }
-
-  function cmdClear() {
-    Array.prototype.slice.call(stream.children).forEach(function (child) {
-      if (child !== inputRow) stream.removeChild(child);
-    });
-  }
-
-  function cmdEcho(args) {
-    addHTML(esc(args.join(' ')), 'out');
-  }
-
-  function cmdSudo() {
-    addHTML('zyren is not in the sudoers file. This incident will be reported.', 'out out-error');
-  }
-
-  function cmdDate() {
-    addHTML(new Date().toString(), 'out out-muted');
-  }
-
-  var reposPromise = null;
-  function fetchRepos() {
-    if (!reposPromise) {
-      reposPromise = fetch('https://api.github.com/users/' + OWNER + '/repos?sort=updated&per_page=100')
-        .then(function (res) {
-          if (!res.ok) throw new Error('GitHub API error');
-          return res.json();
-        })
-        .then(function (repos) {
-          var SKIP = [OWNER.toLowerCase(), 'doctordoomies', OWNER.toLowerCase() + '.github.io'];
-          return repos
-            .filter(function (r) { return !r.fork && SKIP.indexOf(r.name.toLowerCase()) === -1; })
-            .slice(0, 6);
-        });
-    }
-    return reposPromise;
-  }
-
-  function cmdProjects() {
-    var loadingLine = addHTML('fetching from api.github.com/users/' + OWNER + '/repos …', 'out out-muted');
-    fetchRepos()
-      .then(function (filtered) {
-        loadingLine.remove();
-
-        if (filtered.length === 0) {
-          addHTML('most of the work right now lives in private repos.\nfull picture on <a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">github.com/' + OWNER + '</a>', 'out out-muted');
-          if (nearBottom()) scrollToInput();
-          return;
-        }
-
-        var html = '';
-        filtered.forEach(function (repo) {
-          var meta = [];
-          if (repo.language) meta.push(esc(repo.language));
-          if (repo.stargazers_count) meta.push('★ ' + repo.stargazers_count);
-          html +=
-            '<div class="proj-row">' +
-              '<div><a class="proj-name" href="' + repo.html_url + '" target="_blank" rel="noopener">' + esc(repo.name) + '</a>' +
-              (meta.length ? ' <span class="proj-meta">(' + meta.join(', ') + ')</span>' : '') + '</div>' +
-              '<div class="proj-desc">' + esc(repo.description || 'no description yet.') + '</div>' +
-            '</div>';
-        });
-        addBlockHTML(html);
-        if (nearBottom()) scrollToInput();
-      })
-      .catch(function () {
-        loadingLine.remove();
-        addHTML('couldn\'t reach the GitHub API right now.\nfull picture on <a href="https://github.com/' + OWNER + '" target="_blank" rel="noopener">github.com/' + OWNER + '</a>', 'out out-error');
-        if (nearBottom()) scrollToInput();
-      });
-  }
-
-  var commands = {
-    help: cmdHelp,
-    about: cmdAbout,
-    techstack: cmdTechstack,
-    skills: cmdTechstack,
-    projects: cmdProjects,
-    github: cmdGithub,
-    contact: cmdContact,
-    whoami: cmdWhoami,
-    theme: cmdTheme,
-    ls: cmdLs,
-    clear: cmdClear,
-    echo: cmdEcho,
-    sudo: cmdSudo,
-    date: cmdDate,
-    banner: function () { renderBanner(); }
-  };
-
-  function runCommand(trimmed) {
-    var parts = trimmed.split(/\s+/);
-    var name = parts[0].toLowerCase();
-    var args = parts.slice(1);
-    var fn = commands[name];
-    if (fn) {
-      fn(args);
-    } else {
-      addHTML('command not found: ' + esc(name) + '. Type <span class="out-accent">help</span> to see available commands.', 'out out-error');
-    }
-  }
-
-  function submitCurrentInput() {
-    var raw = input.value;
-    var trimmed = raw.trim();
-    input.value = '';
-    if (!trimmed) {
-      echoCommand('');
-      scrollToInput();
-      return;
-    }
-    echoCommand(raw);
-    history.push(trimmed);
-    historyIdx = history.length;
-    runCommand(trimmed);
-    scrollToInput();
-  }
-
-  var history = [];
-  var historyIdx = -1;
-
-  input.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      submitCurrentInput();
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      if (history.length) {
-        historyIdx = Math.max(0, historyIdx - 1);
-        input.value = history[historyIdx] || '';
-        var v = input.value; input.setSelectionRange(v.length, v.length);
-      }
-    } else if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      if (history.length) {
-        historyIdx = Math.min(history.length, historyIdx + 1);
-        input.value = history[historyIdx] || '';
-      }
-    }
-  });
-
-  document.addEventListener('click', function (e) {
-    if (e.target.closest('a, button')) return;
-    var sel = window.getSelection();
-    if (sel && String(sel).length) return;
-    input.focus();
-  });
-
-  helpHint.addEventListener('click', function () {
-    input.value = 'help';
-    submitCurrentInput();
-    input.focus();
-  });
-
-  /* ---------------- visual guide ---------------- */
-
-  function loadVisualProjects() {
-    var grid = document.getElementById('visualProjectsGrid');
-    var fallback = document.getElementById('visualProjectsFallback');
-    fetchRepos()
-      .then(function (filtered) {
-        if (filtered.length === 0) {
-          grid.hidden = true;
-          fallback.hidden = false;
-          return;
-        }
-        grid.innerHTML = '';
-        filtered.forEach(function (repo) {
-          var row = document.createElement('a');
-          row.className = 'visual-project-row';
-          row.href = repo.html_url;
-          row.target = '_blank';
-          row.rel = 'noopener';
-
-          var name = document.createElement('span');
-          name.className = 'visual-project-name';
-          name.textContent = repo.name;
-          row.appendChild(name);
-
-          var bits = [];
-          if (repo.language) bits.push(repo.language);
-          if (repo.stargazers_count) bits.push('★ ' + repo.stargazers_count);
-          if (bits.length) {
-            var meta = document.createElement('span');
-            meta.className = 'visual-project-meta';
-            meta.textContent = bits.join(' · ');
-            row.appendChild(meta);
-          }
-
-          var desc = document.createElement('span');
-          desc.className = 'visual-project-desc';
-          desc.textContent = repo.description || 'No description yet.';
-          row.appendChild(desc);
-
-          grid.appendChild(row);
-        });
-      })
-      .catch(function () {
-        grid.hidden = true;
-        fallback.hidden = false;
-      });
-  }
-  loadVisualProjects();
-
-  var scrollCue = document.getElementById('scrollCue');
-  var visualSection = document.getElementById('visual');
-  if ('IntersectionObserver' in window) {
-    var cueObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        scrollCue.classList.toggle('visible', !entry.isIntersecting);
-      });
-    }, { threshold: 0.1 });
-    cueObserver.observe(visualSection);
-  } else {
-    scrollCue.classList.add('visible');
-  }
-
-  /* hand-drawn marks, once, when the visual section first comes into view */
-  var marksDone = false;
-  function runHandMarks() {
-    if (marksDone || reduceMotion || typeof RoughNotation === 'undefined') return;
-    marksDone = true;
-    var accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-    var group = [
-      RoughNotation.annotate(document.getElementById('statCoding'), { type: 'circle', color: accentColor, strokeWidth: 2, padding: [6, 10] }),
-      RoughNotation.annotate(document.getElementById('statSecurity'), { type: 'circle', color: accentColor, strokeWidth: 2, padding: [6, 10] }),
-      RoughNotation.annotate(document.getElementById('markPentest'), { type: 'underline', color: accentColor, strokeWidth: 2, padding: 2 })
-    ];
-    RoughNotation.annotationGroup(group).show();
-  }
-  var statRow = document.querySelector('.stat-row');
-  if ('IntersectionObserver' in window && statRow) {
-    var markObserver = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) { runHandMarks(); markObserver.disconnect(); }
-      });
-    }, { threshold: 0.4 });
-    markObserver.observe(statRow);
-  } else {
-    runHandMarks();
-  }
-
-  /* live "last touched" line, pulled from this repo's own commit history */
-  (function loadLastTouched() {
-    var el = document.getElementById('lastTouched');
-    if (!el) return;
-    fetch('https://api.github.com/repos/' + OWNER + '/' + OWNER + '.github.io/commits?per_page=1')
-      .then(function (res) { if (!res.ok) throw new Error('bad response'); return res.json(); })
-      .then(function (commits) {
-        var c = commits[0];
-        if (!c) return;
-        var when = timeAgo(new Date(c.commit.author.date));
-        var msg = (c.commit.message || '').split('\n')[0];
-        el.innerHTML = 'last touched ' + when + ' — <a href="' + c.html_url + '" target="_blank" rel="noopener">' + esc(msg) + '</a>';
-      })
-      .catch(function () {});
-  })();
-
-  function timeAgo(date) {
-    var seconds = Math.floor((Date.now() - date.getTime()) / 1000);
-    var units = [['year', 31536000], ['month', 2592000], ['day', 86400], ['hour', 3600], ['minute', 60]];
-    for (var i = 0; i < units.length; i++) {
-      var count = Math.floor(seconds / units[i][1]);
-      if (count >= 1) return count + ' ' + units[i][0] + (count > 1 ? 's' : '') + ' ago';
-    }
-    return 'just now';
-  }
-
-  /* ---------------- boot sequence ---------------- */
-
-  function renderBanner() {
-    addHTML('<span class="prompt-user">zyren@portfolio</span><span class="prompt-sep">:~$</span> whoami', 'out-muted');
-    var wrap = document.createElement('div');
-    wrap.className = 'line';
-    wrap.innerHTML =
-      '<h1 class="banner-name">Zyren</h1>' +
-      '<p class="role-line"><span class="role-caret">&gt;</span><span id="typewriter"></span><span class="cursor-block" aria-hidden="true"></span></p>' +
-      '<p class="banner-tagline">Building systems, then trying to break them — professionally.</p>';
-    addNode(wrap);
-    runTypewriter();
-  }
-
-  function runTypewriter() {
-    var roles = ['Web Developer', 'App Developer', 'Minecraft Server Developer', 'Web Pentester'];
-    var el = document.getElementById('typewriter');
-    if (!el) return;
-    if (reduceMotion) { el.textContent = roles[0]; return; }
-    var roleIndex = 0;
-    function typeRole() {
-      var word = roles[roleIndex];
-      var i = 0;
-      el.textContent = '';
-      var typeInterval = setInterval(function () {
-        el.textContent = word.slice(0, i + 1);
-        i++;
-        if (i === word.length) {
-          clearInterval(typeInterval);
-          setTimeout(eraseRole, 1300);
-        }
-      }, 55);
-    }
-    function eraseRole() {
-      var word = roles[roleIndex];
-      var i = word.length;
-      var eraseInterval = setInterval(function () {
-        el.textContent = word.slice(0, i - 1);
-        i--;
-        if (i === 0) {
-          clearInterval(eraseInterval);
-          roleIndex = (roleIndex + 1) % roles.length;
-          setTimeout(typeRole, 250);
-        }
-      }, 30);
-    }
-    typeRole();
-  }
-
-  function boot() {
-    input.disabled = true;
-    renderBanner();
-
-    var steps = [
-      function () { echoCommand('about'); cmdAbout(); },
-      function () { echoCommand('techstack'); cmdTechstack(); },
-      function () {
-        addHTML('Type <span class="out-accent">help</span> to see more, or scroll down for a visual guide.', 'out out-muted');
-        input.disabled = false;
-        if (!window.matchMedia('(pointer: coarse)').matches) input.focus();
-      }
-    ];
-
-    if (reduceMotion) {
-      steps.forEach(function (fn) { fn(); });
-    } else {
-      var delay = 350;
-      steps.forEach(function (fn, i) {
-        setTimeout(fn, delay * (i + 1));
-      });
-    }
-  }
-
-  boot();
-})();
-</script>
+  <script src="script.js" defer></script>
+</body>
+</html>
