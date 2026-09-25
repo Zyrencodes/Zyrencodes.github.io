@@ -20,6 +20,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
+  <script>
+    (function () {
+      var r = document.documentElement;
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        r.classList.add("js");
+        window.__jsFailsafe = setTimeout(function () { r.classList.remove("js"); }, 3500);
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 
   <script type="application/ld+json">
@@ -35,17 +44,22 @@
   </script>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  </svg>
   <a class="skip" href="#main">Skip to content</a>
 
   <header class="site-header">
     <div class="wrap">
-      <a class="wordmark" href="#top" aria-label="Zyren, back to top">Zyren</a>
+      <a class="wordmark" href="#top" aria-label="Zyren, back to top">Zyren<span class="wm-cursor" aria-hidden="true">_</span></a>
       <nav class="nav" aria-label="Primary">
         <a href="#work">Work</a>
         <a href="#experience">Experience</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
-        <a href="resume/James-Walker-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume <span class="arrow" aria-hidden="true">↗</span></a>
+        <a href="resume/James-Walker-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
       </nav>
     </div>
   </header>
@@ -53,13 +67,13 @@
   <main id="main">
     <section class="hero" id="top">
       <div class="wrap">
-        <p class="eyebrow">Zyren — James Walker</p>
-        <h1>I build software, systems, and tools for the web and for games.</h1>
-        <p class="hero-text">I work across web development, Minecraft servers and plugins, automation, and security tooling. Most of it sits where software meets a community of real users. <strong>Zyren</strong> is what most people call me.</p>
-        <p class="hero-links">
-          <a class="link" href="#work">View selected work <span class="arrow arrow--down" aria-hidden="true">↓</span></a>
-          <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">Email <span class="arrow" aria-hidden="true">↗</span></a>
+        <p class="eyebrow" data-hero>Zyren — James Walker</p>
+        <h1 data-hero data-split-hero>I build software, systems, and tools for the web and for games.</h1>
+        <p class="hero-text" data-hero>I work across web development, Minecraft servers and plugins, automation, and security tooling. Most of it sits where software meets a community of real users. <strong>Zyren</strong> is what most people call me.</p>
+        <p class="hero-links" data-hero>
+          <a class="link" href="#work">View selected work <svg class="ico arrow arrow--down" aria-hidden="true"><use href="#i-down"/></svg></a>
+          <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+          <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">Email <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
         </p>
       </div>
     </section>
@@ -75,13 +89,14 @@
       </div>
     </div>
 
-    <section class="section" id="work" aria-labelledby="work-h">
+    <section class="section" id="work" data-nav="work" aria-labelledby="work-h">
       <div class="wrap">
-        <h2 class="section-title" id="work-h">Selected work</h2>
+        <h2 class="section-title" id="work-h" data-reveal>Selected work</h2>
         <ol class="work-list">
-          <li>
+          <li data-row>
             <span class="num">01</span>
             <article class="work-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
               <h3 class="work-title">BurrowBot-App</h3>
               <p class="work-kind">Security &amp; code review automation</p>
             </article>
@@ -91,9 +106,10 @@
             </div>
           </li>
 
-          <li>
+          <li data-row>
             <span class="num">02</span>
             <article class="work-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
               <h3 class="work-title">Discord AI &amp; automation</h3>
               <p class="work-kind">Bots · Security · Community systems</p>
             </article>
@@ -103,9 +119,10 @@
             </div>
           </li>
 
-          <li class="lead-item">
+          <li class="lead-item" data-row>
             <span class="num">03</span>
             <article class="work-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
               <h3 class="work-title">Minecraft development</h3>
               <p class="work-kind">Plugins &amp; server systems</p>
             </article>
@@ -116,9 +133,10 @@
             </div>
           </li>
 
-          <li>
+          <li data-row>
             <span class="num">04</span>
             <article class="work-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
               <h3 class="work-title">Web development</h3>
               <p class="work-kind">Websites &amp; web applications · 2020 — present</p>
             </article>
@@ -131,11 +149,11 @@
       </div>
     </section>
 
-    <section class="section" id="experience" aria-labelledby="exp-h">
+    <section class="section" id="experience" data-nav="experience" aria-labelledby="exp-h">
       <div class="wrap">
-        <h2 class="section-title" id="exp-h">Experience</h2>
+        <h2 class="section-title" id="exp-h" data-reveal>Experience</h2>
         <ol class="exp-list">
-          <li>
+          <li data-row>
             <span class="num">01</span>
             <article class="exp-head">
               <h3 class="exp-org">InvadedLands.net</h3>
@@ -146,7 +164,7 @@
               <p>Worked with developers and creators in the Minecraft 1.8 PvP community, and helped manage features, technical development, and server updates.</p>
             </div>
           </li>
-          <li>
+          <li data-row>
             <span class="num">02</span>
             <article class="exp-head">
               <h3 class="exp-org">MunchyMC</h3>
@@ -156,7 +174,7 @@
               <p>Worked on Minecraft plugins, server systems, and technical issues, alongside staff and developers on new features and updates. Also helped with day-to-day server administration.</p>
             </div>
           </li>
-          <li>
+          <li data-row>
             <span class="num">03</span>
             <article class="exp-head">
               <h3 class="exp-org">iD Tech</h3>
@@ -166,7 +184,7 @@
               <p>Assisted students with programming projects and classes, helped them work through concepts and problems, and supported instructors during lessons and activities.</p>
             </div>
           </li>
-          <li>
+          <li data-row>
             <span class="num">04</span>
             <article class="exp-head">
               <h3 class="exp-org">Hypixel</h3>
@@ -180,8 +198,8 @@
       </div>
     </section>
 
-    <section class="section" id="education" aria-labelledby="edu-h">
-      <div class="wrap split">
+    <section class="section" id="education" data-nav="experience" aria-labelledby="edu-h">
+      <div class="wrap split" data-reveal>
         <h2 class="section-title" id="edu-h">Education</h2>
         <ul class="edu-list">
           <li><span class="school">University of Florida</span><span class="degree">B.S. in Computer Science</span></li>
@@ -190,22 +208,22 @@
       </div>
     </section>
 
-    <section class="section" id="about" aria-labelledby="about-h">
-      <div class="wrap split">
+    <section class="section" id="about" data-nav="about" aria-labelledby="about-h">
+      <div class="wrap split" data-reveal>
         <h2 class="section-title" id="about-h">About</h2>
         <div class="about-text">
           <p>I'm James Walker, though I go by Zyren almost everywhere online. Most of my development work has been where software, communities, and infrastructure overlap, from Minecraft networks and web applications to automation and security tooling.</p>
           <p>I like building systems that solve a real problem, whether that's a custom plugin, an automated workflow, a web app, or a tool that makes development a bit safer.</p>
           <p class="muted">Away from the keyboard I've also mentored students at iD Tech, and I studied computer science at the University of Florida and the University of Miami.</p>
           <p class="about-links">
-            <a class="link" href="resume/James-Walker-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF) <span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="link" href="resume/James-Walker-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF) <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
           </p>
         </div>
       </div>
     </section>
 
-    <section class="section" id="skills" aria-labelledby="skills-h">
-      <div class="wrap split">
+    <section class="section" id="skills" data-nav="about" aria-labelledby="skills-h">
+      <div class="wrap split" data-reveal>
         <h2 class="section-title" id="skills-h">Technologies</h2>
         <dl class="def-list">
           <div>
@@ -240,8 +258,8 @@
       </div>
     </section>
 
-    <section class="section" id="notes" aria-labelledby="notes-h">
-      <div class="wrap split">
+    <section class="section" id="notes" data-nav="about" aria-labelledby="notes-h">
+      <div class="wrap split" data-reveal>
         <h2 class="section-title" id="notes-h">A few things along the way</h2>
         <dl class="def-list">
           <div>
@@ -260,13 +278,14 @@
       </div>
     </section>
 
-    <section class="section" id="contact" aria-labelledby="contact-h">
+    <section class="section" id="contact" data-nav="contact" aria-labelledby="contact-h">
       <div class="wrap">
-        <h2 class="contact-title" id="contact-h">Have something interesting to build?</h2>
-        <p class="contact-text">I'm always open to hearing about interesting software, web, automation, Minecraft, security, and development projects.</p>
-        <p class="contact-links">
-          <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">Send an email <span class="arrow" aria-hidden="true">↗</span></a>
-          <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+        <span class="accent-rule" aria-hidden="true"></span>
+        <h2 class="contact-title" id="contact-h" data-split-scroll>Have something interesting to build?</h2>
+        <p class="contact-text" data-reveal>I'm always open to hearing about interesting software, web, automation, Minecraft, security, and development projects.</p>
+        <p class="btn-row" data-reveal>
+          <a class="btn" data-magnetic href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">Send an email <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+          <a class="btn" data-magnetic href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
         </p>
       </div>
     </section>
@@ -277,7 +296,7 @@
       <div class="footer-left">
         <span>Zyren · James Walker</span>
         <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">zyrencodes@gmail.com</a>
-        <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
       </div>
       <div class="footer-right">
         <span>© <span id="year">2026</span> James Walker</span>
@@ -285,6 +304,10 @@
     </div>
   </footer>
 
-  <script src="script.js" defer></script>
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
+  <script src="vendor/lenis.min.js" defer></script>
+  <script src="vendor/split-type.min.js" defer></script>
+  <script src="main.js" defer></script>
 </body>
 </html>
