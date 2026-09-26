@@ -1,1044 +1,324 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="sector">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta
-    name="description"
-    content="Explore Adam's Neon Sector-7: an interactive developer portfolio spanning creative web worlds, Java and Paper game systems, and local AI experiments."
-  >
-  <meta name="theme-color" content="#040711" id="theme-color-meta">
-  <meta name="color-scheme" content="dark">
-  <meta name="robots" content="index, follow">
-  <meta name="author" content="Adam">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>doctordoomies — Developer</title>
+  <meta name="description" content="Developer exploring software, game development, cybersecurity, Java, web technologies, and local AI. Currently looking for internship opportunities.">
+  <link rel="canonical" href="https://doctordoomies.github.io/">
+  <meta name="theme-color" content="#0e0f11">
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Neon Sector-7">
-  <meta property="og:title" content="Adam — Creative Developer | Neon Sector-7">
-  <meta
-    property="og:description"
-    content="Games, AI, cinematic interfaces, and creative systems—built inside Neon Sector-7."
-  >
+  <meta property="og:site_name" content="doctordoomies">
+  <meta property="og:title" content="doctordoomies — Developer">
+  <meta property="og:description" content="Developer exploring software, game development, cybersecurity, Java, web technologies, and local AI. Currently looking for internship opportunities.">
   <meta property="og:url" content="https://doctordoomies.github.io/">
-  <meta property="og:image" content="https://doctordoomies.github.io/assets/banner.jpg">
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="2172">
-  <meta property="og:image:height" content="724">
-  <meta property="og:image:alt" content="Neon Sector-7 cityscape with a friendly robot at a coding console beneath the name Adam">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Adam — Creative Developer | Neon Sector-7">
-  <meta name="twitter:description" content="Games, AI, cinematic interfaces, and creative systems—built inside Neon Sector-7.">
-  <meta name="twitter:image" content="https://doctordoomies.github.io/assets/banner.jpg">
-  <meta name="twitter:image:alt" content="Neon Sector-7 cityscape with a friendly robot at a coding console beneath the name Adam">
+  <meta name="twitter:card" content="summary">
 
-  <title>Adam — Creative Developer | Neon Sector-7</title>
-
-  <link rel="canonical" href="https://doctordoomies.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="preload" href="assets/neon-city-background.jpg" as="image" type="image/jpeg" fetchpriority="high">
-
-  <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Adam",
-      "url": "https://doctordoomies.github.io/",
-      "sameAs": ["https://github.com/doctordoomies"],
-      "knowsAbout": [
-        "Creative web development",
-        "Game development",
-        "Java",
-        "Paper",
-        "Three.js",
-        "Local artificial intelligence"
-      ]
-    }
-  </script>
 
   <script>
-    document.documentElement.classList.add("js");
-    try {
-      const savedTheme = localStorage.getItem("ns7-theme");
-      if (["sector", "solar", "ghost", "stellar"].includes(savedTheme)) {
-        document.documentElement.dataset.theme = savedTheme;
+    (function () {
+      var r = document.documentElement;
+      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        r.classList.add("js");
+        window.__jsFailsafe = setTimeout(function () { r.classList.remove("js"); }, 3500);
       }
-    } catch (error) {
-      // The default interface theme remains available when storage is blocked.
-    }
+    })();
   </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&amp;family=Geist+Mono:wght@400;500&amp;display=swap">
   <link rel="stylesheet" href="styles.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "doctordoomies",
+    "jobTitle": "Student Developer",
+    "url": "https://doctordoomies.github.io/",
+    "sameAs": ["https://github.com/doctordoomies"]
+  }
+  </script>
 </head>
-
 <body>
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
+    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+    <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  </svg>
 
-  <div class="site-background" aria-hidden="true">
-    <div class="ambient-light ambient-light-one"></div>
-    <div class="ambient-light ambient-light-two"></div>
-    <div class="stellar-sky">
-      <div class="stellar-nebula"></div>
-      <div class="stellar-starfield" id="stellar-starfield"></div>
-      <svg class="stellar-constellations" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid slice">
-        <g class="constellation constellation-one">
-          <path d="M104 182 188 124 271 176 342 104 421 159"/>
-          <circle cx="104" cy="182" r="3"/>
-          <circle cx="188" cy="124" r="4"/>
-          <circle cx="271" cy="176" r="3"/>
-          <circle cx="342" cy="104" r="4"/>
-          <circle cx="421" cy="159" r="3"/>
-        </g>
-        <g class="constellation constellation-two">
-          <path d="M798 246 856 187 918 228 982 166 1074 214 1118 145"/>
-          <circle cx="798" cy="246" r="3"/>
-          <circle cx="856" cy="187" r="4"/>
-          <circle cx="918" cy="228" r="3"/>
-          <circle cx="982" cy="166" r="4"/>
-          <circle cx="1074" cy="214" r="3"/>
-          <circle cx="1118" cy="145" r="4"/>
-        </g>
-        <g class="constellation constellation-three">
-          <path d="M535 608 602 547 673 580 728 512"/>
-          <circle cx="535" cy="608" r="3"/>
-          <circle cx="602" cy="547" r="4"/>
-          <circle cx="673" cy="580" r="3"/>
-          <circle cx="728" cy="512" r="4"/>
-        </g>
-      </svg>
-      <span class="shooting-star shooting-star-one"></span>
-      <span class="shooting-star shooting-star-two"></span>
-      <span class="shooting-star shooting-star-three"></span>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="wordmark" href="#top" aria-label="doctordoomies, back to top">doctordoomies<span class="wm-cursor" aria-hidden="true">_</span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="#journey">Journey</a>
+        <a href="#skills">Skills</a>
+        <a href="#about">About</a>
+        <a href="#internship">Internship</a>
+        <a href="https://github.com/doctordoomies" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+        <a data-resume href="resume/resume.pdf" target="_blank" rel="noopener noreferrer" hidden>Resume <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+      </nav>
     </div>
-    <div class="transmission-lines">
-      <span></span><span></span><span></span><span></span>
-    </div>
-    <div class="distant-relay"><i></i></div>
-    <div class="grid-layer"></div>
-    <div class="particles" id="particles"></div>
-    <div class="scanlines"></div>
-    <div class="noise-layer"></div>
-  </div>
-
-  <div class="pointer-aura" id="pointer-aura" aria-hidden="true"></div>
-  <div class="page-progress" aria-hidden="true">
-    <span id="page-progress-bar"></span>
-  </div>
-
-  <div class="boot-screen" id="boot-screen" role="dialog" aria-modal="true" aria-label="Neon Sector-7 intro">
-    <div class="boot-panel">
-      <div class="boot-topline">
-        <p>NEON SECTOR-7 // HANDSHAKE</p>
-        <span class="boot-link-state" id="boot-link-state"><i class="status-light"></i><span id="boot-link-copy">LOCATING RELAY</span></span>
-      </div>
-
-      <div class="boot-mark" aria-hidden="true">
-        <i></i>
-        <b></b>
-        <span>A7</span>
-      </div>
-
-      <p class="boot-status" id="boot-status">ESTABLISHING COMMUNICATIONS LINK</p>
-
-      <pre class="boot-log" id="boot-log" aria-hidden="true"></pre>
-      <p class="sr-only" id="boot-announcement" aria-live="polite"></p>
-
-      <div
-        class="boot-progress"
-        role="progressbar"
-        aria-label="Intro progress"
-        aria-valuemin="0"
-        aria-valuemax="100"
-        aria-valuenow="0"
-        id="boot-progress"
-      >
-        <span id="boot-progress-bar"></span>
-      </div>
-
-      <button class="text-button boot-skip" id="boot-skip" type="button">
-        Skip intro
-      </button>
-    </div>
-  </div>
-
-  <p class="interface-toast" id="interface-toast" role="status" aria-live="polite"></p>
-  <noscript><p class="no-script-notice">JavaScript is offline. The portfolio remains readable, but Sector-7 interactions are unavailable.</p></noscript>
-
-  <header class="site-header" id="site-header">
-    <nav class="navigation page-shell" aria-label="Primary navigation">
-      <a class="logo" href="#home" aria-label="Neon Sector-7 home">
-        <span class="logo-symbol" aria-hidden="true">A7</span>
-        <span class="logo-copy">
-          <strong>NEON SECTOR-7</strong>
-          <small>ADAM // CREATIVE DEV</small>
-        </span>
-      </a>
-
-      <button
-        class="nav-toggle"
-        id="nav-toggle"
-        type="button"
-        aria-expanded="false"
-        aria-controls="nav-panel"
-        aria-label="Open navigation"
-      >
-        <span></span>
-        <span></span>
-      </button>
-
-      <div class="nav-panel" id="nav-panel">
-        <div class="nav-links">
-          <a href="#work" data-nav-link>Work</a>
-          <a href="#about" data-nav-link>About</a>
-          <a href="#lab" data-nav-link>Lab</a>
-          <a href="#contact" data-nav-link>Contact</a>
-        </div>
-
-        <div class="nav-tools">
-          <div class="theme-control">
-            <button
-              class="theme-switcher"
-              id="theme-switcher"
-              type="button"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              aria-controls="theme-menu"
-              aria-label="Choose interface theme"
-            >
-              <span class="theme-switcher-icon" aria-hidden="true"><i></i></span>
-              <span class="theme-switcher-label" id="current-theme-label">Sector</span>
-              <span class="theme-switcher-chevron" aria-hidden="true">⌄</span>
-            </button>
-
-            <div class="theme-menu" id="theme-menu" role="menu" aria-label="Interface themes" hidden>
-              <p>INTERFACE_THEME</p>
-              <button type="button" role="menuitemradio" aria-checked="true" data-theme-option="sector">
-                <span class="theme-swatch swatch-sector" aria-hidden="true"></span>
-                <span><strong>Sector Cyan</strong><small>Original neon city</small></span>
-                <i aria-hidden="true">01</i>
-              </button>
-              <button type="button" role="menuitemradio" aria-checked="false" data-theme-option="solar">
-                <span class="theme-swatch swatch-solar" aria-hidden="true"></span>
-                <span><strong>Solar Gold</strong><small>Warm signal flare</small></span>
-                <i aria-hidden="true">02</i>
-              </button>
-              <button type="button" role="menuitemradio" aria-checked="false" data-theme-option="ghost">
-                <span class="theme-swatch swatch-ghost" aria-hidden="true"></span>
-                <span><strong>Ghost Mint</strong><small>Cool spectral interface</small></span>
-                <i aria-hidden="true">03</i>
-              </button>
-              <button type="button" role="menuitemradio" aria-checked="false" data-theme-option="stellar">
-                <span class="theme-swatch swatch-stellar" aria-hidden="true"></span>
-                <span><strong>Starry Night</strong><small>Deep-space observatory</small></span>
-                <i aria-hidden="true">04</i>
-              </button>
-            </div>
-          </div>
-
-          <button
-            class="command-trigger"
-            id="command-trigger"
-            type="button"
-            aria-label="Open command deck"
-          >
-            Command <kbd>Ctrl K</kbd>
-          </button>
-
-          <a
-            class="nav-github"
-            href="https://github.com/doctordoomies"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            GitHub <span aria-hidden="true">↗</span>
-            <span class="sr-only">(opens in a new tab)</span>
-          </a>
-        </div>
-      </div>
-    </nav>
   </header>
 
-  <main id="main-content" tabindex="-1">
-    <section class="hero" id="home" aria-labelledby="hero-title">
-      <div class="hero-city" aria-hidden="true"></div>
-      <div class="hero-celestial" aria-hidden="true">
-        <div class="celestial-orbit celestial-orbit-one"></div>
-        <div class="celestial-orbit celestial-orbit-two"></div>
-        <div class="celestial-body">
-          <span class="celestial-crater crater-one"></span>
-          <span class="celestial-crater crater-two"></span>
-          <span class="celestial-crater crater-three"></span>
-          <i></i>
-        </div>
-      </div>
-      <div class="hero-vignette" aria-hidden="true"></div>
-      <div class="station-horizon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      <span class="hero-coordinate coordinate-one" aria-hidden="true">SECTOR COORD // 07.14.88</span>
-      <span class="hero-coordinate coordinate-two" aria-hidden="true">RELAY // A7-DELTA</span>
-      <span class="hero-watermark" aria-hidden="true">SECTOR-7</span>
-
-      <div class="hero-layout page-shell">
-        <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Identity online // Adam</p>
-
-          <h1 id="hero-title">
-            <span class="hero-intro">I build</span>
-            <span>digital worlds</span>
-            <span class="gradient-text">with a pulse.</span>
-          </h1>
-
-          <p class="hero-description">
-            I'm Adam, a creative developer exploring the space between games,
-            AI, and cinematic web experiences—from interactive worlds and
-            Minecraft systems to local AI workflows.
-          </p>
-
-          <div class="hero-actions">
-            <a class="button button-primary" href="#work">
-              <span>Explore the builds</span>
-              <span class="button-arrow" aria-hidden="true">↘</span>
-            </a>
-
-            <a
-              class="button button-secondary"
-              href="https://github.com/doctordoomies/doctordoomies.github.io"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>Inspect the source</span>
-              <span class="button-arrow" aria-hidden="true">↗</span>
-              <span class="sr-only">(opens in a new tab)</span>
-            </a>
-          </div>
-
-          <ul class="hero-signals" aria-label="Creative focus">
-            <li><span>01</span> Creative systems</li>
-            <li><span>02</span> Playable ideas</li>
-            <li><span>03</span> Always evolving</li>
-          </ul>
-        </div>
-
-        <aside class="identity-console reveal" aria-label="Neon Sector-7 core and Adam's live creator signal">
-          <div class="panel-chrome">
-            <span>SECTOR_CORE // A7</span>
-            <span class="panel-status"><i></i> LIVE</span>
-          </div>
-
-          <div class="core-stage" id="core-stage" aria-hidden="true">
-            <div class="core-orbit core-orbit-one"><i></i></div>
-            <div class="core-orbit core-orbit-two"><i></i></div>
-            <div class="core-orbit core-orbit-three"></div>
-            <div class="core-orbit core-orbit-vertical"><i></i></div>
-            <div class="core-crosshair core-crosshair-x"></div>
-            <div class="core-crosshair core-crosshair-y"></div>
-            <div class="core-scan-plane"></div>
-            <div class="identity-core">
-              <i></i>
-              <span>A7</span>
-              <small>CORE ONLINE</small>
-            </div>
-            <span class="core-glyph glyph-one">AI</span>
-            <span class="core-glyph glyph-two">JS</span>
-            <span class="core-glyph glyph-three">JAVA</span>
-            <span class="core-data-node node-alpha"></span>
-            <span class="core-data-node node-beta"></span>
-            <span class="core-data-node node-gamma"></span>
-          </div>
-
-          <dl class="console-readout">
-            <div>
-              <dt>Operator</dt>
-              <dd>Adam</dd>
-            </div>
-            <div>
-              <dt>Sector</dt>
-              <dd>07</dd>
-            </div>
-            <div>
-              <dt>Status</dt>
-              <dd class="readout-online">Online</dd>
-            </div>
-            <div>
-              <dt>Focus</dt>
-              <dd id="focus-signal">Interactive worlds</dd>
-            </div>
-            <div>
-              <dt>Core link</dt>
-              <dd>Stable</dd>
-            </div>
-            <div>
-              <dt>Interface time</dt>
-              <dd id="local-time">--:--:--</dd>
-            </div>
-          </dl>
-
-          <button class="console-action" type="button" data-open-scan>
-            <span class="console-action-icon" aria-hidden="true">◎</span>
-            Run anomaly scan
-            <span aria-hidden="true">→</span>
-          </button>
-        </aside>
-      </div>
-
-      <a class="scroll-cue" href="#signal-strip">
-        <span>Scroll to enter</span>
-        <i aria-hidden="true"></i>
-      </a>
-    </section>
-
-    <div class="signal-strip" id="signal-strip" role="region" aria-label="Adam's creative disciplines">
-      <div class="signal-track">
-        <span>Creative web</span><i aria-hidden="true">✦</i>
-        <span>Game development</span><i aria-hidden="true">✦</i>
-        <span>Java + Paper</span><i aria-hidden="true">✦</i>
-        <span>Local AI</span><i aria-hidden="true">✦</i>
-        <span>Three.js worlds</span><i aria-hidden="true">✦</i>
-        <span>Visual systems</span><i aria-hidden="true">✦</i>
-        <span aria-hidden="true">Creative web</span><i aria-hidden="true">✦</i>
-        <span aria-hidden="true">Game development</span><i aria-hidden="true">✦</i>
-        <span aria-hidden="true">Java + Paper</span><i aria-hidden="true">✦</i>
-        <span aria-hidden="true">Local AI</span><i aria-hidden="true">✦</i>
-        <span aria-hidden="true">Three.js worlds</span><i aria-hidden="true">✦</i>
-        <span aria-hidden="true">Visual systems</span><i aria-hidden="true">✦</i>
-      </div>
-      <button class="signal-toggle" id="signal-toggle" type="button" aria-pressed="false">
-        Pause transmissions
-      </button>
-    </div>
-
-    <div class="transmission-bridge" aria-hidden="true">
-      <span>INCOMING TRANSMISSION</span>
-      <i></i>
-      <strong>001</strong>
-    </div>
-
-    <section class="section work-section" id="work" aria-labelledby="work-title">
-      <div class="page-shell">
-        <header class="section-heading reveal">
-          <div>
-            <p class="section-code">TRANSMISSION_01 // SELECTED WORK</p>
-            <h2 id="work-title">Ideas under construction.</h2>
-          </div>
-          <p>
-            Experiments, worlds, and systems in different stages of becoming.
-            Every build is a chance to learn something difficult and make it feel alive.
-          </p>
-        </header>
-
-        <div class="project-grid">
-          <article class="project-card project-featured reveal" data-tilt>
-            <div class="project-visual project-city-visual" aria-hidden="true">
-              <div class="project-scanline" aria-hidden="true"></div>
-              <span class="visual-coordinate">VIEWPORT // NS7-001</span>
-              <span class="project-status status-live"><i></i> In development</span>
-              <div class="project-orbital-preview" aria-hidden="true">
-                <i></i><i></i><i></i>
-                <span>A7</span>
-                <b></b><b></b>
-              </div>
-              <div class="visual-lockup">
-                <span>NEON</span>
-                <strong>SECTOR-7</strong>
-              </div>
-            </div>
-
-            <div class="project-content">
-              <p class="project-index">CASE_FILE_001 // FLAGSHIP BUILD</p>
-              <h3>Neon <span class="project-title-lock">Sector-7</span></h3>
-              <p>
-                An evolving interactive portfolio world designed as a place to
-                explore—not just a page to scroll. Cinematic interfaces and
-                playful systems chart the journey as the project grows.
-              </p>
-
-              <ul class="tag-list" aria-label="Technologies and disciplines">
-                <li>Interactive web</li>
-                <li>World building</li>
-                <li>JavaScript</li>
-              </ul>
-
-              <dl class="project-meta">
-                <div><dt>Status</dt><dd>In development</dd></div>
-                <div><dt>System type</dt><dd>Interactive portfolio</dd></div>
-                <div><dt>Core stack</dt><dd>HTML // CSS // JavaScript</dd></div>
-              </dl>
-
-              <div class="project-links">
-                <a
-                  href="https://github.com/doctordoomies/doctordoomies.github.io"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View source <span aria-hidden="true">↗</span>
-                  <span class="sr-only">(opens in a new tab)</span>
-                </a>
-                <button type="button" data-open-scan>
-                  Play scanner <span aria-hidden="true">◎</span>
-                </button>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card project-game reveal" data-tilt>
-            <div class="project-visual pixel-visual" aria-hidden="true">
-              <span class="pixel-hud">RUN_02 // DEBUG</span>
-              <span class="pixel-moon"></span>
-              <span class="pixel-star star-one"></span>
-              <span class="pixel-star star-two"></span>
-              <span class="pixel-star star-three"></span>
-              <span class="pixel-platform platform-one"></span>
-              <span class="pixel-platform platform-two"></span>
-              <span class="pixel-character"><i></i></span>
-              <span class="visual-coordinate">BUILD // HTML-2D</span>
-            </div>
-
-            <div class="project-content">
-              <p class="project-index">CASE_FILE_002 // GAME CHALLENGE</p>
-              <h3>2D Game Challenge</h3>
-              <p>
-                A build challenge to create a 2D HTML game from scratch in
-                IntelliJ IDEA with a local Qwen3 Coder model through Ollama.
-                The current prototype is still being debugged.
-              </p>
-
-              <ul class="tag-list" aria-label="Technologies">
-                <li>HTML</li>
-                <li>Game dev</li>
-                <li>Local AI</li>
-              </ul>
-
-              <dl class="project-meta">
-                <div><dt>Status</dt><dd>Prototype // Debugging</dd></div>
-                <div><dt>System type</dt><dd>2D game experiment</dd></div>
-                <div><dt>Workflow</dt><dd>IntelliJ // Qwen3 // Ollama</dd></div>
-              </dl>
-
-              <div class="project-links">
-                <a
-                  href="https://github.com/doctordoomies/2D-Game-Challenge"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Explore repository <span aria-hidden="true">↗</span>
-                  <span class="sr-only">(opens in a new tab)</span>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <article class="project-card project-system reveal" data-tilt>
-            <div class="project-visual voxel-visual" aria-hidden="true">
-              <span class="voxel-network-line line-a"></span>
-              <span class="voxel-network-line line-b"></span>
-              <span class="voxel-network-line line-c"></span>
-              <div class="voxel-stack voxel-stack-one"><i></i><b></b><span></span></div>
-              <div class="voxel-stack voxel-stack-two"><i></i><b></b><span></span></div>
-              <div class="voxel-stack voxel-stack-three"><i></i><b></b><span></span></div>
-              <span class="visual-coordinate">SYSTEM // PAPER-JAVA</span>
-            </div>
-
-            <div class="project-content">
-              <p class="project-index">FIELD_NOTE_003 // ACTIVE SYSTEMS</p>
-              <h3>Minecraft Engineering</h3>
-              <p>
-                Java and Paper-powered server systems: custom minigames,
-                abilities, multiplayer mechanics, scoreboards, commands,
-                databases, and the architecture connecting them.
-              </p>
-
-              <ul class="tag-list" aria-label="Technologies">
-                <li>Java</li>
-                <li>Paper</li>
-                <li>Systems</li>
-              </ul>
-
-              <dl class="project-meta">
-                <div><dt>Status</dt><dd>Field notes // Logs pending</dd></div>
-                <div><dt>System type</dt><dd>Server engineering</dd></div>
-                <div><dt>Core stack</dt><dd>Java // Paper // Databases</dd></div>
-              </dl>
-
-              <span class="project-note">Build logs will transmit when ready.</span>
-            </div>
-          </article>
-
-          <article class="project-card project-ai reveal" data-tilt>
-            <div class="project-visual ai-visual" aria-hidden="true">
-              <span class="model-status">MODEL_BUS // LOCAL</span>
-              <span class="ai-node node-one"></span>
-              <span class="ai-node node-two"></span>
-              <span class="ai-node node-three"></span>
-              <span class="ai-node node-four"></span>
-              <span class="ai-line line-one"></span>
-              <span class="ai-line line-two"></span>
-              <span class="ai-line line-three"></span>
-              <div class="ai-core">LOCAL<br>AI</div>
-              <span class="visual-coordinate">LAB // OFFLINE-FIRST</span>
-            </div>
-
-            <div class="project-content">
-              <p class="project-index">FIELD_NOTE_004 // EXPERIMENTAL</p>
-              <h3>Local AI Lab</h3>
-              <p>
-                An offline-first test bench for local language models, coding
-                assistants, image generation, LoRAs, and creative development
-                workflows.
-              </p>
-
-              <ul class="tag-list" aria-label="Tools and disciplines">
-                <li>Ollama</li>
-                <li>Image generation</li>
-                <li>Workflows</li>
-              </ul>
-
-              <dl class="project-meta">
-                <div><dt>Status</dt><dd>Experimental</dd></div>
-                <div><dt>System type</dt><dd>Offline AI workflows</dd></div>
-                <div><dt>Toolchain</dt><dd>Ollama // Local models // LoRAs</dd></div>
-              </dl>
-
-              <a class="project-note project-note-link" href="#lab">Open the lab terminal →</a>
-            </div>
-          </article>
-        </div>
-
-        <div class="section-tail reveal">
-          <span>MORE TRANSMISSIONS INCOMING</span>
-          <a
-            href="https://github.com/doctordoomies?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            See everything on GitHub <span aria-hidden="true">↗</span>
-            <span class="sr-only">(opens in a new tab)</span>
-          </a>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="wrap">
+        <p class="eyebrow" data-hero>doctordoomies</p>
+        <h1 data-hero data-split-hero>Developer. Student. Always learning.</h1>
+        <p class="hero-text" data-hero>I've spent the last few years teaching myself how software works. It started with games, then followed whatever I got curious about next: web development, game engines, Java, cybersecurity, and local AI. I'm looking for an internship where I can learn from experienced developers and help build real software.</p>
+        <p class="hero-links" data-hero>
+          <a class="link" href="#journey">Explore my journey <svg class="ico arrow arrow--down" aria-hidden="true"><use href="#i-down"/></svg></a>
+          <a class="link" href="https://github.com/doctordoomies" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+          <a class="link" href="#internship">Internship availability <svg class="ico arrow arrow--down" aria-hidden="true"><use href="#i-down"/></svg></a>
+        </p>
+        <div class="status" data-hero>
+          <span class="status-main"><span class="dot" aria-hidden="true"></span>Open to internships</span>
+          <span class="status-sub">Software · Game Development · Cybersecurity · Technical Roles</span>
         </div>
       </div>
     </section>
 
-    <section class="section about-section" id="about" aria-labelledby="about-title">
-      <div class="page-shell">
-        <div class="about-layout">
-          <div class="about-copy reveal">
-            <p class="section-code">TRANSMISSION_02 // OPERATOR PROFILE</p>
-            <h2 id="about-title">Code is only half the experience.</h2>
-            <p class="about-lede">
-              I'm Adam. I build interactive web experiences, experiment with
-              local AI, and engineer Java and Paper systems for Minecraft.
-            </p>
-            <p>
-              The goal is to turn ambitious ideas into complete experiences—systems
-              that work, worlds that invite exploration, and interfaces with a point
-              of view. Neon Sector-7 is the place where those interests meet.
-            </p>
-          </div>
+    <section class="section" id="journey" data-nav="journey" aria-labelledby="journey-h">
+      <div class="wrap">
+        <h2 class="lead" id="journey-h" data-reveal>How I got here</h2>
+        <p class="lead-sub" data-reveal>None of this was planned. Each stage started because the one before it left me with a question I wanted answered.</p>
 
-          <div class="operator-file reveal">
-            <div class="operator-file-header"><span>INTERNAL_PERSONNEL_FILE</span><i>ACCESS // GRANTED</i></div>
-            <dl class="operator-dossier">
-              <div><dt>Operator</dt><dd>Adam</dd></div>
-              <div><dt>Designation</dt><dd>Creative Developer</dd></div>
-              <div><dt>Current sector</dt><dd>07</dd></div>
-              <div><dt>Primary fields</dt><dd>Games // Interactive Web // Local AI // Minecraft Systems</dd></div>
-              <div><dt>Mission</dt><dd>Build → Experiment → Learn → Repeat</dd></div>
-            </dl>
-
-            <div class="principle-list">
-              <article>
-                <span>01</span>
-                <div>
-                  <h3>Learn by building</h3>
-                  <p>The fastest route from curiosity to understanding is a working prototype.</p>
-                </div>
-              </article>
-              <article>
-                <span>02</span>
-                <div>
-                  <h3>Make it immersive</h3>
-                  <p>Small details, motion, and atmosphere can turn a tool into an experience.</p>
-                </div>
-              </article>
-              <article>
-                <span>03</span>
-                <div>
-                  <h3>Keep experimenting</h3>
-                  <p>New tools are invitations to test ideas, break assumptions, and iterate.</p>
-                </div>
-              </article>
+        <ol class="stage-list">
+          <li data-row>
+            <span class="num">01</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Roblox / Lua</h3>
+              <p class="stage-tags">Lua · Roblox scripting</p>
             </div>
-          </div>
-        </div>
-
-        <figure class="identity-banner reveal">
-          <div class="banner-frame">
-            <img
-              src="assets/banner.jpg"
-              alt="Stylized Neon Sector-7 cityscape with a friendly robot at a coding console beneath the name Adam"
-              width="2172"
-              height="724"
-              loading="lazy"
-              decoding="async"
-            >
-            <span class="banner-shine" aria-hidden="true"></span>
-          </div>
-          <figcaption>
-            <span>WORLD_FILE // NEON-SECTOR-7</span>
-            <span>Learn. Build. Experiment. Repeat.</span>
-          </figcaption>
-        </figure>
-
-        <div class="capability-panel reveal">
-          <div class="capability-intro">
-            <p class="section-code">CAPABILITY_MATRIX</p>
-            <h3>Creative territory</h3>
-            <p>
-              A growing toolkit for taking an idea from a rough signal to a world
-              someone else can enter.
-            </p>
-          </div>
-
-          <ul class="capability-grid">
-            <li><span>01</span><div><strong>Creative web</strong><em>ACTIVE</em><small>HTML · CSS · JavaScript</small></div></li>
-            <li><span>02</span><div><strong>Interactive worlds</strong><em>BUILDING</em><small>Three.js · visual systems</small></div></li>
-            <li><span>03</span><div><strong>Game development</strong><em>EXPLORING</em><small>Godot · Unity · Unreal · mechanics</small></div></li>
-            <li><span>04</span><div><strong>Minecraft engineering</strong><em>ACTIVE</em><small>Java · Paper · databases · multiplayer</small></div></li>
-            <li><span>05</span><div><strong>Local AI</strong><em>EXPERIMENTING</em><small>Ollama · local models · LoRAs · image workflows</small></div></li>
-            <li><span>06</span><div><strong>3D</strong><em>BUILDING</em><small>Blender · modeling · animation</small></div></li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section mission-section" id="mission" aria-labelledby="mission-title">
-      <div class="page-shell">
-        <header class="section-heading mission-heading reveal">
-          <div>
-            <p class="section-code">ARCHIVE_ACCESS // OPERATOR HISTORY</p>
-            <h2 id="mission-title">Every skill began as a signal.</h2>
-          </div>
-          <p>
-            A transmission archive of the tools, engines, and systems that shaped
-            the current mission. Not a straight line—an expanding territory.
-          </p>
-        </header>
-
-        <ol class="mission-track" aria-label="Adam's development journey">
-          <li class="mission-entry reveal">
-            <span class="mission-index">01</span>
-            <div><p>ORIGIN_SIGNAL</p><h3>Roblox Lua</h3><small>Game logic, scripting, and the first interactive systems.</small></div>
+            <div class="stage-body">
+              <p>Programming started with games. Around age 11 I picked up Lua on Roblox, mostly because I wanted to change how things behaved in games I was already playing. Scripting gameplay and Roblox systems was my first real look at programming logic, and it's what made coding feel interesting instead of theoretical.</p>
+            </div>
           </li>
-          <li class="mission-entry reveal">
-            <span class="mission-index">02</span>
-            <div><p>OPEN_WEB</p><h3>HTML + JavaScript</h3><small>Turning ideas into interfaces that can run anywhere.</small></div>
+          <li data-row>
+            <span class="num">02</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Web</h3>
+              <p class="stage-tags">HTML · CSS · JavaScript</p>
+            </div>
+            <div class="stage-body">
+              <p>Lua led me to the browser. I started teaching myself HTML, CSS, and JavaScript in browser-based development environments, learning how a page is structured and how JavaScript changes it. It was my first taste of programming outside of games.</p>
+            </div>
           </li>
-          <li class="mission-entry reveal">
-            <span class="mission-index">03</span>
-            <div><p>DIMENSION_SHIFT</p><h3>Blender + 3D</h3><small>Modeling, scenes, animation, and visual storytelling.</small></div>
+          <li data-row>
+            <span class="num">03</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Blender &amp; 3D</h3>
+              <p class="stage-tags">Blender · 3D modeling · Animation</p>
+            </div>
+            <div class="stage-body">
+              <p>I spent a lot of time in Blender learning 3D modeling and animation. It isn't traditional programming, but it showed me how 3D assets get made and how they fit into a game's workflow. That changed how I thought about building games and pushed me further toward game development.</p>
+            </div>
           </li>
-          <li class="mission-entry reveal">
-            <span class="mission-index">04</span>
-            <div><p>ENGINE_LINK</p><h3>Unity + C#</h3><small>Component-based gameplay and real-time engine thinking.</small></div>
+          <li data-row>
+            <span class="num">04</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Unity</h3>
+              <p class="stage-tags">Unity · C#</p>
+            </div>
+            <div class="stage-body">
+              <p>Unity was my first larger game engine and my first structured language. Learning C# meant learning how code interacts with game objects, physics, player systems, scenes, and gameplay mechanics.</p>
+            </div>
           </li>
-          <li class="mission-entry reveal">
-            <span class="mission-index">05</span>
-            <div><p>WORLD_SYSTEMS</p><h3>Unreal Engine</h3><small>Experimenting with high-fidelity worlds and visual systems.</small></div>
+          <li data-row>
+            <span class="num">05</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Unreal Engine</h3>
+              <p class="stage-tags">Unreal Engine · Blueprints</p>
+            </div>
+            <div class="stage-body">
+              <p>From Unity I moved to Unreal Engine and learned Blueprints, game logic, and how level and game systems fit together. I also took an Unreal Engine class through Stanford.</p>
+            </div>
           </li>
-          <li class="mission-entry reveal">
-            <span class="mission-index">06</span>
-            <div><p>RESTRICTED_NETWORK</p><h3>Cybersecurity</h3><small>Learning how connected systems operate, fail, and defend themselves.</small></div>
+          <li data-row>
+            <span class="num">06</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Cybersecurity</h3>
+              <p class="stage-tags">Linux · Kali Linux · Burp Suite · Nmap · OWASP · OSINT · TryHackMe</p>
+            </div>
+            <div class="stage-body">
+              <p>Learning how applications are built made me curious about how they break. I started studying ethical, defensive security through TryHackMe and tools like Kali Linux, Burp Suite, and Nmap, and picked up web security, OWASP concepts, OSINT, networking, and a lot of Linux along the way. It's a field I'm still learning.</p>
+            </div>
           </li>
-          <li class="mission-entry reveal">
-            <span class="mission-index">07</span>
-            <div><p>SERVER_SECTOR</p><h3>Java + Minecraft</h3><small>Paper mechanics, multiplayer systems, commands, and persistence.</small></div>
+          <li data-row>
+            <span class="num">07</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Java &amp; Minecraft</h3>
+              <p class="stage-tags">Java · Paper / Spigot · Gradle</p>
+            </div>
+            <div class="stage-body">
+              <p>Java is where things got bigger. Working with Minecraft servers through Paper and Spigot taught me event-driven programming, how to work with APIs, how to find my way around larger codebases, and how to use Gradle and debug server-side systems. It's one of the areas where I've learned the most technically.</p>
+            </div>
           </li>
-          <li class="mission-entry is-current reveal">
-            <span class="mission-index">08</span>
-            <div><p>CURRENT_VECTOR</p><h3>Local AI + Three.js</h3><small>Combining local models, creative coding, and browser-based worlds.</small></div>
+          <li data-row>
+            <span class="num">08</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Local AI</h3>
+              <p class="stage-tags">Ollama · Local LLMs · AI-assisted development</p>
+            </div>
+            <div class="stage-body">
+              <p>More recently I've been experimenting with running language models locally, trying out coding models, and working AI tools into how I develop. Mostly I've learned where they help, where they don't, and how much the hardware actually matters.</p>
+            </div>
+          </li>
+          <li data-row>
+            <span class="num">09</span>
+            <div class="stage-head">
+              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
+              <h3 class="stage-title">Three.js</h3>
+              <p class="stage-tags">Three.js · JavaScript · 3D web graphics</p>
+            </div>
+            <div class="stage-body">
+              <p>Three.js pulled several earlier stages together: JavaScript from the web, 3D from Blender, and interaction from game development. I'm using it to learn how 3D graphics work in the browser.</p>
+            </div>
           </li>
         </ol>
       </div>
     </section>
 
-    <section class="section lab-section" id="lab" aria-labelledby="lab-title">
-      <div class="page-shell">
-        <header class="section-heading reveal">
+    <section class="section" id="currently" data-nav="journey" aria-labelledby="currently-h">
+      <div class="wrap split" data-reveal>
+        <h2 class="section-title" id="currently-h">Currently</h2>
+        <div class="currently">
           <div>
-            <p class="section-code">TRANSMISSION_03 // INTERACTIVE LAB</p>
-            <h2 id="lab-title">Ask the system.</h2>
+            <h3 class="mini-title">Learning more about</h3>
+            <ul class="learning-list">
+              <li>Java</li>
+              <li>Linux</li>
+              <li>Cybersecurity</li>
+              <li>Web development</li>
+              <li>Three.js</li>
+              <li>AI tooling</li>
+              <li>Software engineering practices</li>
+            </ul>
           </div>
-          <p>
-            The terminal is live. Try a command, inspect the mission, or launch
-            the anomaly scanner from the command line.
-          </p>
-        </header>
-
-        <div class="lab-layout">
-          <div class="terminal reveal" role="region" aria-labelledby="terminal-title">
-            <div class="terminal-bar">
-              <div aria-hidden="true"><span></span><span></span><span></span></div>
-              <p id="terminal-title">adam@neon-sector-7:~</p>
-              <small>ENCRYPTED</small>
-            </div>
-
-            <div class="terminal-output" id="terminal-output" role="log" aria-label="Terminal output" aria-live="polite" aria-relevant="additions" tabindex="0">
-              <div class="terminal-line system-line">NEON SECTOR-7 command interface connected.</div>
-              <div class="terminal-line system-line">Type <strong>help</strong> to inspect available commands.</div>
-            </div>
-
-            <form class="terminal-form" id="terminal-form">
-              <label class="sr-only" for="terminal-input">Enter a terminal command</label>
-              <span aria-hidden="true">visitor@ns7:~$</span>
-              <input
-                id="terminal-input"
-                name="command"
-                type="text"
-                autocomplete="off"
-                autocapitalize="off"
-                spellcheck="false"
-                placeholder="type a command..."
-              >
-            </form>
-
-            <div class="terminal-shortcuts" role="group" aria-label="Suggested terminal commands">
-              <span>Try:</span>
-              <button type="button" data-terminal-command="whoami">whoami</button>
-              <button type="button" data-terminal-command="projects">projects</button>
-              <button type="button" data-terminal-command="stack">stack</button>
-              <button type="button" data-terminal-command="sector">sector</button>
-              <button type="button" data-terminal-command="pulse">pulse</button>
-              <button type="button" data-terminal-command="scan">scan</button>
-            </div>
+          <div>
+            <h3 class="mini-title">Looking for</h3>
+            <p>A software, game development, cybersecurity, or general technical internship where I can contribute, learn from experienced developers, and get experience working on a real team.</p>
           </div>
-
-          <aside class="build-path reveal" aria-label="Adam's build philosophy">
-            <div class="panel-chrome">
-              <span>BUILD_PROTOCOL</span>
-              <span>04 STAGES</span>
-            </div>
-
-            <ol>
-              <li>
-                <span>01</span>
-                <div><strong>Imagine</strong><small>Find the idea worth chasing.</small></div>
-              </li>
-              <li>
-                <span>02</span>
-                <div><strong>Prototype</strong><small>Make the idea tangible early.</small></div>
-              </li>
-              <li>
-                <span>03</span>
-                <div><strong>Engineer</strong><small>Build the systems underneath.</small></div>
-              </li>
-              <li>
-                <span>04</span>
-                <div><strong>Polish</strong><small>Give every detail a purpose.</small></div>
-              </li>
-            </ol>
-          </aside>
         </div>
       </div>
     </section>
 
-    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
-      <div class="page-shell">
-        <div class="contact-panel reveal">
-          <div class="contact-orbit" aria-hidden="true"><span></span><i></i></div>
-          <div class="contact-copy">
-            <p class="section-code">FINAL_TRANSMISSION // CHANNEL OPEN</p>
-            <h2 id="contact-title">Follow the signal.</h2>
-            <p>
-              Find the source code, experiments, and build history on GitHub.
-              Neon Sector-7 will keep evolving as new ideas come online.
-            </p>
+    <section class="section" id="skills" data-nav="skills" aria-labelledby="skills-h">
+      <div class="wrap split" data-reveal>
+        <h2 class="section-title" id="skills-h">Skills</h2>
+        <dl class="def-list">
+          <div>
+            <dt>Languages</dt>
+            <dd>Java <span class="sep">·</span> JavaScript <span class="sep">·</span> C# <span class="sep">·</span> Lua <span class="sep">·</span> HTML <span class="sep">·</span> CSS</dd>
+          </div>
+          <div>
+            <dt>Game development</dt>
+            <dd>Unity <span class="sep">·</span> Unreal Engine <span class="sep">·</span> Blueprints <span class="sep">·</span> Minecraft / Paper</dd>
+          </div>
+          <div>
+            <dt>Web</dt>
+            <dd>JavaScript <span class="sep">·</span> HTML <span class="sep">·</span> CSS <span class="sep">·</span> Three.js</dd>
+          </div>
+          <div>
+            <dt>Cybersecurity</dt>
+            <dd>Linux <span class="sep">·</span> Kali Linux <span class="sep">·</span> Burp Suite <span class="sep">·</span> Nmap <span class="sep">·</span> OWASP <span class="sep">·</span> OSINT</dd>
+          </div>
+          <div>
+            <dt>Tools</dt>
+            <dd>Git <span class="sep">·</span> GitHub <span class="sep">·</span> Gradle <span class="sep">·</span> Blender <span class="sep">·</span> IntelliJ <span class="sep">·</span> VS Code</dd>
+          </div>
+          <div>
+            <dt>AI</dt>
+            <dd>Ollama <span class="sep">·</span> Local LLMs <span class="sep">·</span> AI-assisted development</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
 
-            <div class="contact-actions">
-              <a
-                class="button button-primary"
-                href="https://github.com/doctordoomies"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>Open @doctordoomies</span>
-                <span class="button-arrow" aria-hidden="true">↗</span>
-                <span class="sr-only">(opens in a new tab)</span>
-              </a>
-              <button class="button button-secondary" id="copy-username" type="button">
-                <span>Copy GitHub handle</span>
-                <span class="button-arrow" aria-hidden="true">＋</span>
-              </button>
+    <section class="section" id="about" data-nav="about" aria-labelledby="about-h">
+      <div class="wrap split" data-reveal>
+        <h2 class="section-title" id="about-h">About</h2>
+        <div class="about-text">
+          <p>I'm doctordoomies. I started programming because I wanted to understand how games worked. That turned into web development, game engines, Java, cybersecurity, Linux, and local AI, along with a habit of always finding one more thing to figure out.</p>
+          <p>I like working out how systems fit together, breaking big problems into smaller ones, and learning tools by actually using them. Right now what I want most is experience working with other developers on real software.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="internship" data-nav="internship" aria-labelledby="internship-h">
+      <div class="wrap split" data-reveal>
+        <h2 class="section-title" id="internship-h">What I'm looking for</h2>
+        <div>
+          <p class="intern-lead">An internship where I can learn from people who build software every day, and be useful while I do.</p>
+          <p class="areas">Software development <span class="sep">·</span> Game development <span class="sep">·</span> Java <span class="sep">·</span> Web development <span class="sep">·</span> Technical tooling <span class="sep">·</span> Cybersecurity <span class="sep">·</span> Developer tools</p>
+          <dl class="def-list intern-points">
+            <div>
+              <dt>Curiosity</dt>
+              <dd>I keep moving into new areas because I want to know how things work, not because a class told me to.</dd>
             </div>
-          </div>
+            <div>
+              <dt>Learning quickly</dt>
+              <dd>I've picked up several languages, engines, and toolchains on my own, and I'm comfortable not knowing something yet.</dd>
+            </div>
+            <div>
+              <dt>Range</dt>
+              <dd>I've worked in games, web, Java, security, and AI tooling, so new tools tend to feel less foreign.</dd>
+            </div>
+            <div>
+              <dt>Working on a team</dt>
+              <dd>This is what I most want to experience: how a real team plans, reviews, and ships software.</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
 
-          <div class="contact-readout" aria-hidden="true">
-            <span>CONNECTION</span>
-            <strong>READY</strong>
-            <i></i>
-            <small>SOURCE CHANNEL OPEN</small>
+      <div class="wrap finale">
+        <span class="accent-rule" aria-hidden="true"></span>
+        <h2 id="finale-h" data-split-scroll>I'm looking for an internship.</h2>
+        <p class="finale-text" data-reveal>I'm looking for an opportunity to work alongside experienced developers, contribute to real software, and keep learning. If you think I might be a good fit for your team, I'd love to hear from you.</p>
+        <div class="btn-row" data-reveal>
+          <div class="btn-group">
+            <a class="btn" data-magnetic href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=YOUR_EMAIL_HERE" target="_blank" rel="noopener noreferrer">Email <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+            <a class="btn" data-magnetic href="https://github.com/doctordoomies" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
           </div>
+          <a class="link" data-resume href="resume/resume.pdf" target="_blank" rel="noopener noreferrer" hidden>Resume <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="page-shell">
-      <p>Designed and built by Adam <span>//</span> Neon Sector-7.</p>
-      <div>
-        <span>© <span id="current-year">2026</span></span>
-        <a href="#home">Return to top ↑</a>
+    <div class="wrap">
+      <div class="footer-left">
+        <span class="wordmark">doctordoomies</span>
+        <a class="link" href="https://github.com/doctordoomies" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+        <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=YOUR_EMAIL_HERE" target="_blank" rel="noopener noreferrer">Email <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+        <a class="link" data-resume href="resume/resume.pdf" target="_blank" rel="noopener noreferrer" hidden>Resume <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+      </div>
+      <div class="footer-right">
+        <span>© <span id="year">2026</span></span>
       </div>
     </div>
   </footer>
 
-  <div class="pulse-system">
-    <button
-      class="pulse-trigger"
-      id="pulse-trigger"
-      type="button"
-      aria-expanded="false"
-      aria-controls="pulse-panel"
-      aria-label="Open Pulse system guide"
-    >
-      <span class="pulse-trigger-signal" aria-hidden="true"><i></i><i></i><i></i></span>
-      <span><strong>PULSE</strong><small>SYSTEM GUIDE</small></span>
-    </button>
-
-    <section
-      class="pulse-panel"
-      id="pulse-panel"
-      role="dialog"
-      aria-modal="false"
-      aria-labelledby="pulse-title"
-      hidden
-    >
-      <div class="pulse-header">
-        <div><span aria-hidden="true"></span><p>PULSE // SYSTEM INTELLIGENCE</p></div>
-        <button class="icon-button" id="pulse-close" type="button" aria-label="Close Pulse guide">×</button>
-      </div>
-      <div class="pulse-body">
-        <h2 class="pulse-speaker" id="pulse-title">PULSE</h2>
-        <p class="pulse-response" id="pulse-response" role="status" aria-live="polite">
-          Connection established. I can guide you through Sector-7.
-        </p>
-        <div class="pulse-prompts" role="group" aria-label="Questions for Pulse">
-          <button type="button" data-pulse-question="adam">Who is Adam?</button>
-          <button type="button" data-pulse-question="projects">Show projects</button>
-          <button type="button" data-pulse-question="sector">What is Sector-7?</button>
-          <button type="button" data-pulse-question="builds">What does Adam build?</button>
-          <a href="https://github.com/doctordoomies" target="_blank" rel="noopener noreferrer">
-            Open GitHub <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
-          </a>
-        </div>
-      </div>
-      <div class="pulse-footer"><span>LOCAL RESPONSE MATRIX</span><i>NO EXTERNAL API</i></div>
-    </section>
-  </div>
-
-  <dialog class="command-dialog" id="command-dialog" aria-labelledby="command-title">
-    <div class="command-window">
-      <div class="command-header">
-        <div>
-          <p>QUICK_ACCESS // COMMAND DECK</p>
-          <h2 id="command-title">Where to?</h2>
-        </div>
-        <button class="icon-button" id="close-command" type="button" aria-label="Close command deck">×</button>
-      </div>
-
-      <label class="command-search">
-        <span aria-hidden="true">⌕</span>
-        <span class="sr-only">Filter commands</span>
-        <input id="command-search-input" type="search" placeholder="Type a command or destination..." autocomplete="off">
-        <kbd aria-hidden="true">ESC</kbd>
-      </label>
-
-      <div class="command-list" id="command-list" role="listbox" aria-label="Available commands">
-        <button type="button" data-command-target="#work" data-command-keywords="work projects builds portfolio">
-          <span>01</span><strong>Explore work</strong><small>Jump to selected builds</small><i>↘</i>
-        </button>
-        <button type="button" data-command-target="#about" data-command-keywords="about profile adam biography">
-          <span>02</span><strong>Open profile</strong><small>Read the operator dossier</small><i>↘</i>
-        </button>
-        <button type="button" data-command-target="#mission" data-command-keywords="mission history journey timeline archive skills">
-          <span>03</span><strong>Open mission log</strong><small>Trace the operator history</small><i>↘</i>
-        </button>
-        <button type="button" data-command-target="#lab" data-command-keywords="lab terminal commands ai">
-          <span>04</span><strong>Enter the lab</strong><small>Use the interactive terminal</small><i>↘</i>
-        </button>
-        <button type="button" data-command-scan data-command-keywords="scan game anomaly play">
-          <span>05</span><strong>Run scanner</strong><small>Launch the anomaly mini-game</small><i>◎</i>
-        </button>
-        <button type="button" data-command-pulse data-command-keywords="pulse guide ai help assistant">
-          <span>06</span><strong>Contact Pulse</strong><small>Open the local system guide</small><i>◌</i>
-        </button>
-        <button type="button" data-command-theme data-command-keywords="theme sector solar ghost stellar color mode">
-          <span>07</span><strong>Change sector mode</strong><small>Cycle the environment theme</small><i>◈</i>
-        </button>
-        <button type="button" data-command-target="#contact" data-command-keywords="contact github final transmission source">
-          <span>08</span><strong>Final transmission</strong><small>Open the source channel</small><i>↘</i>
-        </button>
-        <a
-          href="https://github.com/doctordoomies"
-          target="_blank"
-          rel="noopener noreferrer"
-          data-command-keywords="github code repositories source"
-        >
-          <span>09</span><strong>Open GitHub</strong><small>View code and repositories</small><i>↗</i>
-          <span class="sr-only">(opens in a new tab)</span>
-        </a>
-      </div>
-
-      <p class="command-empty" id="command-empty" role="status" aria-live="polite" hidden>No matching signal found.</p>
-      <div class="command-footer"><span>↑↓ Navigate</span><span>Enter Select</span><span>Esc Close</span></div>
-    </div>
-  </dialog>
-
-  <dialog class="sector-scan-dialog" id="sector-scan-dialog" aria-labelledby="scan-dialog-title" aria-describedby="scan-instructions">
-    <div class="sector-scan-window">
-      <div class="scan-window-header">
-        <div>
-          <p class="scan-eyebrow">NEON SECTOR-7 // SECURITY SYSTEM</p>
-          <h2 id="scan-dialog-title">Anomaly Scanner</h2>
-        </div>
-        <button class="icon-button scan-close-button" id="close-sector-scan" type="button" aria-label="Close anomaly scanner">×</button>
-      </div>
-
-      <div class="scan-status-bar">
-        <div><span>Score</span><strong id="scan-score">000</strong></div>
-        <div><span>Time</span><strong id="scan-time">20</strong></div>
-        <div><span>High score</span><strong id="scan-high-score">000</strong></div>
-        <div><span>Status</span><strong id="scan-status">Standby</strong></div>
-      </div>
-
-      <div
-        class="scan-field"
-        id="scan-field"
-        role="group"
-        tabindex="-1"
-        aria-label="Anomaly scan field. Click or tap anomalies, or press Space to neutralize the current signal."
-      >
-        <div class="radar-grid" aria-hidden="true"></div>
-        <div class="radar-circle radar-circle-one" aria-hidden="true"></div>
-        <div class="radar-circle radar-circle-two" aria-hidden="true"></div>
-        <div class="radar-circle radar-circle-three" aria-hidden="true"></div>
-        <div class="radar-crosshair radar-crosshair-horizontal" aria-hidden="true"></div>
-        <div class="radar-crosshair radar-crosshair-vertical" aria-hidden="true"></div>
-        <div class="radar-sweep" aria-hidden="true"></div>
-
-        <div class="scanner-center" aria-hidden="true"><span>A7</span></div>
-
-        <div class="scan-message" id="scan-message">
-          <p class="scan-message-code">SYSTEM_READY</p>
-          <h3>Scanner ready</h3>
-          <p>Locate and neutralize unstable energy signals before time expires.</p>
-          <button id="start-sector-scan" type="button" data-scan-start>Initialize scan</button>
-        </div>
-      </div>
-
-      <p class="scan-instructions" id="scan-instructions">
-        Click or tap the glowing signals. Keyboard operators can press Space.
-      </p>
-      <p class="sr-only" id="scan-announcement" aria-live="polite"></p>
-    </div>
-  </dialog>
-
-  <script src="script.js"></script>
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
+  <script src="vendor/lenis.min.js" defer></script>
+  <script src="vendor/split-type.min.js" defer></script>
+  <script src="main.js" defer></script>
 </body>
 </html>

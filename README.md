@@ -1,40 +1,23 @@
-# Neon Sector-7
+# doctordoomies — portfolio
 
-Neon Sector-7 is Adam's interactive developer portfolio and a static GitHub Pages site. It presents projects, experiments, and the development journey through a cinematic deep-space interface built without a framework or build step.
+A small static site about how I got into programming and what I'm learning now.
+Plain HTML, CSS, and one JS file. No build step. Deployed with GitHub Pages (Actions workflow in `.github/workflows/pages.yml`).
 
-## Architecture
+## Before it's finished
 
-- `index.html` contains the semantic content and interface structure.
-- `styles.css` contains the visual system, four sector themes, responsive layouts, and reduced-motion behavior.
-- `script.js` contains independent systems for the handshake, navigation, themes, background world, command deck, terminal, Pulse guide, and anomaly scanner.
-- `404.html` is the branded fallback for missing routes.
-- `assets/` contains the site imagery and favicon.
+1. **Email.** Search `index.html` for `YOUR_EMAIL_HERE` (two places: the internship section and the footer) and replace it with your address.
+2. **Resume.** Save your resume as `resume/resume.pdf`, then set `HAS_RESUME = true` at the top of `main.js`. The Resume links stay hidden until then, so there is never a dead link.
+3. **GitHub.** Links point to `https://github.com/doctordoomies`.
 
-Everything runs in the browser with HTML, CSS, and vanilla JavaScript. No API key, backend, package manager, or generated build output is required.
+## Motion
 
-## Local preview
+Everything is an enhancement. With JavaScript off, or `prefers-reduced-motion: reduce`, all content is visible and nothing animates.
 
-Serve the repository root with any static file server. For example:
+Libraries are vendored (pinned) in `vendor/`:
 
-```powershell
-python -m http.server 8000
-```
+- GSAP 3.15.0 + ScrollTrigger: hero entrance, reveals, divider draws, magnetic buttons
+- Lenis 1.3.26: light smooth scrolling (mouse/trackpad only; sleeps when idle)
+- SplitType 0.3.4: hero and closing titles
+- Lucide (ISC): arrow icons, inlined as an SVG sprite
 
-Then open `http://localhost:8000/`.
-
-Useful controls:
-
-- `Ctrl/Cmd + K` opens the command deck.
-- The terminal supports `help`, command history with Up/Down, and Tab completion.
-- Pulse provides local scripted guidance; it does not call an external AI service.
-- Sector themes persist in `localStorage`.
-- The intro plays once per browser session using `sessionStorage`.
-- Scanner high scores persist in `localStorage`.
-
-## Accessibility and performance
-
-The site uses semantic landmarks, native modal dialogs, keyboard-operable interactions, visible focus states, responsive touch targets, and a complete `prefers-reduced-motion` mode. Ambient DOM counts are deliberately limited, animation work pauses when the page is hidden, and effects use transforms and opacity wherever practical.
-
-## Deployment
-
-The workflow in `.github/workflows/pages.yml` uploads the repository as a static GitHub Pages artifact whenever `main` is updated. The `.nojekyll` file keeps Pages from applying Jekyll processing.
+Hover effects are CSS under `(hover: hover) and (pointer: fine)`.
