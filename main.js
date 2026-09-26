@@ -6,19 +6,8 @@
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---- Config ---------------------------------------------------------
-     Add your resume at resume/resume.pdf, then set HAS_RESUME to true.
-     Until then the Resume links stay hidden so there is never a dead link. */
-  var HAS_RESUME = false;
-
-  if (HAS_RESUME) {
-    Array.prototype.slice.call(document.querySelectorAll("[data-resume]")).forEach(function (a) {
-      a.hidden = false;
-    });
-  }
-
   // Reduced motion: the head script never adds `.js`, so nothing is hidden.
-  // Native scrolling, no entrances, no magnetic buttons.
+  // Native scrolling, no entrances.
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
   function bail() {
@@ -114,8 +103,7 @@
     tl.from(heroSplit.words, { opacity: 0, y: 20, duration: 0.6, stagger: 0.05 }, 0.05);
     [rise(".eyebrow", 10, 0.5, 0),
      rise(".hero-text", 14, 0.55, 0.32),
-     rise(".hero-links", 14, 0.5, 0.44),
-     rise(".status", 10, 0.5, 0.56)].forEach(function (a) { tl.fromTo(a[0], a[1], a[2], a[3]); });
+     rise(".hero-links", 14, 0.5, 0.44)].forEach(function (a) { tl.fromTo(a[0], a[1], a[2], a[3]); });
     tl.add(function () { heroSplit.revert(); });
 
     /* ---------- Section reveals: one per block, once ---------- */
@@ -136,42 +124,6 @@
            onComplete: function () { row.classList.add("is-in"); }
          }, 0.05);
     });
-
-    /* Closing statement: accent rule draws, title words rise once */
-    var rule = $(".accent-rule");
-    gsap.fromTo(rule, { "--draw": 0 }, {
-      "--draw": 1, duration: 0.7,
-      scrollTrigger: { trigger: rule, start: "top 90%", once: true }
-    });
-
-    var finaleTitle = $("[data-split-scroll]");
-    var finaleSplit = new SplitType(finaleTitle, { types: "words" });
-    gsap.from(finaleSplit.words, {
-      opacity: 0, y: 22, duration: 0.7, stagger: 0.04,
-      scrollTrigger: { trigger: finaleTitle, start: "top 85%", once: true },
-      onComplete: function () { finaleSplit.revert(); }
-    });
-
-    /* ---------- Magnetic buttons: mouse only, max 4px ---------- */
-
-    if (finePointer) {
-      $$("[data-magnetic]").forEach(function (btn) {
-        var xTo = gsap.quickTo(btn, "x", { duration: 0.3, ease: "power3.out" });
-        var yTo = gsap.quickTo(btn, "y", { duration: 0.3, ease: "power3.out" });
-        var max = 4;
-        btn.addEventListener("pointermove", function (e) {
-          if (e.pointerType !== "mouse") return;
-          var r = btn.getBoundingClientRect();
-          var dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
-          var dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
-          xTo(gsap.utils.clamp(-1, 1, dx) * max);
-          yTo(gsap.utils.clamp(-1, 1, dy) * max);
-        });
-        btn.addEventListener("pointerleave", function () {
-          gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: "power3.out", overwrite: "auto" });
-        });
-      });
-    }
 
     /* ---------- Lenis: light smoothing, awake only while scrolling ---------- */
 
