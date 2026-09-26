@@ -1,313 +1,1044 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" data-theme="sector">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zyren (James Walker) — Developer</title>
-  <meta name="description" content="Portfolio of James Walker (Zyren), a software developer working across web development, Minecraft systems, automation, security tooling, and AI.">
-  <link rel="canonical" href="https://www.zyren.dev/">
-  <meta name="theme-color" content="#f4f3ef">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Explore Adam's Neon Sector-7: an interactive developer portfolio spanning creative web worlds, Java and Paper game systems, and local AI experiments."
+  >
+  <meta name="theme-color" content="#040711" id="theme-color-meta">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Adam">
 
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Zyren">
-  <meta property="og:title" content="Zyren (James Walker) — Developer">
-  <meta property="og:description" content="Software developer working across web development, Minecraft systems, automation, security tooling, and AI.">
-  <meta property="og:url" content="https://www.zyren.dev/">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:site_name" content="Neon Sector-7">
+  <meta property="og:title" content="Adam — Creative Developer | Neon Sector-7">
+  <meta
+    property="og:description"
+    content="Games, AI, cinematic interfaces, and creative systems—built inside Neon Sector-7."
+  >
+  <meta property="og:url" content="https://doctordoomies.github.io/">
+  <meta property="og:image" content="https://doctordoomies.github.io/assets/banner.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="2172">
+  <meta property="og:image:height" content="724">
+  <meta property="og:image:alt" content="Neon Sector-7 cityscape with a friendly robot at a coding console beneath the name Adam">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Adam — Creative Developer | Neon Sector-7">
+  <meta name="twitter:description" content="Games, AI, cinematic interfaces, and creative systems—built inside Neon Sector-7.">
+  <meta name="twitter:image" content="https://doctordoomies.github.io/assets/banner.jpg">
+  <meta name="twitter:image:alt" content="Neon Sector-7 cityscape with a friendly robot at a coding console beneath the name Adam">
 
+  <title>Adam — Creative Developer | Neon Sector-7</title>
+
+  <link rel="canonical" href="https://doctordoomies.github.io/">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
-  <script>
-    (function () {
-      var r = document.documentElement;
-      if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        r.classList.add("js");
-        window.__jsFailsafe = setTimeout(function () { r.classList.remove("js"); }, 3500);
-      }
-    })();
-  </script>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" href="assets/neon-city-background.jpg" as="image" type="image/jpeg" fetchpriority="high">
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "James Walker",
-    "alternateName": "Zyren",
-    "jobTitle": "Software Developer",
-    "url": "https://www.zyren.dev/",
-    "sameAs": ["https://github.com/Zyrencodes"]
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Adam",
+      "url": "https://doctordoomies.github.io/",
+      "sameAs": ["https://github.com/doctordoomies"],
+      "knowsAbout": [
+        "Creative web development",
+        "Game development",
+        "Java",
+        "Paper",
+        "Three.js",
+        "Local artificial intelligence"
+      ]
+    }
   </script>
-</head>
-<body>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-    <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></symbol>
-    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
-    <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
-  </svg>
-  <a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <div class="wrap">
-      <a class="wordmark" href="#top" aria-label="Zyren, back to top">Zyren<span class="wm-cursor" aria-hidden="true">_</span></a>
-      <nav class="nav" aria-label="Primary">
-        <a href="#work">Work</a>
-        <a href="#experience">Experience</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="resume/James-Walker-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
-      </nav>
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      const savedTheme = localStorage.getItem("ns7-theme");
+      if (["sector", "solar", "ghost", "stellar"].includes(savedTheme)) {
+        document.documentElement.dataset.theme = savedTheme;
+      }
+    } catch (error) {
+      // The default interface theme remains available when storage is blocked.
+    }
+  </script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <div class="site-background" aria-hidden="true">
+    <div class="ambient-light ambient-light-one"></div>
+    <div class="ambient-light ambient-light-two"></div>
+    <div class="stellar-sky">
+      <div class="stellar-nebula"></div>
+      <div class="stellar-starfield" id="stellar-starfield"></div>
+      <svg class="stellar-constellations" viewBox="0 0 1200 760" preserveAspectRatio="xMidYMid slice">
+        <g class="constellation constellation-one">
+          <path d="M104 182 188 124 271 176 342 104 421 159"/>
+          <circle cx="104" cy="182" r="3"/>
+          <circle cx="188" cy="124" r="4"/>
+          <circle cx="271" cy="176" r="3"/>
+          <circle cx="342" cy="104" r="4"/>
+          <circle cx="421" cy="159" r="3"/>
+        </g>
+        <g class="constellation constellation-two">
+          <path d="M798 246 856 187 918 228 982 166 1074 214 1118 145"/>
+          <circle cx="798" cy="246" r="3"/>
+          <circle cx="856" cy="187" r="4"/>
+          <circle cx="918" cy="228" r="3"/>
+          <circle cx="982" cy="166" r="4"/>
+          <circle cx="1074" cy="214" r="3"/>
+          <circle cx="1118" cy="145" r="4"/>
+        </g>
+        <g class="constellation constellation-three">
+          <path d="M535 608 602 547 673 580 728 512"/>
+          <circle cx="535" cy="608" r="3"/>
+          <circle cx="602" cy="547" r="4"/>
+          <circle cx="673" cy="580" r="3"/>
+          <circle cx="728" cy="512" r="4"/>
+        </g>
+      </svg>
+      <span class="shooting-star shooting-star-one"></span>
+      <span class="shooting-star shooting-star-two"></span>
+      <span class="shooting-star shooting-star-three"></span>
     </div>
+    <div class="transmission-lines">
+      <span></span><span></span><span></span><span></span>
+    </div>
+    <div class="distant-relay"><i></i></div>
+    <div class="grid-layer"></div>
+    <div class="particles" id="particles"></div>
+    <div class="scanlines"></div>
+    <div class="noise-layer"></div>
+  </div>
+
+  <div class="pointer-aura" id="pointer-aura" aria-hidden="true"></div>
+  <div class="page-progress" aria-hidden="true">
+    <span id="page-progress-bar"></span>
+  </div>
+
+  <div class="boot-screen" id="boot-screen" role="dialog" aria-modal="true" aria-label="Neon Sector-7 intro">
+    <div class="boot-panel">
+      <div class="boot-topline">
+        <p>NEON SECTOR-7 // HANDSHAKE</p>
+        <span class="boot-link-state" id="boot-link-state"><i class="status-light"></i><span id="boot-link-copy">LOCATING RELAY</span></span>
+      </div>
+
+      <div class="boot-mark" aria-hidden="true">
+        <i></i>
+        <b></b>
+        <span>A7</span>
+      </div>
+
+      <p class="boot-status" id="boot-status">ESTABLISHING COMMUNICATIONS LINK</p>
+
+      <pre class="boot-log" id="boot-log" aria-hidden="true"></pre>
+      <p class="sr-only" id="boot-announcement" aria-live="polite"></p>
+
+      <div
+        class="boot-progress"
+        role="progressbar"
+        aria-label="Intro progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        id="boot-progress"
+      >
+        <span id="boot-progress-bar"></span>
+      </div>
+
+      <button class="text-button boot-skip" id="boot-skip" type="button">
+        Skip intro
+      </button>
+    </div>
+  </div>
+
+  <p class="interface-toast" id="interface-toast" role="status" aria-live="polite"></p>
+  <noscript><p class="no-script-notice">JavaScript is offline. The portfolio remains readable, but Sector-7 interactions are unavailable.</p></noscript>
+
+  <header class="site-header" id="site-header">
+    <nav class="navigation page-shell" aria-label="Primary navigation">
+      <a class="logo" href="#home" aria-label="Neon Sector-7 home">
+        <span class="logo-symbol" aria-hidden="true">A7</span>
+        <span class="logo-copy">
+          <strong>NEON SECTOR-7</strong>
+          <small>ADAM // CREATIVE DEV</small>
+        </span>
+      </a>
+
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-panel"
+        aria-label="Open navigation"
+      >
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-panel" id="nav-panel">
+        <div class="nav-links">
+          <a href="#work" data-nav-link>Work</a>
+          <a href="#about" data-nav-link>About</a>
+          <a href="#lab" data-nav-link>Lab</a>
+          <a href="#contact" data-nav-link>Contact</a>
+        </div>
+
+        <div class="nav-tools">
+          <div class="theme-control">
+            <button
+              class="theme-switcher"
+              id="theme-switcher"
+              type="button"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-controls="theme-menu"
+              aria-label="Choose interface theme"
+            >
+              <span class="theme-switcher-icon" aria-hidden="true"><i></i></span>
+              <span class="theme-switcher-label" id="current-theme-label">Sector</span>
+              <span class="theme-switcher-chevron" aria-hidden="true">⌄</span>
+            </button>
+
+            <div class="theme-menu" id="theme-menu" role="menu" aria-label="Interface themes" hidden>
+              <p>INTERFACE_THEME</p>
+              <button type="button" role="menuitemradio" aria-checked="true" data-theme-option="sector">
+                <span class="theme-swatch swatch-sector" aria-hidden="true"></span>
+                <span><strong>Sector Cyan</strong><small>Original neon city</small></span>
+                <i aria-hidden="true">01</i>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-theme-option="solar">
+                <span class="theme-swatch swatch-solar" aria-hidden="true"></span>
+                <span><strong>Solar Gold</strong><small>Warm signal flare</small></span>
+                <i aria-hidden="true">02</i>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-theme-option="ghost">
+                <span class="theme-swatch swatch-ghost" aria-hidden="true"></span>
+                <span><strong>Ghost Mint</strong><small>Cool spectral interface</small></span>
+                <i aria-hidden="true">03</i>
+              </button>
+              <button type="button" role="menuitemradio" aria-checked="false" data-theme-option="stellar">
+                <span class="theme-swatch swatch-stellar" aria-hidden="true"></span>
+                <span><strong>Starry Night</strong><small>Deep-space observatory</small></span>
+                <i aria-hidden="true">04</i>
+              </button>
+            </div>
+          </div>
+
+          <button
+            class="command-trigger"
+            id="command-trigger"
+            type="button"
+            aria-label="Open command deck"
+          >
+            Command <kbd>Ctrl K</kbd>
+          </button>
+
+          <a
+            class="nav-github"
+            href="https://github.com/doctordoomies"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub <span aria-hidden="true">↗</span>
+            <span class="sr-only">(opens in a new tab)</span>
+          </a>
+        </div>
+      </div>
+    </nav>
   </header>
 
-  <main id="main">
-    <section class="hero" id="top">
-      <div class="wrap">
-        <p class="eyebrow" data-hero>Zyren — James Walker</p>
-        <h1 data-hero data-split-hero>I build software, systems, and tools for the web and for games.</h1>
-        <p class="hero-text" data-hero>I work across web development, Minecraft servers and plugins, automation, and security tooling. Most of it sits where software meets a community of real users. <strong>Zyren</strong> is what most people call me.</p>
-        <p class="hero-links" data-hero>
-          <a class="link" href="#work">View selected work <svg class="ico arrow arrow--down" aria-hidden="true"><use href="#i-down"/></svg></a>
-          <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
-          <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">Email <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
-        </p>
+  <main id="main-content" tabindex="-1">
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="hero-city" aria-hidden="true"></div>
+      <div class="hero-celestial" aria-hidden="true">
+        <div class="celestial-orbit celestial-orbit-one"></div>
+        <div class="celestial-orbit celestial-orbit-two"></div>
+        <div class="celestial-body">
+          <span class="celestial-crater crater-one"></span>
+          <span class="celestial-crater crater-two"></span>
+          <span class="celestial-crater crater-three"></span>
+          <i></i>
+        </div>
       </div>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="station-horizon" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <span class="hero-coordinate coordinate-one" aria-hidden="true">SECTOR COORD // 07.14.88</span>
+      <span class="hero-coordinate coordinate-two" aria-hidden="true">RELAY // A7-DELTA</span>
+      <span class="hero-watermark" aria-hidden="true">SECTOR-7</span>
+
+      <div class="hero-layout page-shell">
+        <div class="hero-copy reveal">
+          <p class="eyebrow"><span></span> Identity online // Adam</p>
+
+          <h1 id="hero-title">
+            <span class="hero-intro">I build</span>
+            <span>digital worlds</span>
+            <span class="gradient-text">with a pulse.</span>
+          </h1>
+
+          <p class="hero-description">
+            I'm Adam, a creative developer exploring the space between games,
+            AI, and cinematic web experiences—from interactive worlds and
+            Minecraft systems to local AI workflows.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#work">
+              <span>Explore the builds</span>
+              <span class="button-arrow" aria-hidden="true">↘</span>
+            </a>
+
+            <a
+              class="button button-secondary"
+              href="https://github.com/doctordoomies/doctordoomies.github.io"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Inspect the source</span>
+              <span class="button-arrow" aria-hidden="true">↗</span>
+              <span class="sr-only">(opens in a new tab)</span>
+            </a>
+          </div>
+
+          <ul class="hero-signals" aria-label="Creative focus">
+            <li><span>01</span> Creative systems</li>
+            <li><span>02</span> Playable ideas</li>
+            <li><span>03</span> Always evolving</li>
+          </ul>
+        </div>
+
+        <aside class="identity-console reveal" aria-label="Neon Sector-7 core and Adam's live creator signal">
+          <div class="panel-chrome">
+            <span>SECTOR_CORE // A7</span>
+            <span class="panel-status"><i></i> LIVE</span>
+          </div>
+
+          <div class="core-stage" id="core-stage" aria-hidden="true">
+            <div class="core-orbit core-orbit-one"><i></i></div>
+            <div class="core-orbit core-orbit-two"><i></i></div>
+            <div class="core-orbit core-orbit-three"></div>
+            <div class="core-orbit core-orbit-vertical"><i></i></div>
+            <div class="core-crosshair core-crosshair-x"></div>
+            <div class="core-crosshair core-crosshair-y"></div>
+            <div class="core-scan-plane"></div>
+            <div class="identity-core">
+              <i></i>
+              <span>A7</span>
+              <small>CORE ONLINE</small>
+            </div>
+            <span class="core-glyph glyph-one">AI</span>
+            <span class="core-glyph glyph-two">JS</span>
+            <span class="core-glyph glyph-three">JAVA</span>
+            <span class="core-data-node node-alpha"></span>
+            <span class="core-data-node node-beta"></span>
+            <span class="core-data-node node-gamma"></span>
+          </div>
+
+          <dl class="console-readout">
+            <div>
+              <dt>Operator</dt>
+              <dd>Adam</dd>
+            </div>
+            <div>
+              <dt>Sector</dt>
+              <dd>07</dd>
+            </div>
+            <div>
+              <dt>Status</dt>
+              <dd class="readout-online">Online</dd>
+            </div>
+            <div>
+              <dt>Focus</dt>
+              <dd id="focus-signal">Interactive worlds</dd>
+            </div>
+            <div>
+              <dt>Core link</dt>
+              <dd>Stable</dd>
+            </div>
+            <div>
+              <dt>Interface time</dt>
+              <dd id="local-time">--:--:--</dd>
+            </div>
+          </dl>
+
+          <button class="console-action" type="button" data-open-scan>
+            <span class="console-action-icon" aria-hidden="true">◎</span>
+            Run anomaly scan
+            <span aria-hidden="true">→</span>
+          </button>
+        </aside>
+      </div>
+
+      <a class="scroll-cue" href="#signal-strip">
+        <span>Scroll to enter</span>
+        <i aria-hidden="true"></i>
+      </a>
     </section>
 
-    <div class="facts">
-      <div class="wrap">
-        <dl>
-          <div><dt>Based</dt><dd>United States</dd></div>
-          <div><dt>Focus</dt><dd>Software / Web / Systems</dd></div>
-          <div><dt>Experience</dt><dd>Minecraft · Web · Automation</dd></div>
-          <div><dt>GitHub</dt><dd><a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">@Zyrencodes</a></dd></div>
-        </dl>
+    <div class="signal-strip" id="signal-strip" role="region" aria-label="Adam's creative disciplines">
+      <div class="signal-track">
+        <span>Creative web</span><i aria-hidden="true">✦</i>
+        <span>Game development</span><i aria-hidden="true">✦</i>
+        <span>Java + Paper</span><i aria-hidden="true">✦</i>
+        <span>Local AI</span><i aria-hidden="true">✦</i>
+        <span>Three.js worlds</span><i aria-hidden="true">✦</i>
+        <span>Visual systems</span><i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Creative web</span><i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Game development</span><i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Java + Paper</span><i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Local AI</span><i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Three.js worlds</span><i aria-hidden="true">✦</i>
+        <span aria-hidden="true">Visual systems</span><i aria-hidden="true">✦</i>
       </div>
+      <button class="signal-toggle" id="signal-toggle" type="button" aria-pressed="false">
+        Pause transmissions
+      </button>
     </div>
 
-    <section class="section" id="work" data-nav="work" aria-labelledby="work-h">
-      <div class="wrap">
-        <h2 class="section-title" id="work-h" data-reveal>Selected work</h2>
-        <ol class="work-list">
-          <li data-row>
-            <span class="num">01</span>
-            <article class="work-head">
-              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
-              <h3 class="work-title">BurrowBot-App</h3>
-              <p class="work-kind">Security &amp; code review automation</p>
-            </article>
-            <div class="work-desc">
-              <p>A bot that reviews GitHub pull requests before they're merged. It checks the code for potential security issues and vulnerabilities, then writes up what it found in a report, taking over part of the security review process.</p>
-              <p class="work-tech">GitHub · Secure code review · Security automation</p>
-            </div>
-          </li>
+    <div class="transmission-bridge" aria-hidden="true">
+      <span>INCOMING TRANSMISSION</span>
+      <i></i>
+      <strong>001</strong>
+    </div>
 
-          <li data-row>
-            <span class="num">02</span>
-            <article class="work-head">
-              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
-              <h3 class="work-title">Discord AI &amp; automation</h3>
-              <p class="work-kind">Bots · Security · Community systems</p>
-            </article>
-            <div class="work-desc">
-              <p>Discord bots for online communities, covering moderation, server management, AI integrations, and automated workflows. Some of them are security-focused, built to protect communities and the websites tied to them.</p>
-              <p class="work-tech">Discord bots · AI integrations · Moderation · Automation</p>
-            </div>
-          </li>
-
-          <li class="lead-item" data-row>
-            <span class="num">03</span>
-            <article class="work-head">
-              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
-              <h3 class="work-title">Minecraft development</h3>
-              <p class="work-kind">Plugins &amp; server systems</p>
-            </article>
-            <div class="work-desc">
-              <p class="pull">Plugins used across thousands of Minecraft servers.</p>
-              <p>Years of work on server systems, plugins, and configuration, alongside established creators and communities in the Minecraft 1.8 PvP scene. More recently I've been moving that work onto modern Minecraft versions.</p>
-              <p class="work-tech">Minecraft plugin development · Server systems · 1.8 PvP · Modern versions</p>
-            </div>
-          </li>
-
-          <li data-row>
-            <span class="num">04</span>
-            <article class="work-head">
-              <svg class="ico row-ind" aria-hidden="true"><use href="#i-right"/></svg>
-              <h3 class="work-title">Web development</h3>
-              <p class="work-kind">Websites &amp; web applications · 2020 — present</p>
-            </article>
-            <div class="work-desc">
-              <p>Websites and web applications for communities, businesses, and online projects, covering the frontend, the backend, databases, automation, and the security around them.</p>
-              <p class="work-tech">HTML · CSS · JavaScript · TypeScript · PHP · GraphQL · MySQL</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="experience" data-nav="experience" aria-labelledby="exp-h">
-      <div class="wrap">
-        <h2 class="section-title" id="exp-h" data-reveal>Experience</h2>
-        <ol class="exp-list">
-          <li data-row>
-            <span class="num">01</span>
-            <article class="exp-head">
-              <h3 class="exp-org">InvadedLands.net</h3>
-              <p class="exp-meta"><span>Head Developer</span><span>2018 — 2020</span></p>
-            </article>
-            <div class="exp-desc">
-              <p>Led development for the server and worked on its core plugins and systems. Built and maintained the custom Minecraft plugins the network used.</p>
-              <p>Worked with developers and creators in the Minecraft 1.8 PvP community, and helped manage features, technical development, and server updates.</p>
-            </div>
-          </li>
-          <li data-row>
-            <span class="num">02</span>
-            <article class="exp-head">
-              <h3 class="exp-org">MunchyMC</h3>
-              <p class="exp-meta"><span>Administrator / Developer</span><span>2018 — 2019</span></p>
-            </article>
-            <div class="exp-desc">
-              <p>Worked on Minecraft plugins, server systems, and technical issues, alongside staff and developers on new features and updates. Also helped with day-to-day server administration.</p>
-            </div>
-          </li>
-          <li data-row>
-            <span class="num">03</span>
-            <article class="exp-head">
-              <h3 class="exp-org">iD Tech</h3>
-              <p class="exp-meta"><span>Assistant Mentor</span><span>Summer 2024 · Stanford, California</span></p>
-            </article>
-            <div class="exp-desc">
-              <p>Assisted students with programming projects and classes, helped them work through concepts and problems, and supported instructors during lessons and activities.</p>
-            </div>
-          </li>
-          <li data-row>
-            <span class="num">04</span>
-            <article class="exp-head">
-              <h3 class="exp-org">Hypixel</h3>
-              <p class="exp-meta"><span>Staff Member</span><span>2020 · about three weeks</span></p>
-            </article>
-            <div class="exp-desc">
-              <p>Part of the Hypixel staff team, helping moderate the community. I resigned after three weeks to focus on school.</p>
-            </div>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="section" id="education" data-nav="experience" aria-labelledby="edu-h">
-      <div class="wrap split" data-reveal>
-        <h2 class="section-title" id="edu-h">Education</h2>
-        <ul class="edu-list">
-          <li><span class="school">University of Florida</span><span class="degree">B.S. in Computer Science</span></li>
-          <li><span class="school">University of Miami</span><span class="degree">M.S. in Computer Science</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" id="about" data-nav="about" aria-labelledby="about-h">
-      <div class="wrap split" data-reveal>
-        <h2 class="section-title" id="about-h">About</h2>
-        <div class="about-text">
-          <p>I'm James Walker, though I go by Zyren almost everywhere online. Most of my development work has been where software, communities, and infrastructure overlap, from Minecraft networks and web applications to automation and security tooling.</p>
-          <p>I like building systems that solve a real problem, whether that's a custom plugin, an automated workflow, a web app, or a tool that makes development a bit safer.</p>
-          <p class="muted">Away from the keyboard I've also mentored students at iD Tech, and I studied computer science at the University of Florida and the University of Miami.</p>
-          <p class="about-links">
-            <a class="link" href="resume/James-Walker-Resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF) <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
+    <section class="section work-section" id="work" aria-labelledby="work-title">
+      <div class="page-shell">
+        <header class="section-heading reveal">
+          <div>
+            <p class="section-code">TRANSMISSION_01 // SELECTED WORK</p>
+            <h2 id="work-title">Ideas under construction.</h2>
+          </div>
+          <p>
+            Experiments, worlds, and systems in different stages of becoming.
+            Every build is a chance to learn something difficult and make it feel alive.
           </p>
+        </header>
+
+        <div class="project-grid">
+          <article class="project-card project-featured reveal" data-tilt>
+            <div class="project-visual project-city-visual" aria-hidden="true">
+              <div class="project-scanline" aria-hidden="true"></div>
+              <span class="visual-coordinate">VIEWPORT // NS7-001</span>
+              <span class="project-status status-live"><i></i> In development</span>
+              <div class="project-orbital-preview" aria-hidden="true">
+                <i></i><i></i><i></i>
+                <span>A7</span>
+                <b></b><b></b>
+              </div>
+              <div class="visual-lockup">
+                <span>NEON</span>
+                <strong>SECTOR-7</strong>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <p class="project-index">CASE_FILE_001 // FLAGSHIP BUILD</p>
+              <h3>Neon <span class="project-title-lock">Sector-7</span></h3>
+              <p>
+                An evolving interactive portfolio world designed as a place to
+                explore—not just a page to scroll. Cinematic interfaces and
+                playful systems chart the journey as the project grows.
+              </p>
+
+              <ul class="tag-list" aria-label="Technologies and disciplines">
+                <li>Interactive web</li>
+                <li>World building</li>
+                <li>JavaScript</li>
+              </ul>
+
+              <dl class="project-meta">
+                <div><dt>Status</dt><dd>In development</dd></div>
+                <div><dt>System type</dt><dd>Interactive portfolio</dd></div>
+                <div><dt>Core stack</dt><dd>HTML // CSS // JavaScript</dd></div>
+              </dl>
+
+              <div class="project-links">
+                <a
+                  href="https://github.com/doctordoomies/doctordoomies.github.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View source <span aria-hidden="true">↗</span>
+                  <span class="sr-only">(opens in a new tab)</span>
+                </a>
+                <button type="button" data-open-scan>
+                  Play scanner <span aria-hidden="true">◎</span>
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card project-game reveal" data-tilt>
+            <div class="project-visual pixel-visual" aria-hidden="true">
+              <span class="pixel-hud">RUN_02 // DEBUG</span>
+              <span class="pixel-moon"></span>
+              <span class="pixel-star star-one"></span>
+              <span class="pixel-star star-two"></span>
+              <span class="pixel-star star-three"></span>
+              <span class="pixel-platform platform-one"></span>
+              <span class="pixel-platform platform-two"></span>
+              <span class="pixel-character"><i></i></span>
+              <span class="visual-coordinate">BUILD // HTML-2D</span>
+            </div>
+
+            <div class="project-content">
+              <p class="project-index">CASE_FILE_002 // GAME CHALLENGE</p>
+              <h3>2D Game Challenge</h3>
+              <p>
+                A build challenge to create a 2D HTML game from scratch in
+                IntelliJ IDEA with a local Qwen3 Coder model through Ollama.
+                The current prototype is still being debugged.
+              </p>
+
+              <ul class="tag-list" aria-label="Technologies">
+                <li>HTML</li>
+                <li>Game dev</li>
+                <li>Local AI</li>
+              </ul>
+
+              <dl class="project-meta">
+                <div><dt>Status</dt><dd>Prototype // Debugging</dd></div>
+                <div><dt>System type</dt><dd>2D game experiment</dd></div>
+                <div><dt>Workflow</dt><dd>IntelliJ // Qwen3 // Ollama</dd></div>
+              </dl>
+
+              <div class="project-links">
+                <a
+                  href="https://github.com/doctordoomies/2D-Game-Challenge"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Explore repository <span aria-hidden="true">↗</span>
+                  <span class="sr-only">(opens in a new tab)</span>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card project-system reveal" data-tilt>
+            <div class="project-visual voxel-visual" aria-hidden="true">
+              <span class="voxel-network-line line-a"></span>
+              <span class="voxel-network-line line-b"></span>
+              <span class="voxel-network-line line-c"></span>
+              <div class="voxel-stack voxel-stack-one"><i></i><b></b><span></span></div>
+              <div class="voxel-stack voxel-stack-two"><i></i><b></b><span></span></div>
+              <div class="voxel-stack voxel-stack-three"><i></i><b></b><span></span></div>
+              <span class="visual-coordinate">SYSTEM // PAPER-JAVA</span>
+            </div>
+
+            <div class="project-content">
+              <p class="project-index">FIELD_NOTE_003 // ACTIVE SYSTEMS</p>
+              <h3>Minecraft Engineering</h3>
+              <p>
+                Java and Paper-powered server systems: custom minigames,
+                abilities, multiplayer mechanics, scoreboards, commands,
+                databases, and the architecture connecting them.
+              </p>
+
+              <ul class="tag-list" aria-label="Technologies">
+                <li>Java</li>
+                <li>Paper</li>
+                <li>Systems</li>
+              </ul>
+
+              <dl class="project-meta">
+                <div><dt>Status</dt><dd>Field notes // Logs pending</dd></div>
+                <div><dt>System type</dt><dd>Server engineering</dd></div>
+                <div><dt>Core stack</dt><dd>Java // Paper // Databases</dd></div>
+              </dl>
+
+              <span class="project-note">Build logs will transmit when ready.</span>
+            </div>
+          </article>
+
+          <article class="project-card project-ai reveal" data-tilt>
+            <div class="project-visual ai-visual" aria-hidden="true">
+              <span class="model-status">MODEL_BUS // LOCAL</span>
+              <span class="ai-node node-one"></span>
+              <span class="ai-node node-two"></span>
+              <span class="ai-node node-three"></span>
+              <span class="ai-node node-four"></span>
+              <span class="ai-line line-one"></span>
+              <span class="ai-line line-two"></span>
+              <span class="ai-line line-three"></span>
+              <div class="ai-core">LOCAL<br>AI</div>
+              <span class="visual-coordinate">LAB // OFFLINE-FIRST</span>
+            </div>
+
+            <div class="project-content">
+              <p class="project-index">FIELD_NOTE_004 // EXPERIMENTAL</p>
+              <h3>Local AI Lab</h3>
+              <p>
+                An offline-first test bench for local language models, coding
+                assistants, image generation, LoRAs, and creative development
+                workflows.
+              </p>
+
+              <ul class="tag-list" aria-label="Tools and disciplines">
+                <li>Ollama</li>
+                <li>Image generation</li>
+                <li>Workflows</li>
+              </ul>
+
+              <dl class="project-meta">
+                <div><dt>Status</dt><dd>Experimental</dd></div>
+                <div><dt>System type</dt><dd>Offline AI workflows</dd></div>
+                <div><dt>Toolchain</dt><dd>Ollama // Local models // LoRAs</dd></div>
+              </dl>
+
+              <a class="project-note project-note-link" href="#lab">Open the lab terminal →</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-tail reveal">
+          <span>MORE TRANSMISSIONS INCOMING</span>
+          <a
+            href="https://github.com/doctordoomies?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            See everything on GitHub <span aria-hidden="true">↗</span>
+            <span class="sr-only">(opens in a new tab)</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <section class="section" id="skills" data-nav="about" aria-labelledby="skills-h">
-      <div class="wrap split" data-reveal>
-        <h2 class="section-title" id="skills-h">Technologies</h2>
-        <dl class="def-list">
-          <div>
-            <dt>Languages</dt>
-            <dd>C <span class="sep">·</span> C++ <span class="sep">·</span> C# <span class="sep">·</span> Go <span class="sep">·</span> Swift <span class="sep">·</span> TypeScript <span class="sep">·</span> JavaScript <span class="sep">·</span> PHP <span class="sep">·</span> Kotlin <span class="sep">·</span> Python <span class="sep">·</span> Ruby <span class="sep">·</span> Rust <span class="sep">·</span> Scala <span class="sep">·</span> Elixir <span class="sep">·</span> Lua <span class="sep">·</span> GDScript <span class="sep">·</span> Java <span class="sep">·</span> Perl</dd>
+    <section class="section about-section" id="about" aria-labelledby="about-title">
+      <div class="page-shell">
+        <div class="about-layout">
+          <div class="about-copy reveal">
+            <p class="section-code">TRANSMISSION_02 // OPERATOR PROFILE</p>
+            <h2 id="about-title">Code is only half the experience.</h2>
+            <p class="about-lede">
+              I'm Adam. I build interactive web experiences, experiment with
+              local AI, and engineer Java and Paper systems for Minecraft.
+            </p>
+            <p>
+              The goal is to turn ambitious ideas into complete experiences—systems
+              that work, worlds that invite exploration, and interfaces with a point
+              of view. Neon Sector-7 is the place where those interests meet.
+            </p>
           </div>
-          <div>
-            <dt>Web</dt>
-            <dd>HTML <span class="sep">·</span> CSS <span class="sep">·</span> PHP <span class="sep">·</span> JavaScript <span class="sep">·</span> TypeScript <span class="sep">·</span> GraphQL</dd>
+
+          <div class="operator-file reveal">
+            <div class="operator-file-header"><span>INTERNAL_PERSONNEL_FILE</span><i>ACCESS // GRANTED</i></div>
+            <dl class="operator-dossier">
+              <div><dt>Operator</dt><dd>Adam</dd></div>
+              <div><dt>Designation</dt><dd>Creative Developer</dd></div>
+              <div><dt>Current sector</dt><dd>07</dd></div>
+              <div><dt>Primary fields</dt><dd>Games // Interactive Web // Local AI // Minecraft Systems</dd></div>
+              <div><dt>Mission</dt><dd>Build → Experiment → Learn → Repeat</dd></div>
+            </dl>
+
+            <div class="principle-list">
+              <article>
+                <span>01</span>
+                <div>
+                  <h3>Learn by building</h3>
+                  <p>The fastest route from curiosity to understanding is a working prototype.</p>
+                </div>
+              </article>
+              <article>
+                <span>02</span>
+                <div>
+                  <h3>Make it immersive</h3>
+                  <p>Small details, motion, and atmosphere can turn a tool into an experience.</p>
+                </div>
+              </article>
+              <article>
+                <span>03</span>
+                <div>
+                  <h3>Keep experimenting</h3>
+                  <p>New tools are invitations to test ideas, break assumptions, and iterate.</p>
+                </div>
+              </article>
+            </div>
           </div>
-          <div>
-            <dt>Databases</dt>
-            <dd>MySQL</dd>
+        </div>
+
+        <figure class="identity-banner reveal">
+          <div class="banner-frame">
+            <img
+              src="assets/banner.jpg"
+              alt="Stylized Neon Sector-7 cityscape with a friendly robot at a coding console beneath the name Adam"
+              width="2172"
+              height="724"
+              loading="lazy"
+              decoding="async"
+            >
+            <span class="banner-shine" aria-hidden="true"></span>
           </div>
-          <div>
-            <dt>Game development</dt>
-            <dd>Minecraft plugin development <span class="sep">·</span> Unreal Engine Blueprints <span class="sep">·</span> GDScript</dd>
+          <figcaption>
+            <span>WORLD_FILE // NEON-SECTOR-7</span>
+            <span>Learn. Build. Experiment. Repeat.</span>
+          </figcaption>
+        </figure>
+
+        <div class="capability-panel reveal">
+          <div class="capability-intro">
+            <p class="section-code">CAPABILITY_MATRIX</p>
+            <h3>Creative territory</h3>
+            <p>
+              A growing toolkit for taking an idea from a rough signal to a world
+              someone else can enter.
+            </p>
           </div>
-          <div>
-            <dt>Automation</dt>
-            <dd>Bash <span class="sep">·</span> PowerShell <span class="sep">·</span> Discord bots <span class="sep">·</span> AI integrations <span class="sep">·</span> Security automation</dd>
-          </div>
-          <div>
-            <dt>Cybersecurity</dt>
-            <dd>Secure code review <span class="sep">·</span> Security automation <span class="sep">·</span> OSINT</dd>
-          </div>
-          <div>
-            <dt>Design</dt>
-            <dd>Graphic design <span class="sep">·</span> Web design <span class="sep">·</span> UI/UX</dd>
-          </div>
-        </dl>
+
+          <ul class="capability-grid">
+            <li><span>01</span><div><strong>Creative web</strong><em>ACTIVE</em><small>HTML · CSS · JavaScript</small></div></li>
+            <li><span>02</span><div><strong>Interactive worlds</strong><em>BUILDING</em><small>Three.js · visual systems</small></div></li>
+            <li><span>03</span><div><strong>Game development</strong><em>EXPLORING</em><small>Godot · Unity · Unreal · mechanics</small></div></li>
+            <li><span>04</span><div><strong>Minecraft engineering</strong><em>ACTIVE</em><small>Java · Paper · databases · multiplayer</small></div></li>
+            <li><span>05</span><div><strong>Local AI</strong><em>EXPERIMENTING</em><small>Ollama · local models · LoRAs · image workflows</small></div></li>
+            <li><span>06</span><div><strong>3D</strong><em>BUILDING</em><small>Blender · modeling · animation</small></div></li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="notes" data-nav="about" aria-labelledby="notes-h">
-      <div class="wrap split" data-reveal>
-        <h2 class="section-title" id="notes-h">A few things along the way</h2>
-        <dl class="def-list">
+    <section class="section mission-section" id="mission" aria-labelledby="mission-title">
+      <div class="page-shell">
+        <header class="section-heading mission-heading reveal">
           <div>
-            <dt>Scholarship offers</dt>
-            <dd>MIT and Harvard<span class="aside">Before choosing other universities.</span></dd>
+            <p class="section-code">ARCHIVE_ACCESS // OPERATOR HISTORY</p>
+            <h2 id="mission-title">Every skill began as a signal.</h2>
           </div>
-          <div>
-            <dt>Minecraft development</dt>
-            <dd>Plugins used across thousands of servers</dd>
-          </div>
-          <div>
-            <dt>Community work</dt>
-            <dd>Minecraft PvP creators and communities</dd>
-          </div>
-        </dl>
+          <p>
+            A transmission archive of the tools, engines, and systems that shaped
+            the current mission. Not a straight line—an expanding territory.
+          </p>
+        </header>
+
+        <ol class="mission-track" aria-label="Adam's development journey">
+          <li class="mission-entry reveal">
+            <span class="mission-index">01</span>
+            <div><p>ORIGIN_SIGNAL</p><h3>Roblox Lua</h3><small>Game logic, scripting, and the first interactive systems.</small></div>
+          </li>
+          <li class="mission-entry reveal">
+            <span class="mission-index">02</span>
+            <div><p>OPEN_WEB</p><h3>HTML + JavaScript</h3><small>Turning ideas into interfaces that can run anywhere.</small></div>
+          </li>
+          <li class="mission-entry reveal">
+            <span class="mission-index">03</span>
+            <div><p>DIMENSION_SHIFT</p><h3>Blender + 3D</h3><small>Modeling, scenes, animation, and visual storytelling.</small></div>
+          </li>
+          <li class="mission-entry reveal">
+            <span class="mission-index">04</span>
+            <div><p>ENGINE_LINK</p><h3>Unity + C#</h3><small>Component-based gameplay and real-time engine thinking.</small></div>
+          </li>
+          <li class="mission-entry reveal">
+            <span class="mission-index">05</span>
+            <div><p>WORLD_SYSTEMS</p><h3>Unreal Engine</h3><small>Experimenting with high-fidelity worlds and visual systems.</small></div>
+          </li>
+          <li class="mission-entry reveal">
+            <span class="mission-index">06</span>
+            <div><p>RESTRICTED_NETWORK</p><h3>Cybersecurity</h3><small>Learning how connected systems operate, fail, and defend themselves.</small></div>
+          </li>
+          <li class="mission-entry reveal">
+            <span class="mission-index">07</span>
+            <div><p>SERVER_SECTOR</p><h3>Java + Minecraft</h3><small>Paper mechanics, multiplayer systems, commands, and persistence.</small></div>
+          </li>
+          <li class="mission-entry is-current reveal">
+            <span class="mission-index">08</span>
+            <div><p>CURRENT_VECTOR</p><h3>Local AI + Three.js</h3><small>Combining local models, creative coding, and browser-based worlds.</small></div>
+          </li>
+        </ol>
       </div>
     </section>
 
-    <section class="section" id="contact" data-nav="contact" aria-labelledby="contact-h">
-      <div class="wrap">
-        <span class="accent-rule" aria-hidden="true"></span>
-        <h2 class="contact-title" id="contact-h" data-split-scroll>Have something interesting to build?</h2>
-        <p class="contact-text" data-reveal>I'm always open to hearing about interesting software, web, automation, Minecraft, security, and development projects.</p>
-        <p class="btn-row" data-reveal>
-          <a class="btn" data-magnetic href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">Send an email <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
-          <a class="btn" data-magnetic href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
-        </p>
+    <section class="section lab-section" id="lab" aria-labelledby="lab-title">
+      <div class="page-shell">
+        <header class="section-heading reveal">
+          <div>
+            <p class="section-code">TRANSMISSION_03 // INTERACTIVE LAB</p>
+            <h2 id="lab-title">Ask the system.</h2>
+          </div>
+          <p>
+            The terminal is live. Try a command, inspect the mission, or launch
+            the anomaly scanner from the command line.
+          </p>
+        </header>
+
+        <div class="lab-layout">
+          <div class="terminal reveal" role="region" aria-labelledby="terminal-title">
+            <div class="terminal-bar">
+              <div aria-hidden="true"><span></span><span></span><span></span></div>
+              <p id="terminal-title">adam@neon-sector-7:~</p>
+              <small>ENCRYPTED</small>
+            </div>
+
+            <div class="terminal-output" id="terminal-output" role="log" aria-label="Terminal output" aria-live="polite" aria-relevant="additions" tabindex="0">
+              <div class="terminal-line system-line">NEON SECTOR-7 command interface connected.</div>
+              <div class="terminal-line system-line">Type <strong>help</strong> to inspect available commands.</div>
+            </div>
+
+            <form class="terminal-form" id="terminal-form">
+              <label class="sr-only" for="terminal-input">Enter a terminal command</label>
+              <span aria-hidden="true">visitor@ns7:~$</span>
+              <input
+                id="terminal-input"
+                name="command"
+                type="text"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                placeholder="type a command..."
+              >
+            </form>
+
+            <div class="terminal-shortcuts" role="group" aria-label="Suggested terminal commands">
+              <span>Try:</span>
+              <button type="button" data-terminal-command="whoami">whoami</button>
+              <button type="button" data-terminal-command="projects">projects</button>
+              <button type="button" data-terminal-command="stack">stack</button>
+              <button type="button" data-terminal-command="sector">sector</button>
+              <button type="button" data-terminal-command="pulse">pulse</button>
+              <button type="button" data-terminal-command="scan">scan</button>
+            </div>
+          </div>
+
+          <aside class="build-path reveal" aria-label="Adam's build philosophy">
+            <div class="panel-chrome">
+              <span>BUILD_PROTOCOL</span>
+              <span>04 STAGES</span>
+            </div>
+
+            <ol>
+              <li>
+                <span>01</span>
+                <div><strong>Imagine</strong><small>Find the idea worth chasing.</small></div>
+              </li>
+              <li>
+                <span>02</span>
+                <div><strong>Prototype</strong><small>Make the idea tangible early.</small></div>
+              </li>
+              <li>
+                <span>03</span>
+                <div><strong>Engineer</strong><small>Build the systems underneath.</small></div>
+              </li>
+              <li>
+                <span>04</span>
+                <div><strong>Polish</strong><small>Give every detail a purpose.</small></div>
+              </li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="page-shell">
+        <div class="contact-panel reveal">
+          <div class="contact-orbit" aria-hidden="true"><span></span><i></i></div>
+          <div class="contact-copy">
+            <p class="section-code">FINAL_TRANSMISSION // CHANNEL OPEN</p>
+            <h2 id="contact-title">Follow the signal.</h2>
+            <p>
+              Find the source code, experiments, and build history on GitHub.
+              Neon Sector-7 will keep evolving as new ideas come online.
+            </p>
+
+            <div class="contact-actions">
+              <a
+                class="button button-primary"
+                href="https://github.com/doctordoomies"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>Open @doctordoomies</span>
+                <span class="button-arrow" aria-hidden="true">↗</span>
+                <span class="sr-only">(opens in a new tab)</span>
+              </a>
+              <button class="button button-secondary" id="copy-username" type="button">
+                <span>Copy GitHub handle</span>
+                <span class="button-arrow" aria-hidden="true">＋</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="contact-readout" aria-hidden="true">
+            <span>CONNECTION</span>
+            <strong>READY</strong>
+            <i></i>
+            <small>SOURCE CHANNEL OPEN</small>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-left">
-        <span>Zyren · James Walker</span>
-        <a class="link" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=zyrencodes@gmail.com" target="_blank" rel="noopener noreferrer">zyrencodes@gmail.com</a>
-        <a class="link" href="https://github.com/Zyrencodes" target="_blank" rel="noopener noreferrer">GitHub <svg class="ico arrow" aria-hidden="true"><use href="#i-up-right"/></svg></a>
-      </div>
-      <div class="footer-right">
-        <span>© <span id="year">2026</span> James Walker</span>
+    <div class="page-shell">
+      <p>Designed and built by Adam <span>//</span> Neon Sector-7.</p>
+      <div>
+        <span>© <span id="current-year">2026</span></span>
+        <a href="#home">Return to top ↑</a>
       </div>
     </div>
   </footer>
 
-  <script src="vendor/gsap.min.js" defer></script>
-  <script src="vendor/ScrollTrigger.min.js" defer></script>
-  <script src="vendor/lenis.min.js" defer></script>
-  <script src="vendor/split-type.min.js" defer></script>
-  <script src="main.js" defer></script>
+  <div class="pulse-system">
+    <button
+      class="pulse-trigger"
+      id="pulse-trigger"
+      type="button"
+      aria-expanded="false"
+      aria-controls="pulse-panel"
+      aria-label="Open Pulse system guide"
+    >
+      <span class="pulse-trigger-signal" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span><strong>PULSE</strong><small>SYSTEM GUIDE</small></span>
+    </button>
+
+    <section
+      class="pulse-panel"
+      id="pulse-panel"
+      role="dialog"
+      aria-modal="false"
+      aria-labelledby="pulse-title"
+      hidden
+    >
+      <div class="pulse-header">
+        <div><span aria-hidden="true"></span><p>PULSE // SYSTEM INTELLIGENCE</p></div>
+        <button class="icon-button" id="pulse-close" type="button" aria-label="Close Pulse guide">×</button>
+      </div>
+      <div class="pulse-body">
+        <h2 class="pulse-speaker" id="pulse-title">PULSE</h2>
+        <p class="pulse-response" id="pulse-response" role="status" aria-live="polite">
+          Connection established. I can guide you through Sector-7.
+        </p>
+        <div class="pulse-prompts" role="group" aria-label="Questions for Pulse">
+          <button type="button" data-pulse-question="adam">Who is Adam?</button>
+          <button type="button" data-pulse-question="projects">Show projects</button>
+          <button type="button" data-pulse-question="sector">What is Sector-7?</button>
+          <button type="button" data-pulse-question="builds">What does Adam build?</button>
+          <a href="https://github.com/doctordoomies" target="_blank" rel="noopener noreferrer">
+            Open GitHub <span aria-hidden="true">↗</span><span class="sr-only"> (opens in a new tab)</span>
+          </a>
+        </div>
+      </div>
+      <div class="pulse-footer"><span>LOCAL RESPONSE MATRIX</span><i>NO EXTERNAL API</i></div>
+    </section>
+  </div>
+
+  <dialog class="command-dialog" id="command-dialog" aria-labelledby="command-title">
+    <div class="command-window">
+      <div class="command-header">
+        <div>
+          <p>QUICK_ACCESS // COMMAND DECK</p>
+          <h2 id="command-title">Where to?</h2>
+        </div>
+        <button class="icon-button" id="close-command" type="button" aria-label="Close command deck">×</button>
+      </div>
+
+      <label class="command-search">
+        <span aria-hidden="true">⌕</span>
+        <span class="sr-only">Filter commands</span>
+        <input id="command-search-input" type="search" placeholder="Type a command or destination..." autocomplete="off">
+        <kbd aria-hidden="true">ESC</kbd>
+      </label>
+
+      <div class="command-list" id="command-list" role="listbox" aria-label="Available commands">
+        <button type="button" data-command-target="#work" data-command-keywords="work projects builds portfolio">
+          <span>01</span><strong>Explore work</strong><small>Jump to selected builds</small><i>↘</i>
+        </button>
+        <button type="button" data-command-target="#about" data-command-keywords="about profile adam biography">
+          <span>02</span><strong>Open profile</strong><small>Read the operator dossier</small><i>↘</i>
+        </button>
+        <button type="button" data-command-target="#mission" data-command-keywords="mission history journey timeline archive skills">
+          <span>03</span><strong>Open mission log</strong><small>Trace the operator history</small><i>↘</i>
+        </button>
+        <button type="button" data-command-target="#lab" data-command-keywords="lab terminal commands ai">
+          <span>04</span><strong>Enter the lab</strong><small>Use the interactive terminal</small><i>↘</i>
+        </button>
+        <button type="button" data-command-scan data-command-keywords="scan game anomaly play">
+          <span>05</span><strong>Run scanner</strong><small>Launch the anomaly mini-game</small><i>◎</i>
+        </button>
+        <button type="button" data-command-pulse data-command-keywords="pulse guide ai help assistant">
+          <span>06</span><strong>Contact Pulse</strong><small>Open the local system guide</small><i>◌</i>
+        </button>
+        <button type="button" data-command-theme data-command-keywords="theme sector solar ghost stellar color mode">
+          <span>07</span><strong>Change sector mode</strong><small>Cycle the environment theme</small><i>◈</i>
+        </button>
+        <button type="button" data-command-target="#contact" data-command-keywords="contact github final transmission source">
+          <span>08</span><strong>Final transmission</strong><small>Open the source channel</small><i>↘</i>
+        </button>
+        <a
+          href="https://github.com/doctordoomies"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-command-keywords="github code repositories source"
+        >
+          <span>09</span><strong>Open GitHub</strong><small>View code and repositories</small><i>↗</i>
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+      </div>
+
+      <p class="command-empty" id="command-empty" role="status" aria-live="polite" hidden>No matching signal found.</p>
+      <div class="command-footer"><span>↑↓ Navigate</span><span>Enter Select</span><span>Esc Close</span></div>
+    </div>
+  </dialog>
+
+  <dialog class="sector-scan-dialog" id="sector-scan-dialog" aria-labelledby="scan-dialog-title" aria-describedby="scan-instructions">
+    <div class="sector-scan-window">
+      <div class="scan-window-header">
+        <div>
+          <p class="scan-eyebrow">NEON SECTOR-7 // SECURITY SYSTEM</p>
+          <h2 id="scan-dialog-title">Anomaly Scanner</h2>
+        </div>
+        <button class="icon-button scan-close-button" id="close-sector-scan" type="button" aria-label="Close anomaly scanner">×</button>
+      </div>
+
+      <div class="scan-status-bar">
+        <div><span>Score</span><strong id="scan-score">000</strong></div>
+        <div><span>Time</span><strong id="scan-time">20</strong></div>
+        <div><span>High score</span><strong id="scan-high-score">000</strong></div>
+        <div><span>Status</span><strong id="scan-status">Standby</strong></div>
+      </div>
+
+      <div
+        class="scan-field"
+        id="scan-field"
+        role="group"
+        tabindex="-1"
+        aria-label="Anomaly scan field. Click or tap anomalies, or press Space to neutralize the current signal."
+      >
+        <div class="radar-grid" aria-hidden="true"></div>
+        <div class="radar-circle radar-circle-one" aria-hidden="true"></div>
+        <div class="radar-circle radar-circle-two" aria-hidden="true"></div>
+        <div class="radar-circle radar-circle-three" aria-hidden="true"></div>
+        <div class="radar-crosshair radar-crosshair-horizontal" aria-hidden="true"></div>
+        <div class="radar-crosshair radar-crosshair-vertical" aria-hidden="true"></div>
+        <div class="radar-sweep" aria-hidden="true"></div>
+
+        <div class="scanner-center" aria-hidden="true"><span>A7</span></div>
+
+        <div class="scan-message" id="scan-message">
+          <p class="scan-message-code">SYSTEM_READY</p>
+          <h3>Scanner ready</h3>
+          <p>Locate and neutralize unstable energy signals before time expires.</p>
+          <button id="start-sector-scan" type="button" data-scan-start>Initialize scan</button>
+        </div>
+      </div>
+
+      <p class="scan-instructions" id="scan-instructions">
+        Click or tap the glowing signals. Keyboard operators can press Space.
+      </p>
+      <p class="sr-only" id="scan-announcement" aria-live="polite"></p>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
 </body>
 </html>
